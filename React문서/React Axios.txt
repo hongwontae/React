@@ -1,0 +1,9 @@
+React Axios
+=> 서버에 요청 후 응답이 오기까지 시간이 걸리기 때문에 요청은 비동기 처리하고,
+
+응답을 처리하는 부분은 then이나 await을 사용한다.
+
+axios.get()/ axios.post()/ axios.delete()/ axios.put() => 데이터 처리 방식
+=> ()안에 서버의 주소를 복사한다.
+
+.then => 성공했을 때 실행되는 함수
