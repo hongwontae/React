@@ -1,1 +1,0 @@
-npm install이 아니라 npm ci를 해야 git clone한 것을 제대로 사용할 수 있다.
