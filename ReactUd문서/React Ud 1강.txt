@@ -44,6 +44,14 @@ Single root(기준)
 하나의 엘리멘트를 유지해야 하기 때문이다.
 
 18. Css
+js파일을 import하는 것과는 다르게 css 파일의 import는 import './파일명.css'이다. 
+class가 아니라 className이다.
+
+19. 동적 표현
+컴포넌트 재사용성, 분리성을 가지고 있다.
+jsx내의 {}중괄호는 기본적인 js 코드를 실행할 수 있다.
+
+20. props
 
 
 
