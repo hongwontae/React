@@ -12,7 +12,7 @@ npm start => 코드를 실행하여 브라우저에 전달한다. 전달 전에 
 일반 js에서 css 파일을 가져올 수 없다.
 createRoot => 리액트를 사용하여 구축할 전체 사용자 인터페이스의 메인 엔트리 포인트, 메인 훅을 생성한다.
 root.render => 사용자 인터페이스가 로딩되는 웹 페이지를 어느 곳에 위치해야 하는지 알려준다.
-public - index.js => 리액트는 하나의 html 파일만 이용하는 바로 index.js이다.
+public - index.js => 리액트는 하나의 html 파일만 이용하는 바로 index.js이다. singe page application => spa이다.
 import로 javaScript를 가져올 때만 확장자를 빼고 가져온다.
 ./ => 같은 경로에 존재한다는 뜻이다.
 요약 => index.js 단 하나의 싱글 페이지로 React는 구성된다. <div id=root><div/>에서 root란 아이디를
@@ -21,7 +21,7 @@ document.getElementId('root')를 사용하여 잡아주고 CreatRoot로 리액�
 
 14. jsx
 jsx는 javaScript코드 안에 html 코드가 있는 것을 의미한다.
-jsx는 브라우저에서 자동으로 근본적인 js로 변환된다. 
+jsx는 브라우저에서 자동으로 근본적인 js로 변환된다. => npm start가 해줌
 return으로 반환되는 코드가 jsx이다.
 
 15. 리액트의 작동방식
@@ -51,7 +51,6 @@ class가 아니라 className이다.
 컴포넌트 재사용성, 분리성을 가지고 있다.
 jsx내의 {}중괄호는 기본적인 js 코드를 실행할 수 있다.
 
-20. props
 
 
 

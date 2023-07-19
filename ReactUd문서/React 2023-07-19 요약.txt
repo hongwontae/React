@@ -1,0 +1,4 @@
+1. public의 index.html <div id=root>a<div/> 리액트는 싱글 페이지 어플리케이션으로 a에만 렌더링 되는 라이브러리이다.
+
+2. index.js에서 CreateRoot로 리액트 메인 엔트리 포인트를 생성한다. 그리고 render라는 함수로 렌더링할 파일을 가져온다.
+
