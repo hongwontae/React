@@ -1,5 +1,0 @@
-Props 비구조화 할당
-=> 그냥 외우자..
-props.name/ props.color
-{name, color}
-
