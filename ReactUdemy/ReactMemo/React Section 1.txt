@@ -6,8 +6,8 @@ React Project를 만드는 두 가지 방법이 존재한다.
 2. 리액트 프로젝트 생성하기 : 로컬 기반
 npx create-react-app 파일이름 => React가 생성된다.
 
-npm start를 통해서 서버아래에서 프로젝트가 열린다. => 파일 프로토콜이 아니다. server+develCode
-npm start의 위치는 React Project가 있는 root 위치이다.
+npm start를 통해서 서버 아래에서 프로젝트가 열린다. => 파일 프로토콜이 아니다. server+develCode
+npm start의 위치는 React Project가 있는 package.json 위치이다.
 
 vite라는 tool를 통해서 React 프로젝트를 생성할 수 있다.
 
