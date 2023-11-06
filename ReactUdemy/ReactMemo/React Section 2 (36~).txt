@@ -13,4 +13,42 @@
 
 
 3. 새로운 React Project Start
+=> npx creat-react-app 파일이름
+=> 기존의 React 데모를 다운 받고 package.json이 있는 곳에서 npm install
+=> 브라우저 React 웹 앱을 사용한다.
+
+
+4. 표준 리액트 프로젝트 분석하기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
