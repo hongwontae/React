@@ -48,6 +48,17 @@ import 할 떄 JS파일이나 써드 파티 라이브러리는 확장자를 뺴�
 export 할떄는 default 키워드를 사용해서 모든것을 준다.
 
 
+5. JSX 소개 and transCode
+JSX는 자바스크립트 안에 있는 HTML 코드를 의미한다. JSX(JavaScript XML), HTML = XML
+=> JSX 문법이 적용되는 이유는 npm 프로세스가 배후에서 브라우저 친화적인 코드로 변환하고 제공하기 때문이다.
+=> 개발자 도구 - sources - static/js에 변환된 파일이 존재한다. 개발자가 만든 코드, react/react-dom 라이브러리 소스 코드를 포함하고 있다.
+
+
+6. React 작동 방식
+
+
+
+
 
 
 
