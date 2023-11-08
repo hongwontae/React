@@ -29,7 +29,7 @@ npm 프로세스가 React 문법을 파악해서 브라우저에게 알려주는
 package.json의 react-dom과 react 두 의존성이 함께 리액트 라이브러리를 구성한다.
 react-dom과 react로부터 import를 한다면 그것은 react 기능을 사용하는 것이다.
 
-import ReactDOM from 'react-dom/sclient'
+import ReactDOM from 'react-dom/client'
 const root = ReactDOM.createRoot() => 리액트로 만들려는 사용자 인터페이스의 기본 진입점 혹은 메인 훅이 생성된다. 즉,사용자 인터페이스가 로딩되었을 떄 웹페이지가 어디에 배치되어야 하는지 리액트에게 알려준다.
 (React에게 우리의 시작점은 여기야!! 라고 말하는 것과 같다.)
 
@@ -54,7 +54,12 @@ JSX는 자바스크립트 안에 있는 HTML 코드를 의미한다. JSX(JavaScr
 => 개발자 도구 - sources - static/js에 변환된 파일이 존재한다. 개발자가 만든 코드, react/react-dom 라이브러리 소스 코드를 포함하고 있다.
 
 
-6. React 작동 방식
+6. 리액트 작동 방식
+바닐라 JS는 querySeletor, createElement, .textContent를 이용해서 접근한다. => 모든 걸 다 정의해야 한다.
+React는 JSX 문법을 사용해서 상태를 정의한다. => 선언형 접근법
+
+
+7. 첫 번쨰 사용자 정의 컴포넌트 구축하기
 
 
 
