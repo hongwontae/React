@@ -76,6 +76,15 @@ HTML 태그로 사용될 떄는 항상 첫 문자가 대문자인 카멜케이�
 => Syntax이다. 이래야 React가 사용자 지정 컴포넌트인것을 감지한다. 소문자는 일반적인 html 태그로 인식한다.
 
 
+8. 좀 더 복잡한 JSX 코드 작성하기
+JSX 코드는 단 하나의 루트 요소만 있어야 한다.
+ex) return <div>title</div> <div>Age</div> => 루트 요소가 두 개이다.
+ex) return <div> <div>title</div> <div>Age</div></div> => 루트 요소가 하나이다. div안에 모든 코드들이 존재한다.
+
+JSX return 키워드 옆에 JSX 코드가 일부라도 위치해 있어야 한다. => 그렇지 않으면 에러가 발생한다.
+return의 특성 떄문 => 해결하기위해 코드 전체를 () 감싸주면 된다.
+
+
 
 
 
