@@ -1,7 +1,7 @@
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
 
-function ExpenseItem({ date, title, amount}) {
+function ExpenseItem({date, title,amount}) {
 
   return(
     <div className="expense-item">
