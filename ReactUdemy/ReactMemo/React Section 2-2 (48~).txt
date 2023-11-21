@@ -52,6 +52,30 @@ props - key - data 형식으로 값을 받아오는데 객체 구조 분해 할�
 
 
 
+6. 컴포지션의 개념
+작은 구성요소부터 시작해서 사용자 인터페이스를 구축하는 방식을 컴포지션이라고 한다.
+
+Card.js => 일반적으로 모서리가 둥글고 그림자 효과가 있고 컨테이너 외관을 의미할 떄 Card라는 말을 많이 사용한다.
+
+Expense 컨텐츠를 둘러싸는 껍질 역할하는 컴포넌트를 생성할 수 있다. 즉 재사용 가능한 래퍼 컴포넌트를 생성할 수 있다.
+컴포넌트를 생성하고(Card.js) 그 컴포넌트를 root 컴포넌트로써 다른 컴포넌트를 감싼다면
+=> <Card><div>....<div></Card>
+=> 단순히 이렇게 사용하면 리액트가 래퍼 컴포넌트라고 인식하지 못하고 안에 있는 컴포넌트들을 무시해버린다.
+
+props.children => 
+import './Card.css';
+
+function Card(props){
+    return <div className = "card">{props.children}</div>
+}
+export default Card;
+=> children은 예약어이다. 이 값은 항상 사용자 지정 컴포넌트의 시작 태그와 종료 태그 사이에 있는 콘텐츠가 된다.
+=> 래퍼 컴포넌트는 props로 className과 children이란 이름의 배열을 얻을 수 있다. children키는 래퍼 컴포넌트로 감싼 컴포넌트의 data가 담겨있다.
+
+=> 이후 복잡한 사용자 인터페이스를 만들면 중복되는 코드를 만나는데 이 떄 props.children로직으로 많은 중복을 피할 수 있다.
+
+
+
 
 
 
