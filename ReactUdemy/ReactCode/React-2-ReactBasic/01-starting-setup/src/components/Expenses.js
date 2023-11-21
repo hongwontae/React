@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 import Card from "./Card";
 
 function Expenses({item}) {
+  console.log(item)
 
   return (
     <Card className="expenses">
