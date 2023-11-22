@@ -1,1 +1,10 @@
-React Section 5-2 (74~)
+1. Add form input
+form 태그안에서 label, input, button를 설정하고 css를 설정하여 app.js에서 사용한다.
+
+
+2. Receiving user input
+input의 onChange 속성은 input의 무엇가를 적을 때마다 이벤트 핸들러가 트리거된다.
+=> 이 때 이벤트 핸들러의 매개변수에 event라는 객체가 주어진다.
+=> event.target은 해당 이벤트가 발생하는 곳을 물어보는 것이다.
+=> event.target(input).value => 인풋태그에 적힌 값을 반환한다.
+input의 값을 받을 때는 해당 DOM의 value 속성에 접근해야 한다.
