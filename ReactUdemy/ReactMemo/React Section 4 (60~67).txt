@@ -14,3 +14,39 @@ React는 return하는 곳은 JSX로 작성하지만 그 외에는 JavaScript 코
 
 
 4. 사용자 정의 컴포넌트 만들고 사용하기
+image를 사용하기 위해서 src 폴더안에 images라는 폴더를 생성하고 사용하려는 컴포넌트에서 import한다.
+그리고 img 태그의 src에 해당 import 변수명을 넣어준다.
+
+컴포넌트를 만들 떄 분리할 코드를 잘 계산하고 가져와야 한다.
+=> 의도하지 않은 결과를 낳을 수 있다.
+
+
+5. How to outsource concept items into reusable components
+props로 전달될 떄는 항상 props = {키(상위 컴포넌트에서 지정한 키 이름) : value}로 보내진다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
