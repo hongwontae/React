@@ -1,0 +1,11 @@
+1. 데이터 렌더링 목록
+=> props로 넘어오는 값들은 얼마나 존재할지 모른다.
+=> 동적인 데이터 출력이 가능해야 한다.
+=> Array.map를 사용하여 사용자 지정 컴포넌트를 반환한다.
+
+props로 하위 컴포넌트에 값들을 보냈다면 {} JSX 동적 표현식 중괄호 안에 map 구문를 작성하면 동적으로 데이터를 출력시킬 수 있다.
+
+props.item(key).map((expense) => {
+   <ExpenseItem title={expense.title} date={expense.date} amount={expense.amount}/>
+})
+=> 이런 구문을 작성하면 데이터를 동적으로 출력시킬 수 있다.
