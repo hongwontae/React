@@ -9,3 +9,6 @@ props.item(key).map((expense) => {
    <ExpenseItem title={expense.title} date={expense.date} amount={expense.amount}/>
 })
 => 이런 구문을 작성하면 데이터를 동적으로 출력시킬 수 있다.
+
+
+2. State 저장 목록 사용
