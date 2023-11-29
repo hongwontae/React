@@ -23,6 +23,26 @@ className = `cssClass ${!isValid ? '' : invalid}`
 
 
 3. Styled Components 소개
+현재 import 'css 주소'를 사용하여 스타일을 적용시킨것은 해당 컴포넌트에 css 파일이 국한된다는 말은 아니다.
+해당 css 파일의 class, id, tag 구문이 import 하지 않은 다른 컴포넌트에 해당할 경우 그 컴포넌트도 적용이 된다.
+=> 의도치 않은 작동이다.
+
+styled Components는 특정 스타일이 첨부된 컴포넌트를 구축할 수 있도록 도와주는 패키지이다.
+스타일이 첨부되는 컴포넌트에만 영향을 미치고 다른 컴포넌트에는 전혀 영향을 미치지 않는다.
+
+styled components 사용 방법
+1. npm install styled-components
+2. import styled from 'styled-components'
+3. const 컴포넌트이름 = styled.컴포넌트``;
+
+백틱안에 css 구문을 넣고 button을 반환하면 해당 컴포넌트를 사용하는 컴포넌트에서 button css의 class는 독립적인 이름을 갖게 된다.
+
+`` 태그드 템플릿 구문을 사용한 것이다.
+
+
+4. Styled Components & 동적 Props
+
+
 
 
 
