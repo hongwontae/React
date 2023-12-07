@@ -1,4 +1,5 @@
-import DataLogic from "./Components/DataLogic";
+import Category from "./children/Category";
+import DataView from "./Components/DataView";
 
 function App() {
   const data = [
@@ -25,10 +26,16 @@ function App() {
   ];
 
   return (
-    <div className="App">
-      <h1>Who are you?</h1>
-      <DataLogic modernData={data}></DataLogic>
-    </div>
+    <Category>
+      <li>First Item</li>
+      <li>Second Item</li>
+      <li>Third Item</li>
+      <div>
+        <div>good Game</div>
+        <div>good Game</div>
+      </div>
+      <DataView dataView={data}></DataView>
+    </Category>
   );
 }
 

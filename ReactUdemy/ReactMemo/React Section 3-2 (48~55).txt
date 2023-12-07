@@ -24,8 +24,6 @@ JSX 내의 {}는 속성의 값을 정의할 떄도 사용할 수 있다.
 
 하위 컴포넌트에서 props를 받을 때 객체구조분해를 통해서 (let a = {title:hwt, age:20}) => let {title, age} = a;) 받을 수 있다. 
 
-의문점 => 하위 컴포넌트에서 받는 props의 데이터 타입은 항상 객체인가?
-
 
 3. 컴포넌트에 바닐라 자바스크립트 로직 추가하기
 날짜를 표시하는 하위 컴포넌트의 JSX가 date.toIsoString이기 때문에 읽기 어렵게 반환된다.
@@ -75,6 +73,7 @@ export default Card;
 => 래퍼 컴포넌트는 props로 className과 children이란 이름의 배열을 얻을 수 있다. children키는 래퍼 컴포넌트로 감싼 컴포넌트의 data가 담겨있다.
 
 => 이후 복잡한 사용자 인터페이스를 만들면 중복되는 코드를 만나는데 이 떄 props.children로직으로 많은 중복을 피할 수 있다.
+
 
 
 
