@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const UserInput = () => {
+const UserInput = (props) => {
 
   const initialUserInput = {
     'current-savings' : 10000,
@@ -14,7 +14,7 @@ const UserInput = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("Stop Study");
+    props.onCalculate(userInput);
   };
 
   const resetHandler = (e) => {
