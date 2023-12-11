@@ -1,7 +1,7 @@
 
-const Form = ()=>{
+const UserInput = ()=>{
 
-    return(
+    return (
         <form className="form">
         <div className="input-group">
           <p>
@@ -35,7 +35,6 @@ const Form = ()=>{
         </p>
       </form>
     )
-
 }
 
-export default Form;
+export default UserInput;

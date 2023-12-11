@@ -1,6 +1,6 @@
 
+const ResultsTable = ()=>{
 
-const Table = ()=>{
 
     return (
         <table className="result">
@@ -24,7 +24,6 @@ const Table = ()=>{
         </tbody>
       </table>
     )
-
 }
 
-export default Table
+export default ResultsTable

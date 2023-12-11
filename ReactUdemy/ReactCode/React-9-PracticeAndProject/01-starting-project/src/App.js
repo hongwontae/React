@@ -1,7 +1,6 @@
-import Header from "./Components/Header";
-import Form from "./Components/Form";
-import Table from "./Components/Table";
-
+import Header from "./Components/Header/Header";
+import UserInput from "./Components/UserInput/UserInput"
+import ResultsTable from "./Components/ResultsTable/ResultsTable";
 
 function App() {
   const calculateHandler = (userInput) => {
@@ -34,8 +33,8 @@ function App() {
   return (
     <div>
       <Header></Header>
-      <Form></Form>
-      <Table></Table>
+      <UserInput></UserInput>
+      <ResultsTable></ResultsTable>
     </div>
   );
 }
