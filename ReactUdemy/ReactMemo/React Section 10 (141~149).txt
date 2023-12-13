@@ -24,7 +24,9 @@ wrapper.js 컴포넌트를 만들고 return 값으로 props.children를 작성�
 *** 불필요한 요소 추가도 없고 스타일링의 오류도 적어진다.
 
 
-3. React Segment
+3. React Fragment
+2의 래퍼 컴포넌트는 React가 이미 제공하고 있다.
+=> React.Fragment or <>...</> 이 구 구문은 빈 Wrapper를 렌더링한다. (<>...</> 해당 구문을 지원하는 빌드 프로세스가 있어야 되고 React.Fragment는 항상 지원된다.)
 
 
 
