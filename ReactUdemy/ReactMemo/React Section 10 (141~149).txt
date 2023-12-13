@@ -51,6 +51,33 @@ ReactDOM.createPortal(1,2)
 
 
 6. ref로 작업하기
+uesRef는 다른 DOM 요소에 접근해서 그것들로 작업할 수 있게 해주는 것이다.
+
+AddUser의 input onChange를 통해서 state를 관리할 떄 키를 입력할 떄마다 state를 업데이트한다는 것은 불필요하다.
+이 경우 useRef를 사용한다.
+
+useRef를 사용해서 연결을 설정할 수 있다. 
+
+useRef도 마찬가지로 함수형 컴포넌트 안에서 사용가능하다. (리액트 훅들은 함수형 컴포넌트 안에서만 사용이 가능하다.)
+
+ex) const nameInput = useRef();/ const ageInputRef = useRef();
+=> 이제 ref를 HTML 요소에 연결하고 싶다고 리액트에게 알려줄 수 있다.
+=> <input ref={nameInputRef}>
+=> 어떤 HTML 요소라도 참조 중 하나에 연결할 수 있다.
+
+위처럼 설정하고 console.log(nameInput)를 출력하면 current 객체가 존재한다.
+처음 설정한 useRef()의 기본값은 비워있지만 코드가 실행되자마자 ref 프롭에 연결된 html 요소 때문에 nameInput은 input에 연결된다. current 프롭에 값으로 저장된 인풋이 된다는 것이다. current에 저장된 value는 실제 DOM 노드이다.
+=> DOM 조작을 할 수 있지만 React가 하는 것이 취지에 맞다. 다만 데이터를 읽는 것은 상관없다.
+
+console.log(nameInput.current.value) => input의 value를 가져온다.
+
+위처럼 설정했을 떄 input의 값을 비우는 로직
+=> ref.current.value는 실제 node이기 때문에 변경하면 DOM에 영향을 준다.
+=> ref.current.value = ''를 설정하면 된다.
+
+=> ref VS State
+=> 데이터만 읽고 오고 싶을 떄는 ref를 사용하는 게 좋고 DOM 조작을 하고 싶다면 State를 사용하는 것이 좋다.
+
 
 
 
