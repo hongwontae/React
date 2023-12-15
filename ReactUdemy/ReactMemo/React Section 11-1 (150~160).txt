@@ -1,0 +1,1 @@
+1. Sid Effets란 무엇이며 useEffect는 무엇인가?
