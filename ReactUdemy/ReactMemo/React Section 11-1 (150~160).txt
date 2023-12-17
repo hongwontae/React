@@ -36,6 +36,17 @@ useEffect()의 실행시점
 ** useEffect의 실행은 컴포넌트 렌더링이 끝난 후에 useEffect()가 실행된다.
 
 
+3. useEffect & 종속성
+만약 useEffect의 의존성 배열이 없다면 useEffect의 실행 함수는 컴포넌트가 다시 렌더링될 때마다 다시 실행된다.
+=> 무한 루프가 발생한다.
+
+useState의 setFunc()는 리액트에 의해 절대 변경되지 않도록 보장한다.
+
+Side Effect는 어떤 요청이 와서 새로운 값을 응답하는 상황이나 경우를 의미한다.
+
+
+4. 
+
 
 
 
