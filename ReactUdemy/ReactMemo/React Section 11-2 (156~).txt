@@ -1,0 +1,10 @@
+1. useReducer 및 Reducers 일반 소개
+useReducer는 리액트 훅이고 state 관리를 도와준다.
+useState를 통해 복잡한 state을 관리하면 오류가 나거나 버그가 생길 수 있다.
+=> reducer를 사용해서 강력한 상태 관리를 할 수 있다.
+
+Login Form은 useState를 사용해서 폼 state를 다루고 있다.
+이렇게 다양한 state를 관리하고 하나의 state를 기반으로 다른 state를 업데이트 하면 오류나 버그의 확률이 증가한다는 것이다.
+
+다른 state를 기반으로 하는 state를 업데이트하면 그 경우에는 하나의 state로 병합하는 것도 좋다.
+=> useState의 두 번쨰 배열 값을 객체로 만든다.
