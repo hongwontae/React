@@ -16,7 +16,7 @@ export default AuthContext; => 생성된 객체를 내보낸다.
 리액트 컨텍스트도 react.Fragment처럼 사용할 수 있다.
 
 값에 접근하려면 리스닝을 해야 한다. 두 가지 방법이 존재한다.
-2-1. <AuthContext.Consumer>
+=> <AuthContext.Consumer>
 
 ex) <AuthContext.Consumer>
    {(ctx)=>{
@@ -32,6 +32,13 @@ ex) <AuthContext.Consumer>
 
 => 이제는 프롭체인할 필요없이 Consumer를 통해 내려주면 된다.
 
+
+3. useContext 훅으로 컨텍스트에 탭핑하기
+useContext를 사용해서 Consumer를 매우 간편하게 사용할 수 있다.
+Consumer의 코드를 구성하지 않고 const ctx = UseContext(컨텍스트 JS 파일);
+=> ctx를 통해 컨텍스트에 접근할 수 있다.
+
+=> 매우 효율적이고 실용적인 방법이다.
 
 
 
