@@ -1,8 +1,9 @@
-import react from 'react';
+import react from "react";
 
 import Category from "./children/Category";
 import DataView from "./Components/DataView";
-import DataState from './Components/DataState';
+import DataState from "./Components/DataState";
+import AuthContext from "./Context/auth-context";
 
 function App() {
   const data = [
@@ -30,20 +31,22 @@ function App() {
 
   return (
     <react.Fragment>
-    <Category>
-      <li>First Item</li>
-      <li>Second Item</li>
-      <li>Third Item</li>
-      <div>
-        <div>good Game</div>
-        <div>good Game</div>
-      </div>
-      <DataView dataView={data}></DataView>
-    </Category>
-    <DataState>
+      <Category>
+        <li>First Item</li>
+        <li>Second Item</li>
+        <li>Third Item</li>
+        <div>
+          <div>good Game</div>
+          <div>good Game</div>
+        </div>
+        <DataView dataView={data}></DataView>
+      </Category>
 
-    </DataState>
-    
+      <AuthContext.Provider value={{
+        isValid : 'goodBOy'
+      }}>
+        <DataState></DataState>
+      </AuthContext.Provider>
     </react.Fragment>
   );
 }

@@ -1,1 +1,65 @@
 1. 리액트 Context 소개
+Props의 데이터를 끌어올려 필요한 컴포넌트에서 데이터를 줄 때 애플리케이션이 방대하다면 매우 번거로운 작업이다.
+=> 이를 해결하기 위해 state 저장소라는 리액트 컨텍스트 API라고 한다.
+
+
+2. 리액트 컨텍스트 API 사용
+리액트 내부적으로 state 관리할 수 있도록 해주는 것이다.
+프롭 체인을 구축하지 않아도 어떤 컴포넌트에서든 데이터를 저장하고 사용한다.
+
+const AuthContext = react.createContext({...}) => 컨텍스트 객체를 생성한다.
+export default AuthContext; => 생성된 객체를 내보낸다.
+=> 이 객체를 사용하고 싶다면 사용할 컴포넌트를 감싸줘야 한다. 이를 공급한다고 한다.
+=> <AuthContext.Provider>.....</AuthContext.Provider>
+
+위처럼 감싸면 감싼 내부의 컴포넌트들, 자식과 자손들은 해당 컨텍스트에 접근할 수 있다.
+리액트 컨텍스트도 react.Fragment처럼 사용할 수 있다.
+
+값에 접근하려면 리스닝을 해야 한다. 두 가지 방법이 존재한다.
+2-1. <AuthContext.Consumer>
+
+ex) <AuthContext.Consumer>
+   {(ctx)=>{
+   return 기존의 JSX를 return 하는 코드
+}}
+</AuthContext.Consumer>
+=> 기존의 JSX를 return 하는 코드에 ctx를 통해 리액트 컨텍스트 데이터에 접근할 수 있다.
+
+동적인 값을 받고 싶다면 <AuthContext.Provider value = {isValid : isValid}>
+=> ctx.isValid
+
+이제 Consumer에서 가져오는 값들은 동적으로 가져온다. state가 변경되면 그 상태를 고려하고 가져온다는 것이다.
+
+=> 이제는 프롭체인할 필요없이 Consumer를 통해 내려주면 된다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
