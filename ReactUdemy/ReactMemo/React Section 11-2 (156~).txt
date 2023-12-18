@@ -40,6 +40,19 @@ dispatch 함수
 
 
 3. useReducer & useEffect
+객체 구조 분해를 통해서 useReducer의 state들을 하나만 꺼낼 수 있다.
+
+(setFunc()으로 state를 변경하면 동일한 데이터라도 변경이 되는 것이다.)
+(useEffect의 의존성 배열은 값의 변동에 의해서 트리거 되는 것이다.)
+
+
+Reducer Hooks는 여러 state를 관리할 수 있는 훅이다. => 초기값은 객체이고 하나의 key-value가 하나의 state이다.
+이 떄 useEffect에서 의존성 배열을 트리거하여 함수를 실행시킬 때 reducer의 객체를 의존성 배열에 넣으면 불필요한 side Effect 효과를 남발 할 수 있다.
+=> 이 때 객체 구조분해를 통해서 해결 할 수 있다.
+
+
+4. State 관리를 위한 useReducer vs useState
+
 
 
 

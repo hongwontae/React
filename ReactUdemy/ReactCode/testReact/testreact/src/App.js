@@ -1,5 +1,8 @@
+import react from 'react';
+
 import Category from "./children/Category";
 import DataView from "./Components/DataView";
+import DataState from './Components/DataState';
 
 function App() {
   const data = [
@@ -26,6 +29,7 @@ function App() {
   ];
 
   return (
+    <react.Fragment>
     <Category>
       <li>First Item</li>
       <li>Second Item</li>
@@ -36,6 +40,11 @@ function App() {
       </div>
       <DataView dataView={data}></DataView>
     </Category>
+    <DataState>
+
+    </DataState>
+    
+    </react.Fragment>
   );
 }
 
