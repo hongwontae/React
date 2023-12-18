@@ -26,6 +26,14 @@ const Login = (props) => {
 
   }, [enteredEmail, enteredPassword]);
 
+  useEffect(()=>{
+    console.log('Effect Running')
+    return ()=>{
+      console.log('Effect CleanUp')
+    }
+  },
+  [])
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
   };
