@@ -1,11 +1,17 @@
-import react from "react";
+import react, { useState } from "react";
 
 import Category from "./children/Category";
-import DataView from "./Components/DataView";
-import DataState from "./Components/DataState";
-import AuthContext from "./Context/auth-context";
+
 
 function App() {
+
+  // const [id, setId] = useState('data');
+
+  // const idChangeHandler = ()=>{
+  //   setId('Good Data')
+  //   console.log(id)
+  // }
+
   const data = [
     {
       name: "hwt",
@@ -31,7 +37,7 @@ function App() {
 
   return (
     <react.Fragment>
-      <Category>
+      {/* <Category>
         <li>First Item</li>
         <li>Second Item</li>
         <li>Third Item</li>
@@ -43,10 +49,17 @@ function App() {
       </Category>
 
       <AuthContext.Provider value={{
-        isValid : 'goodBOy'
+        isValid : 'goodBOy',
+        idChangeHandler : idChangeHandler
       }}>
         <DataState></DataState>
-      </AuthContext.Provider>
+        <div>{id}</div>
+      </AuthContext.Provider> */}
+  <Category className='koala3121'>
+    <div>그만 하자구요</div>
+  </Category>
+
+
     </react.Fragment>
   );
 }

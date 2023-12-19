@@ -3,12 +3,11 @@
 
 const Category = (props)=>{
 
-    console.log(props.children[0].props.children)
+    console.log(props.className)
 
     return (
         <div>
-            <div>{props.children[0].props.children}</div>
-        <ul>{props.children}</ul>
+            {props.children}
         </div>
     )
 

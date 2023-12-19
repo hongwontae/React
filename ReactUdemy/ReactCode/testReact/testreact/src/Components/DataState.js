@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../Context/auth-context";
 
 const DataState = () => {
@@ -9,16 +9,17 @@ const DataState = () => {
     console.log("Change");
   };
 
+  const ctx = useContext(AuthContext)
+
   return (
     <React.Fragment>
-      <AuthContext.Consumer>
-        {(ctx) => {
-          <div>
-            <div onClick={divChangeHandler}>{divState}</div>
-            <div>{ctx.isValid}</div>
-          </div>;
-        }}
-      </AuthContext.Consumer>
+      {ctx.isValid}
+      <div onClick={divChangeHandler}>
+        {divState}
+      </div>
+      <div onClick={ctx.idChangeHandler}>
+        GAME Set
+      </div>
     </React.Fragment>
   );
 };
