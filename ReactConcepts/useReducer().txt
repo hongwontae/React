@@ -1,0 +1,44 @@
+1. useReducer는 useState처럼 state를 관리하고 업데이트 할 수 있는 Hook이다.
+
+
+2. useState vs useReducer
+2-1. useState는 간단한 로직, useReducer는 좀 더 복잡한 상태 로직을 다룬다.
+2-2. useState는 상태를 업데이트 할 떄 이전 상태를 덮어쓰는 반면, useReducer는 이전 상태를 변경하지 않고 새로운 상태를 생성한다.
+2-3. useState는 상태 하나만 다루고 useReducer는 여러 개의 상태를 다룬다.
+2-3. useState는 컴포넌트 내부에서 상태를 다루지만 useReducer는 다른 파일에서 리듀서 함수를 정의하여 상태를 다룰 수 있다.
+
+useState는 state의 값이 간단할 떄/ useReducer는 state 값이 복잡할 떄
+useState는 관리해야 할 state가 하나/ useReducer는 관리해야 할 state가 여러 개
+
+
+3. useReducer()
+const [state, dispatch] = useReducer(reducer, initialState, init)
+state => 컴포넌트에서 사용할 상태
+dispatch => reducer 함수를 가르키고, 컴포넌트 내에서 state 함수를 업데이트를 일으키기 위해서 사용하는 함수
+reducer => 컴포넌트 외부에서 state를 업데이트하는 로직을 담당하는 함수, state와 action를 인자로 받아서, 기존의 state를 대체할 새로운 state를 반환하는 함수
+initialState => 초기 State
+init => 초기함수
+
+
+4. dispatch
+dispatch({...}) => dispatch의 객체가 action이다.
+
+
+5. reducer
+reducer(state, action) => state는 useReducer의 두 번쨰 인자값, action은 dispatch의 인자의 객체값
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

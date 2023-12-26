@@ -9,6 +9,7 @@ const AddUser = (props) => {
 
   const nameInputRef = useRef();
   const ageInputRef = useRef();
+  console.log(nameInputRef.current.value)
 
   const [error, setError] = useState();
 

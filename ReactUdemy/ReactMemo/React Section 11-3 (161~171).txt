@@ -76,15 +76,14 @@ React.forwordRef, useImperativeHandle를 사용하면 리액트 컴포넌트에�
 
 
 
-
-
-
 ** React Context
 1. <context.provider value={...}>를 설정하면 받는 데이터들은 기본 데이터에 접근하지 못한다.
 => 동적으로 설정하면 받지 못한다.
 2. <context.Provider>로 데이터를 전달해줄 컴포넌트를 감싸고 데이터를 사용할 컴포넌트에서 useContext를 사용해서 JSX 표현식 내에서 사용한다.
 3. value={}를 통해서 전달할 때는 state 전달이 가능하고 상태가 끌어올려진다.
 4. APP 전체를 기준으로 데이터를 전달하거나 state, useEffect 관리를 하려면 index.js app를 <AuthContextProvider>로 감싼다. 그 return 값은 .provider 이기 때문에 기본값을 참조하지 않고 value만 참조한다. 다만 useContext()의 인자는 react.createContext()를 받은 변수명이다. => 이제 필요한 곳에서 useContext를 사용해서 사용하면 된다.
+
+=> 가장 쉽게 사용하는 방법은 createContext로 생성하고/ export const func = ()=>{...데이터 return <Auth}
 
 
 props.children => 공통적인 데이터를 갖거나 가지고 싶을 떄 사용한다.

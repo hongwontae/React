@@ -1,9 +1,5 @@
-import React from 'react'
+import { createContext } from "react";
+
+export const AuthContext = createContext();
 
 
-const AuthContext = React.createContext({
-    isValid2 : 'good Boy'
-})
-
-
-export default AuthContext;

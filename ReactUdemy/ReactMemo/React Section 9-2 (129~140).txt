@@ -9,6 +9,9 @@ props.children은 JSX가 아니라 JS 표현식이다. props.children은 card �
 => Card 사용자 지정 래퍼 컴포넌트에 className을 할당하고 해당 컴포넌트에 가서 props.className를 통해 구현한다.
 => 래퍼 컴포넌트의 props에는 감싼 컴포넌트들의 정보가 담겨있기 때문이다.
 
+*** props.children이 구현되도 props 전달을 통한 데이터 전달이 가능하다. => 규칙있는 래퍼 컴포넌트를 만들기 위해 사용된다.
+*** props.children은 단지 포함되는 JSX를 표현한다.
+
 
 2. 재사용 가능한 "Button" 컴포넌트 추가하기
 

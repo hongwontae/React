@@ -33,7 +33,7 @@ input의 onChange를 통해 해당 event.target.value를 받아서 setFunc()의 
 useState의 인자에 객체를 주면된다. useState({}); => 상태를 묶을 수 있다.
 => 이렇게 되면 상태를 업데이트 할 떄 모두를 업데이트가 된다.
 
-* 자바스크립트 객체의 프로퍼티는 자동으로 오버라이딩이 된다.
+** 자바스크립트 객체의 프로퍼티는 자동으로 오버라이딩이 된다.
 => let a = {person : 'HWT', age = 30}, let b = {...a, person : 'Coutinew'}
 => 위의 방식처럼 사용해도 오버라이딩이 된다.
 
