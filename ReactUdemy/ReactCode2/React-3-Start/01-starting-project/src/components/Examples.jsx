@@ -1,7 +1,8 @@
 import TabButton from "./TabButton";
-import {EXAMPLES} from '../data'
+import { EXAMPLES } from "../data";
 import { useState } from "react";
 import Section from "./Section";
+import Tabs from "./Tabs";
 
 const Examples = () => {
   const [topic, setTopic] = useState("");
@@ -25,33 +26,39 @@ const Examples = () => {
   }
   return (
     <Section title="Examples" id="examples">
-      <menu>
-        <TabButton
-          isSelected={topic === "components"}
-          onClick={() => clickHandler("components")}
-        >
-          Componets
-        </TabButton>
-        <TabButton
-          isSelected={topic === "jsx"}
-          onClick={() => clickHandler("jsx")}
-        >
-          JSX
-        </TabButton>
-        <TabButton
-          isSelected={topic === "props"}
-          onClick={() => clickHandler("props")}
-        >
-          Props
-        </TabButton>
-        <TabButton
-          isSelected={topic === "state"}
-          onClick={() => clickHandler("state")}
-        >
-          State
-        </TabButton>
-      </menu>
-      {tabContent}
+      <Tabs
+      // ButtonContainer="menu"
+        buttons={
+          <>
+            <TabButton
+              isSelected={topic === "components"}
+              onClick={() => clickHandler("components")}
+            >
+              Componets
+            </TabButton>
+            <TabButton
+              isSelected={topic === "jsx"}
+              onClick={() => clickHandler("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={topic === "props"}
+              onClick={() => clickHandler("props")}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={topic === "state"}
+              onClick={() => clickHandler("state")}
+            >
+              State
+            </TabButton>
+          </>
+        }
+      >
+        {tabContent}
+      </Tabs>
     </Section>
   );
 };
