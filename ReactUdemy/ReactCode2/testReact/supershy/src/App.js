@@ -1,43 +1,19 @@
-const Cool = (props)=>{
-  console.log(props)
-  return (
-    <div>
-      {props.title}
-    </div>
-  )
-}
-const CORE_CONCEPTS = [
-  {
-    title: 'Components',
-    description:
-      'The core UI building block - compose the user interface by combining multiple components.',
-  },
-  {
-    title: 'JSX',
-    description:
-      'Return (potentially dynamic) HTML(ish) code to define the actual markup that will be rendered.',
-  },
-  {
-    title: 'Props',
-    description:
-      'Make components configurable (and therefore reusable) by passing input data to them.',
-  },
-  {
-    title: 'State',
-    description:
-      'React-managed data which, when changed, causes the component to re-render & the UI to update.',
-  },
-];
+import Button from './UI/Button';
+import Liver from './components/Liver';
+import PropsTestCom from './components/PropsTestCom';
+import PropsTestCom2 from './components/PropsTestCom2';
+import {CORE_CONCEPTS} from './data';
 
 function App() {
 
+  let btn = 'button';
+
   return (
-    <div>
-      <Cool {...CORE_CONCEPTS[0]}></Cool>
-      <Cool {...CORE_CONCEPTS[1]}></Cool>
-      <Cool {...CORE_CONCEPTS[2]}></Cool>
-      <Cool {...CORE_CONCEPTS[3]}></Cool>
-    </div>
+    <>
+      <Liver data={CORE_CONCEPTS}></Liver>
+      <Button BTN={btn} test={PropsTestCom}>Save!</Button>
+      <PropsTestCom2 {...CORE_CONCEPTS}></PropsTestCom2>
+    </>
   );
 }
 
