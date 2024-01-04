@@ -1,0 +1,20 @@
+1. npm install styled-components => import {styled} from 'styled-components'
+스타일 컴포넌트는 적용하고 싶은 해당 컴포넌트 파일에 사용하고 싶은 엘리먼트를 가져와서 ``안에 CSS 규칙을 넣는다.
+ex) const ControlDivContainer = styled.div`CSS 문법 그대로`(백틱)
+=> ControlDivContainer는 이제 컴포넌트로써 사용될 수 있다. => <ControlDivContainer>...<ControlDivContainer/>
+=> 내부에 children을 구현시켰기 때문에 안에 내용을 무시하지 않고 사용한다.
+
+
+2. styled 컴포넌트
+1. const CotainerDiv = styled.div/label/main(...)`css` ContainerDiv 변수를 통해 커스텀 컴포넌트처럼 사용한다.
+=> 내부적으로 작동하는 원리는 내장 엘리먼트에 새로운 CSS 이름을 부여하고 HTML의 head에서 style를 통해 전달한다.
+=> head <style data-styled='active' data-styled-version="6.1">에서 확인가능
+
+2. 스타일 컴포넌트에서 사용된 속성들은 모두 포함된다. className이든, input 태그의 value..등등 다 포함하여 작동한다.
+
+*** const CotainerInput = styled.input>`color:red` => <input/ 스타일 컴포넌트 css 이름>
+*** <ContainerInput/ type="number"> = type의 속성이 제대로 적용된다.
+
+
+3. 
+

@@ -30,7 +30,13 @@ ex) <label className={`label ${emailNotValid ? 'invalid' : ''}`}>Email</label>
 ex) <label className={'label '+ (emailNotValid ? 'invalid' : '')}>Password</label>
 
 
-7. 
+7. CSS Module
+=> 기본적으로 리액트 빌드 프로세스에서 갖추고 있는 기능이다.
+=> cssName.module.css인 파일이름으로 css를 설정하고 컴포넌트에서 import classes from 'path.module.css'한다.
+=> class와 id는 해당 컴포넌트 스코프에 고정된다.
+
+=> 빌드 프로세스에 의해 className = {classes.class}과 module.css는 완전히 다른 이름으로 바껴서 다른 컴포넌트들이 접근할 수 없다.
+
 
 
 

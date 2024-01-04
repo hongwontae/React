@@ -2,7 +2,7 @@ const PropsTestCom = ()=>{
 
     return (
         <>
-        <h1>
+        <h1 id="hwt">
             Hello My Name is HWT
         </h1>
         <p>You are the one!</p>
