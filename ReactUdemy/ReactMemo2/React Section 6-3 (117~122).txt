@@ -1,0 +1,20 @@
+1. tailwind 사용법
+tailwind document에서는 항상 최신 사용법을 업데이트한다. => 이를 따라가면 된다.
+className를 통해서 css를 집어넣는다.
+
+
+2. link태그를 통해서 가져온 폰트를 사용하기 위해서 해당 개념이 어디에 속하는지 알아야 한다.
+
+fontFamily : {
+  title : ['"Pra.."', 'cursive']
+}
+=> tailwind.config.js에서 설정해야 한다. fontFamily는 tailwind에서 font를 설정하는 영역이다. 
+=> className에서 fontFamily에 접근하려면 font로 접근한다. 이후 font-title를 설정하면 title의 값에 접근한다.
+
+className : font-title => 설정완료
+
+
+3. media css 선택자는 md/ hover는 hover나 focus로 사용하면 된다.
+
+
+4. 변수에 tailwind를 저장할 수 있다. => if check를 통해 조건부로 tailwind를 사용하면 된다.

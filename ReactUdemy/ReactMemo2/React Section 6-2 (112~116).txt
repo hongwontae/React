@@ -21,7 +21,14 @@ ex) const ControlDivContainer = styled.div`CSS 문법 그대로`(백틱)
 스타일 컴포넌트를 구축하는 백틱에서 스타일 컴포넌트 속성을 가져와서 color : (props)=>props.$invalid ? 'red' : 'blue' 처럼 동적으로 표현할 수 있다.
 
 
-4. 
+4. 스타일 컴포넌트 백틱 CSS 규칙
+그냥 작성하면 styled.html에 부여하는 것이다. => styled.header`color : red` => header{color : red}
+&는 스타일 객체의 html 태그를 의미한다. styled.div`& button {color : 'blue'}` => div button {color : blue}
+=> 스타일 컴포넌트 내의 CSS 규칙과 일반 CSS 규칙이 매우 유사하다.
+
+
+5. 스타일 컴포넌트는 코드를 분리하여 가독성을 높이고 재활용성을 강화시킬 수 있다.
+
 
 
 
