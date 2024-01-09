@@ -1,18 +1,20 @@
-import Button from './UI/Button';
-import Liver from './components/Liver';
-import PropsTestCom from './components/PropsTestCom';
-import PropsTestCom2 from './components/PropsTestCom2';
-import {CORE_CONCEPTS} from './data';
+import {useState} from 'react';
+import DivChange from './components/DivChange';
 
 function App() {
 
-  let btn = 'button';
+  const [btnChange, setBtnChange] = useState('good')
+
+  const lookChange = ()=>{
+    setBtnChange('bad')
+  }
+  
+
 
   return (
     <>
-      <Liver data={CORE_CONCEPTS}></Liver>
-      <Button BTN={btn} test={PropsTestCom}>Save!</Button>
-      <PropsTestCom2 {...CORE_CONCEPTS}></PropsTestCom2>
+    <DivChange handler={lookChange}>Button</DivChange>
+    <div>{btnChange}</div>
     </>
   );
 }
