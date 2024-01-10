@@ -1,20 +1,14 @@
-import {useState} from 'react';
-import DivChange from './components/DivChange';
+import Player from "./components/Player";
+import TimerChallenge from "./components/TimerChallenge";
 
 function App() {
-
-  const [btnChange, setBtnChange] = useState('good')
-
-  const lookChange = ()=>{
-    setBtnChange('bad')
-  }
-  
-
-
   return (
     <>
-    <DivChange handler={lookChange}>Button</DivChange>
-    <div>{btnChange}</div>
+      <Player></Player>
+      <TimerChallenge title={"Easy"} targetTime={1}></TimerChallenge>
+      <TimerChallenge title={"medium"} targetTime={5}></TimerChallenge>
+      <TimerChallenge title={"High"} targetTime={10}></TimerChallenge>
+      <TimerChallenge title={"Go High"} targetTime={15}></TimerChallenge>
     </>
   );
 }

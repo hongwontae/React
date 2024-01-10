@@ -1,0 +1,46 @@
+1. useImperativeHandle
+=> forwardRef와 함께 사용된다.
+=> ref를 넘겨받는 Component에서 해당 ref를 제어하고 통제하는 메서드를 만들어서 넘겨주는 역할은 한다.
+
+1-1. useRef()를 호출하여 변수에 저장한다.
+1-2. 해당 변수를 참조하고 싶은 컴포넌트에 ref키에 넣는다.
+1-3. useImperativeHandle를 선언하고 첫 번쨰 인자에는 forwardRef에서온 ref를 받고 두 번쨰 인자에는 콜백함수를 통해 객체를 return한다. 이 객체가 올려줄 메서드이다.
+1-4. useImperativeHandle(ref, ()=>{retrun {open : ()=>{dialog.current.showModal();}}}) => dialog.current.open()를 넘겨준 컴포넌트에서 사용하면 dialog.current.showModal이 호출된다.
+
+
+2. setInterval(val, ()=>{}) val마다 콜백함수가 실행된다./ clearInterval(val) val의 interval이 멈춘다.
+하나의 변수를 set과 clear에 전달해야 하고, 리렌더링이 필요하지 않고, 변수의 초기화가 없어야 한다면 useRef()를 변수처럼 사용한다.
+
+
+3. react-dom 라이브러리의 createPortal은 JSX가 렌더링할 위치를 결정할 수 있다.
+=> 모달 창은 흐름 상 렌더링하는 곳이 다른 JSX와 분리되어 있어야 한다.
+
+return createPortal(JSX..., 위치)
+1은 JSX, 2는 위치를 주어야 한다. document를 통해 찾는다.
+
+props로 전달해야하는 값들이 존재하기 때문에 렌더링할 위치가 상충되는 것 같지만 createPortal이 우선순위를 가지고 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
