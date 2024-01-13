@@ -1,7 +1,7 @@
 import noProjectImage from "../assets/no-projects.png";
 import Button from "./Button";
 
-const NoProjectSelected = ({onStartAddProject}) => {
+const NoProjectSelected = ({ onStartAddProject }) => {
   return (
     <div className="mt-24 text-center w-2/3">
       <img
@@ -12,7 +12,9 @@ const NoProjectSelected = ({onStartAddProject}) => {
       <h2 className="text-xl font-bold text-stone-500 mt-4">
         No Project Selected
       </h2>
-      <p className="text-stone-400 mb-4">Seelct a project or get started with a new one</p>
+      <p className="text-stone-400 mb-4">
+        Seelct a project or get started with a new one
+      </p>
       <p>
         <Button onClick={onStartAddProject}>Create New Project</Button>
       </p>

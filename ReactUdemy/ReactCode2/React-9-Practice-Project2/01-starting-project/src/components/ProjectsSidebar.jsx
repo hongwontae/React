@@ -1,6 +1,11 @@
 import Button from "./Button";
 
-const ProjectsSidebar = ({ onStartAddProject, projects }) => {
+const ProjectsSidebar = ({
+  onStartAddProject,
+  projects,
+  onSelectProject,
+  selectedProjectId,
+}) => {
   console.log(projects);
 
   return (
@@ -13,9 +18,18 @@ const ProjectsSidebar = ({ onStartAddProject, projects }) => {
       </div>
       <ul className="mt-8">
         {projects.map((ele, idx, arr) => {
+          let cssClasses =
+            "w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800";
+
+          if (ele.id === selectedProjectId) {
+            cssClasses += " bg=stone-800 text-stone-200";
+          } else {
+            cssClasses += " text-stone-400";
+          }
+
           return (
             <li key={ele.id}>
-              <button className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800">
+              <button onClick={()=>onSelectProject(ele.id)} className={cssClasses}>
                 {ele.title}
               </button>
             </li>
