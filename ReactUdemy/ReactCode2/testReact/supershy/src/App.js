@@ -1,14 +1,19 @@
 import Player from "./components/Player";
-import TimerChallenge from "./components/TimerChallenge";
+
+let player = [
+  { name: "salah", age: 30 },
+  { name: "Kevin", age: 30 },
+  { name : 'Azard', age : 30},
+  {name : 'Alonse', age : 40},
+];
+
+let superStar = {name : 'ffff', age : '1111'}
+
 
 function App() {
   return (
     <>
-      <Player></Player>
-      <TimerChallenge title={"Easy"} targetTime={1}></TimerChallenge>
-      <TimerChallenge title={"medium"} targetTime={5}></TimerChallenge>
-      <TimerChallenge title={"High"} targetTime={10}></TimerChallenge>
-      <TimerChallenge title={"Go High"} targetTime={15}></TimerChallenge>
+      <Player {...superStar}></Player>
     </>
   );
 }
