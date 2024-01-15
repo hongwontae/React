@@ -34,6 +34,28 @@
 5. 데이터를 사용하면 된다.
 
 
+7. <Context.Consumer>
+=> Context.Provider의 값을 가져오기 위한 두 번쨰 방법이다.
+=> 첫 번쨰 방법은 createContext로 만든 객체를 import + useContext를 사용하는 방법/ 두 번쨰는 Consumer이다.
+
+=> Context 값을 가져오기 위한 컴포넌트에서 JSX를 <Context.Consumer>로 덮는다.
+=> JSX 표현식으로 함수를 작성하고 return에 기존의 JSX를 집어넣는다.
+=> 함수의 매개변수는 Provider에 값에 접근할 수 있다.
+
+
+8. 컴포넌트에서 useContext 훅을 사용하여 값에 연결되면 해당 컴포넌트는 재평가를 한다.
+=> Context 값이 변경되면 해당 값을 가지고 있는 컴포넌트는 재평가가 된다.
+
+
+9.  App 컴포넌트에서 구현된 Context 로직을 Context 파일에 이전하기
+9-1. App 컴포넌트의 함수, 변수, 상태를 모두 잘라낸다.
+9-2. 일반 컴포넌트를 생성하고 잘라낸 로직을 붙여넣고 children을 가져온다.
+9-3. 변수, 함수, 상태 등을 객체화한다.
+9-4. 다음으로 이렇게 구현한다. <CartContext.Provider value={ctxValue}>{children}<...>
+=> CartContext.Provider의 컴포넌트의 ctxValue를 사용하는 로직은 동일하게 하고 내부에 children을 구현하는 방식이다.
+=> 잘 생각해보면 다를게 없다. 다만 옮겨놓을 뿐이다.
+
+
 
 
 
