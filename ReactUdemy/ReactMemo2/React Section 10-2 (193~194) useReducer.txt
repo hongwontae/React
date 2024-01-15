@@ -4,3 +4,4 @@
 => setFunc 함수는 두 개의 인자를 받는다. 하나는 state, 다른 하나는 action이다. state는 setFunc의 콜백함수인 prevState 매개변수가 되어 이전값을 가지고 있다. (최신값), action은 dispatch 함수의 인자이다.
 => setFunc의 if문이나 switch문을 통해 새로운 state를 반환한다. 새로운 state가 이전값과 다르면 재평가가 시작된다.
 
+
