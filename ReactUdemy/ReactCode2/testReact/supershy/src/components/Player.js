@@ -1,16 +1,23 @@
-const Player = (props)=>{
+const Player = ({ data, onChangeState }) => {
+  console.log(data);
 
-    console.log(props)
-    // props = {0: {name:..., age:30}}, 1: {…}, 2: {…}, 3: {…}}
+  return (
+    <>
+      <ul>
+        {data.items.map((ele, idx, arr) => {
+          return (
+            <>
+              <div key={idx}>
+                <li>{ele.name}</li>
+                <button onClick={()=>onChangeState(idx)}>Click Me!</button>
+              </div>
+              {data.name}
+            </>
+          );
+        })}
+      </ul>
+    </>
+  );
+};
 
-
-    return(
-        <>
-            <ul>
-                
-            </ul>
-        </>
-    )
-}
-
-export default Player
+export default Player;
