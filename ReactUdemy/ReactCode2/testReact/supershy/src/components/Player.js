@@ -1,21 +1,20 @@
-const Player = ({ data, onChangeState }) => {
-  console.log(data);
+import {useEffect} from 'react';
+
+const Player = ({trueChange, falseChange, clickData}) => {
+
+  useEffect(()=>{
+    console.log('useEffect 본문')
+    return ()=>{
+      console.log('Clean UP')
+    }
+  },[clickData])
+
 
   return (
     <>
-      <ul>
-        {data.items.map((ele, idx, arr) => {
-          return (
-            <>
-              <div key={idx}>
-                <li>{ele.name}</li>
-                <button onClick={()=>onChangeState(idx)}>Click Me!</button>
-              </div>
-              {data.name}
-            </>
-          );
-        })}
-      </ul>
+    <button onClick={trueChange}>TrueChange</button>
+    <button onClick={falseChange}>FlaseChange</button>
+    <div>{clickData}</div>
     </>
   );
 };
