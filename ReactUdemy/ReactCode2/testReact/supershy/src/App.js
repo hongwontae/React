@@ -1,21 +1,12 @@
 import Player from "./components/Player";
-import {useState} from 'react';
-
+import ChangeRootContext from "./store/store";
 
 function App() {
-
-  const [change, setChange] = useState('Good Data');
-
-  function clickTrueHandler() {
-    setChange('True Data')
-  }
-  function clickNotHandler(){
-    setChange('False Data')
-  }
-
   return (
     <>
-      <Player trueChange={clickTrueHandler} falseChange={clickNotHandler} clickData={change}></Player>
+      <ChangeRootContext>
+        <Player></Player>
+      </ChangeRootContext>
     </>
   );
 }

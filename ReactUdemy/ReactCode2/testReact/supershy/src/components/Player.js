@@ -1,20 +1,24 @@
+import { useContext } from 'react';
 import {useEffect} from 'react';
 
-const Player = ({trueChange, falseChange, clickData}) => {
+import {changeContext} from '../store/store'
+const Player = () => {
+
+  const {change, clickNotHandler, clickTrueHandler} = useContext(changeContext);
 
   useEffect(()=>{
     console.log('useEffect 본문')
     return ()=>{
       console.log('Clean UP')
     }
-  },[clickData])
+  },[change])
 
 
   return (
     <>
-    <button onClick={trueChange}>TrueChange</button>
-    <button onClick={falseChange}>FlaseChange</button>
-    <div>{clickData}</div>
+    <button onClick={clickTrueHandler}>TrueChange</button>
+    <button onClick={clickNotHandler}>FlaseChange</button>
+    <div>{change}</div>
     </>
   );
 };
