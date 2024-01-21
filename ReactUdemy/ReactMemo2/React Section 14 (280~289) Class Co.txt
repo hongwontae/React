@@ -1,0 +1,67 @@
+1. 클래스 컴포넌트 => 과거 리액트를 만드는 방법
+
+
+2. 리액트 버전 16/8 이전에는 함수형 컴포넌트를 거의 사용하지 않았다. => 상태를 다룰 Hook이 존재하지 않았다.
+그러나 16.8 버전이 되면서 Hook이 등장해서 함수형 컴포넌트에서 상태를 다룰 수 있게 되었다. 
+이 Hook은 클래스 컴포넌트에서 사용하지 못한다.
+
+=> Hook이 유용하기 때문에 함수형 컴포넌트를 사용하여 리액트 프로젝트를 생성하는 것이 효율적이고 용이해졌다.
+
+
+3. 클래스 컴포넌트 사용법
+react 라이브러리에서 Component 객체를 받아서 클래스의 부모가 되게 한다. => extends
+(이 행위를 해야 내려준 props를 받는다.)
+render 메서드는 JSX를 return 한다는 뜻과 같다.
+render (){return <li className={classes.user}>{this.props.name}</li>}
+=> this는 이 인스턴스를 만든 객체를 참조한다.
+
+
+4. class Component State
+state를 사용하려면 class의 생성자 메서드를 사용해서 this.state = {상태변수명 : value}로 정의해야 한다.
+=> 객체로 정의해야 한다. 함수형 컴포넌트와는 다르다.
+
+이벤트 핸들러 함수는 
+  toggleUsersHandler() {
+    // this.state.showUsers = false
+    this.setState((curState)=> {
+      return {showUsers : !curState.showUsers};
+    });
+  }
+=> this.setState()를 사용한다.
+
+=> JS의 Class처럼 this 키워드를 잘 사용해야 한다.
+=> state 정의는 constructor에서 this.state={},  setFunc은 this.setState를 호출한다.
+=> onClick를 걸 떄 this 특징을 파악해야 한다.
+
+
+5. 클래스 컴포넌트 수명 주기
+componentDidMount() => 마운트 되고 나서 실행되는 함수
+componentDidUpdate() => 업데이트 되고 나서 실행되는 함수
+componentWillUnmount() => Dom에서 사라지기 전에 실행하는 함수
+
+
+6. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
