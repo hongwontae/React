@@ -1,0 +1,58 @@
+1. Form
+Form 태그를 통해 데이터 추출과 검증과정을 만들어낼 수 있다.
+
+(input과 label은 함께 다닌다. => label의 for 속성이 input의 id 속성과 같다면 연결이 된다. 이 경우 라벨을 누르면 input이 반응한다.)
+
+(input의 type 속성 input 요소가 어떤 역할을 할 것인지를 결정한다.)
+text, password, file, radio, checkbox, button, hidden, submit, reset, image, number, url, date......
+
+React에서 label의 for은 htmlFor 속성이다. => 이름만 바뀐 것이다.
+
+form의 button을 클릭하면 자동으로 양식이 전송되면서 새로고침된다. => 과거에는 서버에서 웹 페이지를 관리하는 것이 대부분이었기 떄문에
+
+1-1. button tag type="button"을 주면 양식을 제출하지 않고 새로고침을 하지 않는다.
+1-2. form tag onSubmit 이벤트 핸들러는 event 객체를 받는다. event.preventDefault()를 사용한다.
+=> form의 onSubmit은 form이 전송될 떄 trigger되는 이벤트이다. => 모든 버튼에 해당한다. 이벤트 객체 중 기본동작을 막는 preventDefault()를 사용해서 양식이 제출되지 않도록 한다.\
+
+(button의 onClick 이벤트에 prevent를 걸면 버튼 하나만 기본동작을 막는다. => 전체를 막고 싶다면 form의 onSubmit 이벤트를 트리거 해야 한다.)
+(event 객체는 이벤트 핸들러에 자동으로 생성된다. But JSX 이벤트 핸들러를 익명함수로 작성했을 경우 event 객체는 이월되지 않는다.)
+
+
+2. Input State 관리
+
+2-1. useState를 여러 개 생성하는 방식
+=> Input의 onChange, Input의 value 속성을 통해 양방향 바인딩를 하고 각각 관리하는 방식
+2-2. useState를 하나만 생성하고 객체 형식으로 관리하는 방식
+=> enterValue.email/ enterValue.password처럼 value를 주고 onChange의 이벤트 핸들러는 익명함수를 주고 prevState를 이용한다.
+
+
+3. Refs 사용자 입력 수집
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
