@@ -11,4 +11,4 @@ export const currencyFormatter = new Intl.NumberFormat('en-us', {
 => 객체 부문을 상황에 맞게 조절하면 된다.
 
 
-3. 
+3. React는 자동적으로 속성을 더할 떄마다 true로 설정한다. => <Component TTU/> => TTU는 자동으로 true로 설정된다.
