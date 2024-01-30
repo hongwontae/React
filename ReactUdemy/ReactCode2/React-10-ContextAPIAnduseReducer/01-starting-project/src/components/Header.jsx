@@ -7,7 +7,7 @@ import CartModal from './CartModal.jsx';
 export default function Header() {
   const modal = useRef();
 
-  const {items} = useContext(CartContext)
+  const {items} = useContext(CartContext);
 
   const cartQuantity = items.length;
 

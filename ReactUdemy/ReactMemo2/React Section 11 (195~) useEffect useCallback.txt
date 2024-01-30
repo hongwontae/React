@@ -52,7 +52,7 @@ Core Concepts
 
 1. useEffet
 useEffect는 mount, unMount, update시에 특정 작업을 실행시키는 Hook이다.
-1-1. useEffect((   )=>{console.log('Mount시에만 작동한다.')  }, [  ])
+1-1. useEffect(()=>{console.log('Mount시에만 작동한다.')  }, [  ])
 => 컴포넌트가 렌더링이 완료되고 한 번만 특정 작업을 실행시키려면 빈 배열을 위치시키면 된다.
 => 만약 2 번쨰 인자를 생략했을 떄는 리렌더링이 될 떄마다 트리거되어 effect 함수가 실행된다. => 무한 루프 가능성
 
