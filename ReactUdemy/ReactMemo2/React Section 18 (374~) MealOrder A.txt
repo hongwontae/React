@@ -1,1 +1,14 @@
-1. 
+1. img의 src는 문자열 경로로 찾는다. => 백엔드의 이미지를 두고 가져올 떄는 직접 통신해서 가져와야 한다.
+=> 백엔드의 경로는 백엔드로부터 상대적이기 떄문에 get 통신으로 경로를 가져오면 에러가 발생한다.
+
+
+2. JS 공용 Formatter
+export const currencyFormatter = new Intl.NumberFormat('en-us', {
+    style : 'currency',
+    currency : 'USD'
+})
+이 구문은 숫자 형식 포맷터이다. 해당 함수를 내보내고 CF.format(숫자)를 사용하면 자동으로 숫자 형식이 갖춰진다.
+=> 객체 부문을 상황에 맞게 조절하면 된다.
+
+
+3. 
