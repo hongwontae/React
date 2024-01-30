@@ -24,6 +24,10 @@ export const currencyFormatter = new Intl.NumberFormat('en-us', {
 5-3. ...Spread 연산자를 통해 주소값을 바꿔주거나 이전값에 기대어 변경을 하도록 한다.
 
 
+6. modal and Context
+Context를 사용한 컴포넌트들은 context 값이 변경이 되면 전부 리렌더링의 대상이 된다. => 선언만 하거나 함수을 선언만 해도 리렌더링의 대상이 된다. Context를 사용하지 않으면 대상이 되지 않는다. 
+
+
 
 
 
