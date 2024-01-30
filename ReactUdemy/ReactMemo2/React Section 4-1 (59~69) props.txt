@@ -19,7 +19,7 @@ import {Fragmnet} from 'react'; => react 라이브러리에서 Fragment만 따�
 useState를 사용한 컴포넌트가 set이 호출되면 리렌더링의 시작이다.
 
 
-5. props.chldren과 props 속성을 이용해서 Wrapper 컴포넌트를 사용할 수 있다.
+5. props.children과 props 속성을 이용해서 Wrapper 컴포넌트를 사용할 수 있다.
 => 각 Wrapper 속성에 다른 개념을 부여하는 방법이 존재한다.
 
 

@@ -52,7 +52,25 @@ form tag의 dom의 객체 reset 메서드를 사용하면 form의 인풋들이 �
 
 
 6. 유효성 검사
+Input의 onBlur => 입력이 포커스를 잃게 될 떄 트리거된다.
 
+state를 두 개 생성해서 입력값과 검증로직을 생성한다. => 검증 데이터를 blur와 onChange를 적절히 사용해서 검증한다.
+
+
+7. Form 제출시 유효성 검사
+onSubmit를 사용한다.
+
+
+
+8. Input 속성 유효성 검사 (form validation)
+input의 required => 입력창이 비어있는 상태로 제출되는 것을 허가하지 않는다. type의 속성을 무시하는 입력값도 허가하지 않는다.
+
+required => 입력창이 비워져 있거나 type의 속성에 의거하지 않는 입력값을 받아들이지 않는다. 이는 input 뿐만 아니라 양식 요소 전체에서 사용될 수 있는 속성이다.
+
+Input maxLength/ minLength => 입력값의 최소/최대값을 설정한다.
+
+
+9. 인자에 콜백 함수를 주면 함수 본문으로 가서 판단해야 한다.
 
 
 

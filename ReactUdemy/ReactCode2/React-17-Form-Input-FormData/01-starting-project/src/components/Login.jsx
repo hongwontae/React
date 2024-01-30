@@ -1,35 +1,32 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
-  // const [enterEmail, setEnterEmail] = useState("");
-  // const [enterPassword, setEnterPassword] = useState("");
 
-  const [enterValue, setEnterValue] = useState({
-    email : '',
-    password : ''
-  })
+  const [formIsInvalid, setFormIsValid] = useState(false)
+
+  const email = useRef();
+  const password = useRef();
+
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(enterValue)
+    
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
+
+    const emailIsInvalid = enteredEmail.includes('@');
+
+    if(!emailIsInvalid){
+      setFormIsValid(true);
+      return;
+    }
+
+    setFormIsValid(false)
+
+    console.log('sending HTTP request!');
+
   }
 
-  // function handleEmail(e) {
-  //   setEnterEmail(e.target.value);
-  // }
-
-  // function handlePassword(e) {
-  //   setEnterPassword(e.target.value);
-  // }
-
-  function handleFormData(identifier, value) {
-    setEnterValue(prevState => {
-      return {
-        ...prevState,
-        [identifier] : value
-      }
-    })
-  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -42,9 +39,9 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
-            onChange={(event)=>handleFormData('email', event.target.value)}
-            value={enterValue.email}
+            ref={email}
           />
+          <div className="control-error">{!formIsInvalid && <p>Please entered @</p>}</div>
         </div>
 
         <div className="control no-margin">
@@ -53,8 +50,7 @@ export default function Login() {
             id="password"
             type="password"
             name="password"
-            onChange={(event)=>handleFormData('password', event.target.value)}
-            value={enterValue.password}
+            ref={password}
           />
         </div>
       </div>

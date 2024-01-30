@@ -1,8 +1,7 @@
-import Input from "./Input";
-import { isEmail, isNotEmpty, hasMinLength } from "../util/validation";
 import { useInput } from "../hooks/useInput";
-
-export default function StateLogin() {
+import { hasMinLength, isEmail, isNotEmpty } from "../util/validation";
+import Input from './Input.jsx'
+const StateLogin2 = () => {
   const {
     hasError: emailHasError,
     handleInputBlur: handleEmailBlur,
@@ -15,8 +14,8 @@ export default function StateLogin() {
   const {
     handleInputBlur: handlePasswordBlur,
     handleInputData: handlePasswordChange,
-    hasError : passwordHasError,
-    value : passwordValue,
+    hasError: passwordHasError,
+    value: passwordValue,
   } = useInput("", (value) => {
     hasMinLength(value, 6);
   });
@@ -24,7 +23,7 @@ export default function StateLogin() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if(emailHasError || passwordHasError){
+    if (emailHasError || passwordHasError) {
       return;
     }
 
@@ -64,4 +63,6 @@ export default function StateLogin() {
       </p>
     </form>
   );
-}
+};
+
+export default StateLogin2;
