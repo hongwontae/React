@@ -28,6 +28,16 @@ export const currencyFormatter = new Intl.NumberFormat('en-us', {
 Context를 사용한 컴포넌트들은 context 값이 변경이 되면 전부 리렌더링의 대상이 된다. => 선언만 하거나 함수을 선언만 해도 리렌더링의 대상이 된다. Context를 사용하지 않으면 대상이 되지 않는다. 
 
 
+7. 연산자를 사용해서 동적 반환을 할 떄 false 값이면 아예 보이지 않는다.
+
+
+8. dialog는 항상 브라우저에 존재하지만 open이 true가 아닌 이상 보이지 않을 뿐이다.
+onClose prop은 보이지 않는 dialog에도 적용이된다.
+
+
+9. 
+
+
 
 
 
