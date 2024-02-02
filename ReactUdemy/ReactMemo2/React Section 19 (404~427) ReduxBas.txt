@@ -99,7 +99,30 @@ const dispatch = useDispatch(); => dispatch를 해주는 함수이다.
 dispatch({type : 'ADD'}) => reducerFunc을 트리거한다./ useSelector가 있다면 자동 구독 관계라 데이터 변동 사항이 DOM에 적용된다.
 
 
-10 . Class Component Redux
+10 . dispatch(actions)
+=> actions를 통해 동적인 인자를 reducer에 보낸다.
+
+
+11. Reducer State
+reducer의 state 부분을 다양하게 설정할 수 있다. => 이 떄 인자가 복잡해지지 않도록 따로 뺴준다.
+
+버튼 클릭으로 dom을 toggle 처리하려면 toggle:!state.toggle를 return해주면 된다.
+
+
+12. Redux State 불변
+Reducer 함수의 return이 setFunc이라고 생각하면 된다.
+=> 그렇기 떄문에 return 되는 값/상태/객체는 기존의 state를 변경하면 안된다. => 변경을 트리거하지 못하기 떄문이다.
+
+
+13. Redux Toolkit
+Redux를 사용할 떄 단점이 존재한다
+13-1. actions/ state가 복잡해지고 다양해지면 코드가 비대해진다.
+13-2. 13-1의 상태가 되면 의도치 않게 기존의 데이터를 변경하는 실수를 저지른다.
+13-3. 새로운 상태를 주어야 하기 떄문에 state가 증가하면 return 되는 객체가 쓸데없이 커진다.
+
+=> 위의 문제점을 해결하기 위해 redux-toolkit이 존재한다.
+
+
 
 
 
