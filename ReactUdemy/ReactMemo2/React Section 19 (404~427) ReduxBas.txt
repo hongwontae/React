@@ -68,10 +68,38 @@ reducer는 dispatch를 하지 않아도 한 번 실행한다. => 그렇기에 �
 5. action을 통해 리듀서Func에서 로직을 단단이 갖출 수 있다.
 
 
-6. 
+6. redux는 JS언어로 구동되는 환경에서는 사용가능하다. React 국한x
+npm install redux + React와 저장소를 쉽게 구독하기 위해 react-redux를 install
 
 
+7. React+Redux 바인딩
+데이터를 사용할 컴포넌트는 Redux store에 접근할 수 있어야 한다.
+앱 전반에 데이터를 전달하려면 최상단 index.js(app.js가 render)된 곳에서 바인딩처리를 한다.
 
+7-1. import {Provider} from 'react-redux'
+7-2. import store from 'stor path'
+7-3. root.render(<Provider store={store}><App /><Provider>);
+=>이제 모든 컴포넌트들이 구독할 수 있고 액션을 보낼 수 있게된다.
+
+
+8. useSelector()
+react-redux의 훅이다. 컴포넌트 구독 관계를 자동으로 맺어주고 해당 JSX가 제거되면 구독이 사라진다.
+
+useSelector()의 인자에 함수를 넣어야 한다. => 해당 함수는 react-redux가 실행한다.
+=> 인자는 redux에서 관리중인 state를 가져온다. => state는 대부분 객체화되어 부분적으로 나뉘어져 있다.
+
+useSelector(state => {
+  return state.counter
+})
+=> 콜백함수의 인자에는 가져올 state/ return을 통해 일부분만 가져온다.
+
+
+9. useDispatch()
+const dispatch = useDispatch(); => dispatch를 해주는 함수이다.
+dispatch({type : 'ADD'}) => reducerFunc을 트리거한다./ useSelector가 있다면 자동 구독 관계라 데이터 변동 사항이 DOM에 적용된다.
+
+
+10 . Class Component Redux
 
 
 
