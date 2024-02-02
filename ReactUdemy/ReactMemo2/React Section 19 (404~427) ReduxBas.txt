@@ -122,6 +122,44 @@ Redux를 사용할 떄 단점이 존재한다
 
 => 위의 문제점을 해결하기 위해 redux-toolkit이 존재한다.
 
+npm install @reduxjs/toolkit => redux tollkit를 설치한다./ 이 후 redux를 삭제해야 한다. redux/toolkit에 redux가 존재하기 때문
+
+createSlice() => 인자로 객체를 받는다. 객체는 전역 상태의 slice를 의미한다. => 초기 상태와 Func를 정의해야 한다. => 리덕스 툴킷에서는 이를 slice라고 부른다. => reducer 생성하는 함수/ import {createSlice} from '@redux/toolkit';
+ex) const slice = createSlice({
+  name : 'counter',  => slice의 이름
+  initialState : data, => 초기 상태 정의
+  reducers : {
+  increment(state){},
+  decrement(){},
+..... => 리듀서를 정의한다.
+}
+})
+
+reducers에 프로퍼티는 자동으로 최근 값을 받는다. 리덕스에 의해 호출되고 현재 상태를 받는다. 액션도 받지만 동적으로 받을 수 있다.
+createSlice()를 사용하면 reducers : {}안의 객체들은 기존의 상태를 바꿀 수 없다.
+=> toolkit이 immer 패키지를 사용 => reducers안에서 state.counter++;(기존의 상태 change)를 사용하면 패키지가 자동으로 원래 있는 상태를 복제하여 새로운 상태 객체를 생성하고 오버라이딩한다. => 기존의 redux의 reducer함수처럼 복잡하게 할 필요가 없어졌다.
+=> 다 만들어지면 변수에 대입하여 사용해야 한다.
+
+reducer를 store에 등록해야 한다. => 기존과 같다.
+const store = createStore() => 하나의 리듀서만 인자로 들어간다./ slice가 여러 개라면 다른 작업을 해줘야 한다.
+
+ex) configureStore() => store를 생성한다. + 여러 개의 리듀서를 하나의 리듀서로 쉽게 합칠 수 있게 해준다.
+const store = configureStore({
+  reducer : counterSlice.reducer
+})
+=> 인자로 객체를 받고 리듀서 프로퍼티를 정한다./ 키의 이름이 reducer인 이유 => 리덕스에는 전역 상태를 담당하는 단 하나의 리듀서 함수만 있어야 한다.
+=> counterSlice.reducer => counterSlice는 단 하나의 함수이다. 그 안에 메서드가 존재할 뿐이다.
+=> 이렇게 설정하면 전역 상태를 담당하는 리듀서가 된다.
+
+ex) const store = configureStore({
+  reducer : {counter : counterSlice.reducer,
+		auth : authSlice.reducer
+}
+}) => 여러개의 Slice를 하나의 리듀서로 통합해준다. 
+
+=> 위의 경우들은 Slice가 하나일 때/ 두 개 이상일 때 store에 reducer를 알리는 방법이다.
+
+
 
 
 
