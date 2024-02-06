@@ -21,7 +21,30 @@
 => Link 사용을 권장하지만 강제적 이동이 필요한 경우가 존재할 떄 사용한다.
 
 
-4. 
+4. 동적 세그먼트
+동적인 데이터를 반환할 떄 router를 사용하고 싶다면?
+=> 일반적인 방식으로는 불가능하다./ 해당되는 데이터가 몇 개나 있는지 모르고, 그 데이터를 일일이 router 처리하기 어렵다.
+
+=> 동적 세그먼트를 사용한다.
+path : '/products/:productId' => /: url에 해당 문자가 있다면 모든 경로를 받아들인다.
+ex) 'localhost:3000/products/:123'/ 'localhost:3000/products/:abc'/ 'localhost:3000/products/:-22-2'
+
+=> 이러한 동적 세그먼트를 프론트로 가져오려면
+=> const params = useParams();
+=> params.동적세그먼트 => :/ 뒤에 붙여진 이름을 가져와야한다. 그렇지 않으면 실패한다.
+
+
+5. 동적 세그먼트 + 동적 연결
+데이터를 fetch해서 배열로 된 객체를 얻었고 동적인 페이지를 구성하고 싶다면?
+
+router을 정의할 떄 path : '/products/:productId'로 정의한다.
+동적인 데이터를 반환할 떄 map((ele, idx, arr)=>{ <Link to={`/products/${ele.id}`}>{ele.title}</Link>})
+=> title을 누르면 'localhost:3000/products/2'가 라우터에 전송된다.
+=> 라우터는 products/:productId(동적 세그먼트)에 반응하여 페이지를 반환한다.
+
+
+6. 상대경로와 절대 경로
+ 
 
 
 
