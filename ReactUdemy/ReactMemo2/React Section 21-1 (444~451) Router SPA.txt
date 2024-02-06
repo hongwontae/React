@@ -76,7 +76,10 @@ createBrowserRouter의 배열안의 객체를 통해 라우터를 정의하는 �
 	{path: 'product', element : <Product/>}
 ]
 }]
-=> chidlren의 배열안에 객체로 정의된 라우터는 상위의 JSX를 항상 가지고 있는다.
+=> Layout 컴포넌트는 import { Outlet } from "react-router-dom";를 가져와서 <Outlet></Outlet>를 반환한다.
+=> Outlet은 children을 표현한다.
+
+
 
 
 

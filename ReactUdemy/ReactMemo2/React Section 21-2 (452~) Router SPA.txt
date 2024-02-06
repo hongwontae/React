@@ -1,0 +1,44 @@
+1. Error Page
+라우트를 정의할 떄 속성으로 errorElement : <ErrorPage/>를 정의한다.
+=> 존재하지 않는 URL로 이동하면 ErrorPage가 반환된다.
+=> children 라우트는 적용되지 않는다.
+
+
+2. NavLink Component
+=> Link와 같은 역할을 하지만 특수 역할이 존재한다.
+=> className으로 {()=>{}} 함수를 받을 수 있다.
+=> 함수는 앵커 태그에 추가되어야 하는 CSS 클래스 이름을 리턴한다. 함수는 자동적으로 객체를 받는다. => react-router-dom에 의해 생성된다.
+=> isActive은 불리언 값을 가지고 있고 해당 링크가 활성이면 true, 활성이 아니라면 false이다.
+
+=> NavLink는 해당 to의 경로를 확인해서 isActive의 값을 반환한다. 하지만 해당 경로가 and(ex) /home/products)라면 자식요소까지 true의 값을 가지게 되는 특징이 있다.
+=> end => 현재 활성인 라우트의 URL 뒤가 to의 문자열 값일 떄만 활성으로 간주한다.
+
+
+3. useNavigation
+=> 프로그램적으로 다른 라우트로 전환할 수 있다.
+=> const navi = useNavigation();
+=> navi('/products') => 이 함수의 호출을 통해 라우트로 갈 수 있다. 
+=> Link 사용을 권장하지만 강제적 이동이 필요한 경우가 존재할 떄 사용한다.
+
+
+4. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
