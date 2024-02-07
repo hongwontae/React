@@ -30,6 +30,29 @@ loader 함수를 정의하고 useLoaderData를 사용해서 데이터를 얻을 
 
 
 5. loader() 코드를 저장하는 위치
+라우터를 정의하는 객체가 loader 키를 갖고 있지만 데이터를 가져오는 로직을 구성하다보면 난잡한 코드가 된다.
+=> 해결하기 위해 loader가 사용되는 컴포넌트에 export async function loader(){...}를 구성하고 import 해서 사용한다.
+=> 위의 방식은 권장되는 방식이다.
+
+
+6. loader() 함수가 실행되는 시기
+path의 컴포넌트가 실행되기 전에 loader()가 실행된다.
+
+라우터 트리거 => loader() => loader()의 데이터로 component Rendering
+
+=> backend node.js에서 get data를 1.5초 지연시킨다. => loader()가 트리거 되는 라우트를 트리거한다. => loader()가 1.5초 뒤에 데이터를 얻기 때문에 전 페이지에 1.5초 머물고 => 1.5초 끝나면 트리거 되는 라우터에서 data를 가지고 렌더링한다.
+
+
+7. loader() 데이터 확인
+loader가 트리거 되는 라우트 이전의 라우트에서 loader()가 어떤 상태를 지니고 있는지 확인할 수 있다.
+const navigation = useNavigation();
+navigation.state => 세 가지 문자열을 가지고 있다. 'loading' => 데이터를 기다리고 있음
+
+
+8. loader() 데이터 반환
+useLoaderData() => new Response()로 만든 데이터를 받을 수 있다.
+fetch를 통해 얻는 데이터는 Promise이다. => Response??
+=> anyway 별다른 조치하지 않고 바로 보내서 사용할 수 있다. useLoaderData()의 기능 덕분에
 
 
 
