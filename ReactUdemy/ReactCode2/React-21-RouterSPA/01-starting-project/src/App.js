@@ -7,7 +7,7 @@ import {
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Root from "./pages/Root";
-import ErrorPage from './pages/Error'
+import ErrorPage from "./pages/Error";
 import ProductDetailPage from "./pages/ProductDetail";
 
 // const routerDefine = createRoutesFromElements(
@@ -23,10 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement : <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/home",
+        path: "",
         element: <Home></Home>,
       },
       {
@@ -34,9 +34,9 @@ const router = createBrowserRouter([
         element: <Product></Product>,
       },
       {
-        path : '/products/:productId',
-        element : <ProductDetailPage></ProductDetailPage>
-      }
+        path: "/products/:productId",
+        element: <ProductDetailPage></ProductDetailPage>,
+      },
     ],
   },
 ]);

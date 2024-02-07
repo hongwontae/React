@@ -1,0 +1,57 @@
+1. 동적 세그먼트와 충돌되는 path는 구체적인 path가 우위에 있다.
+ex) /product/:productId vs /product/new
+=> new라는 path도 :/productId에 해당하지만 리액트 라우터는 /product/new path 라우터를 우선시한다. => 구체적인 것을 우선시한다.
+
+(children이 구현되면 부모의 path가 자식의 path의 포함되어야 하고 부모 컴포넌트에 Outlet이 포함되어야 한다.)
+(index:true => 부모 라우트의 path와 자식 라우트의 path가 일치해서 같이 보여준다는 것)
+
+
+2. loader() 데이터 가져오기
+
+loader 
+=> 라우터를 정의하는 객체의 키이다. 값으로 함수를 받는다.
+=> 해당 라우터를 방문하기 직전에 리액트 라우터는 loader 함수를 실행한다.
+=> loader 함수를 통해 데이터를 로딩하고 가져올 수 있다.
+=> 함수의 return 값은 해당 객체의 element가 얻을 수 있다.
+
+
+3. loader() 데이터 사용
+loader 메서드를 실행한 결과물을 element가 가져오기 위해 useLoaderData을 import한다.
+const data = useLoaderData(); => 가장 가까운 loader return 값을 가져온다.
+<Component events={data}/> => 데이터를 props로 넘겨준다.
+
+
+4. loader() 데이터의 다양한 활용법
+loader 함수를 정의하고 useLoaderData를 사용해서 데이터를 얻을 수 있다.
+=> 그렇다면 모든 라우터에 데이터을 얻을 수 있는가?
+
+=> 상위 레벨의 라우터는 하위 레벨의 라우터의 loader에 접근할 수 없다.
+=> 같은 레벨이나 하위 레벨은 loader에 접근할 수 있다.
+
+
+5. loader() 코드를 저장하는 위치
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
