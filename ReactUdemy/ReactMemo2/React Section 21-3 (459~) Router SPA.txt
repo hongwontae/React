@@ -51,8 +51,37 @@ navigation.state => 세 가지 문자열을 가지고 있다. 'loading' => 데�
 
 8. loader() 데이터 반환
 useLoaderData() => new Response()로 만든 데이터를 받을 수 있다.
-fetch를 통해 얻는 데이터는 Promise이다. => Response??
-=> anyway 별다른 조치하지 않고 바로 보내서 사용할 수 있다. useLoaderData()의 기능 덕분에
+fetch를 통해 얻는 데이터는 Promise이다. => Response?? //9
+=> 별다른 조치하지 않고 바로 보내서 사용할 수 있다. useLoaderData()의 기능 덕분에
+=> useLoaderData는 Response 객체를 인식하여 가져올 수 있다.
+
+
+9. fetch and Response
+fetch의 통신의 결과는 Promise 객체이다.
+=> Promise 객체의 resolve는 Response 객체를 return한다.
+=> fetch의 통신의 결과는 Promise화 된 Response 객체이다.
+=> promise 자체는 객체이다. 객체 상태에서 then이나 catch 처리를 한다.
+=> Response 객체는 fetchAPI의 결과 객체라고 생각하면 된다.
+
+
+10. loader 에러 처리
+단순히 return {....}를 통해 처리할 수 도 있다.
+
+loader에서 throw를 던지면 리액트 라우터는 errorElement를 찾아서 반환한다.
+=> errorElement는 자신의 라우트 객체의 errorElement을 우선적으로 찾고 없으면 상위요소를 찾는다.
+=> errorElement는 path 실패, loader throw에 반응한다.
+
+useLoaderData() => Response 객체를 loader에서 retrun하면 자동으로 body 값을 가져온다. => json도 해줘서 유용하다.
+useRouteError() => loader의 에러가 처리되었을 떄/ path 경로가 올바르지 않을 경우 관련된 data를 가져온다.
+loader일 경우 일반 객체를 보낼 수 도 있고 Response 객체를 보낼 수 도 있다. => Response 객체를 보내는 경우가 흔하다.
+Respose로 데이터를 보내려면 초기에는 JSON 형태이기 떄문에 이를 지켜줘야 한다. status이나 다른 key와 useError와 연동하기 쉽다.
+path 에러일 경우 일반적인 에러처럼 처리한다.
+
+
+11. 
+
+
+
 
 
 
