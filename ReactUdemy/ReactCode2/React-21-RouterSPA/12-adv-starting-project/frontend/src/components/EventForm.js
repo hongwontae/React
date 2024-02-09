@@ -84,8 +84,7 @@ function EventForm({ method, event }) {
 export default EventForm;
 
 export async function action({ request, params }) {
-  console.dir(request)
-  console.log(params)
+
   const method = request.method;
   const data = await request.formData();
 

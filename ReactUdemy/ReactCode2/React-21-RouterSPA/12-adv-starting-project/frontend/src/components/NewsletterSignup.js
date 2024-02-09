@@ -7,14 +7,14 @@ function NewsletterSignup() {
   const fetcher = useFetcher();
   const { data, state } = fetcher;
 
-  // useEffect(() => {
-  //   if (state === 'idle' && data && data.message) {
-  //     window.alert(data.message);
-  //   }
-  // }, [data, state]);
+  useEffect(() => {
+    if (state === 'idle' && data && data.message) {
+      window.alert(data.message);
+    }
+  }, [data, state]);
 
   return (
-    <Form
+    <fetcher.Form
       method="post"
       action="/newsletter"
       className={classes.newsletter}
@@ -25,7 +25,7 @@ function NewsletterSignup() {
         aria-label="Sign up for newsletter"
       />
       <button>Sign up</button>
-    </Form>
+    </fetcher.Form>
   );
 }
 
