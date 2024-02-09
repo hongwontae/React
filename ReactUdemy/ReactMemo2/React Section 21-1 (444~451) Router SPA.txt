@@ -25,7 +25,7 @@ React는 SPA이다. => 요청 시에 SPA를 내려준다. => 라우터를 사용
 해당 리액트 프로그램이 라우터를 사용한다고 알리기 위해서 =>
 루트 컴포넌트(App.js)의 return에 RouterProvider를 사용한다.
 Provider의 router 키의 value로 경로와 JSX가 매칭된 값을 준다.
-return (<RouterProvider router={router}></RouterProvider>)
+return 2(<RouterProvider router={router}></RouterProvider>)
 
 createBrowserRouter => react-router-dom 라이브러리의 함수이다. 이 함수를 통해 경로와 해당되는 JSX를 매칭시킨다.
 
@@ -49,7 +49,7 @@ const router2 = createBrowserRouter(routerDefine) => router2를 provider의 rout
 => createRoutesFromElements, Route를 react-router-dom에서 가져온다.
 => createRoutesFromElements() <Router>로 덮고 <Router>로 정의한다.
 => 정의한 함수를 변수에 할당하고 createBrowserRouter의 인자로 넣고 변수에 할당하고 router키에 value에 넣는다.
-=> 1의 방식과 똑같이 동작한다.
+=> 1의 방식과 똑같이 동작한다.ㄴ
 => 과거의 방식이다.
 
 
@@ -78,6 +78,10 @@ createBrowserRouter의 배열안의 객체를 통해 라우터를 정의하는 �
 }]
 => Layout 컴포넌트는 import { Outlet } from "react-router-dom";를 가져와서 <Outlet></Outlet>를 반환한다.
 => Outlet은 children을 표현한다.
+=> children의 라우터들은 부모 URL을 포함하고 있어야 된다.
+
+
+(RouterProvider => createBrowserRouter[{path, element, children : [{....}]}...] => a tag(http 통신으로 새로고침 후 이미 가지고 있는 SPA 다시 요청) => Link(새로고침 x, React Router path-element 이동))
 
 
 

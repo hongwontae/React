@@ -12,13 +12,13 @@ loader
 => 라우터를 정의하는 객체의 키이다. 값으로 함수를 받는다.
 => 해당 라우터를 방문하기 직전에 리액트 라우터는 loader 함수를 실행한다.
 => loader 함수를 통해 데이터를 로딩하고 가져올 수 있다.
-=> 함수의 return 값은 해당 객체의 element가 얻을 수 있다.
+=> 함수의 return 값은 해당 라우터 객체의 element가 얻을 수 있다.
 
 
 3. loader() 데이터 사용
 loader 메서드를 실행한 결과물을 element가 가져오기 위해 useLoaderData을 import한다.
 const data = useLoaderData(); => 가장 가까운 loader return 값을 가져온다.
-<Component events={data}/> => 데이터를 props로 넘겨준다.
+<Component events={data}/> => 데이터를 prop로 넘겨준다.
 
 
 4. loader() 데이터의 다양한 활용법
@@ -54,6 +54,9 @@ useLoaderData() => new Response()로 만든 데이터를 받을 수 있다.
 fetch를 통해 얻는 데이터는 Promise이다. => Response?? //9
 => 별다른 조치하지 않고 바로 보내서 사용할 수 있다. useLoaderData()의 기능 덕분에
 => useLoaderData는 Response 객체를 인식하여 가져올 수 있다.
+
+=> async의 함수 호출 결과값은 Promise이다. => useLoaderData()를 사용하면 resolve 값이 부여된다.
+=> fetch를 사용해서 값을 가져오면 Promise가 이행된 값이 떨어지고 Response 객체가 useLoaderData()의 변수에 할당된다.
 
 
 9. fetch and Response
@@ -96,7 +99,14 @@ params는 동적 세그먼트를 가져올 수 있다.
 
 (input의 defaultValue => React의 기능)
 
+(동적 세그먼트와 일반 URL이 충돌한다면 구체적인 URL이 우선적으로 선택된다./ loader => 라우터 정의 객체의 키, 함수를 받는다. 함수의 결과값은 라우팅된 router가 취함/ loader 함수본문은 loader를 사용할 router component에서 작성한다./ useLoaderData()를 통해 loader 데이터 get/ 이전 라우터 => 다음 라우터로 감 => loader() => 다음 라우터/  useLoaderData()는 결과값을 가져올 떄 Response)
 
+(Loader 에러 처리 throw를 던지면 errorElement를 찾는다. 같은 요소 or 부모 요소 errorElement find => error 라우터 component에서 에러처리 데이터를 받을 떄는 useRouteError로 가져온다. throw new Reponse JSON.stringify({})}, {status : 500} or json({}),{})
+=> new Response일 떄는 body는 json 형태를 갖춰야 한다. json은 위의 일련의 행위를 알아서 해줘서 편하다.
+
+(loader의 함수는 인자에 객체값으로 response, params가 들어온다.  응답객체, 동적세그먼트 객체)
+
+(상위 loader를 사용하려면 상위 라우터에 id를 설정하고 useRouteLoader()를 설정하고 id 값을 인자로 주면 된다.)
 
 
 
