@@ -21,3 +21,42 @@ Form의 action 프로퍼티에 다른 라우트 경로를 적으면 다른 라�
 => 이 컴포넌트가 속한 라우트와 같거나 해당 컴포넌트가 렌더링되는 라우트와 같은 라우터에서 정의된다.
 => 함수가 호출되면 action을 트리거한다.
 => useSubmit이 호출되면 action 인자 객체 request에 submit(...) 인자 값을 준다.
+
+
+3. useNavigation
+const navi = useNavigation()
+navi.state === 'submitting' => action => navi.state
+라우트 => 라우트 과정 정보 획득가능
+
+
+4. loader의 데이터를 라우터 컴포넌트에 가져올 수 있는 것처럼 action도 가능하다.
+useActionData();
+
+(action이나 loader의 데이터를 받는 곳은 해당 라우트 + 해당 라우트 중첩된 JSX)
+
+
+5. Action -- RouterCom
+action(request, params)
+=> request는 라우터의 데이터가 전송되면 해당 데이터 + 부가정보가 들어간다.
+
+
+6. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

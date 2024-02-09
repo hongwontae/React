@@ -29,7 +29,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   const data = req.body;
-  console.log(data)
+  console.log(data);
   let errors = {};
 
   if (!isValidText(data.title)) {
@@ -57,7 +57,9 @@ router.post("/", async (req, res, next) => {
 
   try {
     await add(data);
-    res.status(201).json({ message: "Event saved.", event: data });
+    setTimeout(() => {
+      res.status(201).json({ message: "Event saved.", event: data });
+    }, 1500);
   } catch (error) {
     next(error);
   }

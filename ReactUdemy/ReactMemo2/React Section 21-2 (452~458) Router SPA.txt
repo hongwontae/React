@@ -14,9 +14,9 @@
 => end => 현재 활성인 라우트의 URL 뒤가 to의 문자열 값일 떄만 활성으로 간주한다.
 
 
-3. useNavigation
+3. useNavigate
 => 프로그램적으로 다른 라우트로 전환할 수 있다.
-=> const navi = useNavigation();
+=> const navi = useNavigate();
 => navi('/products') => 이 함수의 호출을 통해 라우트로 갈 수 있다. 
 => Link 사용을 권장하지만 강제적 이동이 필요한 경우가 존재할 떄 사용한다.
 
