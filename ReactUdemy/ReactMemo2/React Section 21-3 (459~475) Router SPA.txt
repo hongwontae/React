@@ -43,7 +43,7 @@ path의 컴포넌트가 실행되기 전에 loader()가 실행된다.
 => backend node.js에서 get data를 1.5초 지연시킨다. => loader()가 트리거 되는 라우트를 트리거한다. => loader()가 1.5초 뒤에 데이터를 얻기 때문에 전 페이지에 1.5초 머물고 => 1.5초 끝나면 트리거 되는 라우터에서 data를 가지고 렌더링한다.
 
 
-7. loader() 데이터 확인
+7. loader() 데이터 확인 ***
 loader가 트리거 되는 라우트 이전의 라우트에서 loader()가 어떤 상태를 지니고 있는지 확인할 수 있다.
 const navigation = useNavigation();
 navigation.state => 세 가지 문자열을 가지고 있다. 'loading' => 데이터를 기다리고 있음
@@ -74,7 +74,7 @@ loader에서 throw를 던지면 리액트 라우터는 errorElement를 찾아서
 => errorElement는 자신의 라우트 객체의 errorElement을 우선적으로 찾고 없으면 상위요소를 찾는다.
 => errorElement는 path 실패, loader throw에 반응한다.
 
-useLoaderData() => Response 객체를 loader에서 retrun하면 자동으로 body 값을 가져온다. => json도 해줘서 유용하다.
+useLoaderData() => Response 객체를 loader에서 retrun하면 자동으로 body 값을 가져온다. => json을 사용하면 유용하다.
 useRouteError() => loader의 에러가 처리되었을 떄/ path 경로가 올바르지 않을 경우 관련된 data를 가져온다.
 loader일 경우 일반 객체를 보낼 수 도 있고 Response 객체를 보낼 수 도 있다. => Response 객체를 보내는 경우가 흔하다.
 Respose로 데이터를 보내려면 초기에는 JSON 형태이기 떄문에 이를 지켜줘야 한다. status이나 다른 key와 useError와 연동하기 쉽다.
@@ -90,7 +90,7 @@ path 에러일 경우 일반적인 에러처럼 처리한다.
 
 12. 동적 loader
 (Link의 동작은 앞에 /에 의존한다. /가 있다면 절대경로 취급하고 /없다면 상대경로로 취급하여 움직인다.)
-loader 함수는 파라미터로 객체를 받을 수 있다. 객체는 두 가지 프로퍼티로 구성되어 있다. 하나는 response, 하나는 params
+loader 함수는 파라미터로 객체를 받을 수 있다. 객체는 두 가지 프로퍼티로 구성되어 있다. 하나는 request, 하나는 params
 params는 동적 세그먼트를 가져올 수 있다.
 
 

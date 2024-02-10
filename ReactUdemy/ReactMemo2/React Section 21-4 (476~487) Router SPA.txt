@@ -10,7 +10,6 @@ const data = request.formData()를 통해 받을 수 있다.
 
 redirect => Router 라이브러리의 함수/ 리다이렉션한다./ redirect('/events') 
 
-(path - Com 연결, action : pcAction => 연결된 Com의 하위 Form이 제출되도 action이 트리거된다.)
 
 
 2. action trigger
@@ -75,7 +74,6 @@ data 로딩 연기 => data가 오지 않아도 layout 처리를 하고 싶을 �
 => Suspense가 데이터가 오기 전까지 기다리고 데이터가 도착하면 Com이 렌더링된다.
 
 
-8.  defer data Control
 
 
 
