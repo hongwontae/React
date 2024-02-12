@@ -1,26 +1,45 @@
-import Player1 from "./components/Player1";
-import Player2 from "./components/Player2";
-import Player3 from "./components/Player3";
-import ChangeRootContext from "./store/store";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import StartPage from "./pages/StartPage";
+import ErrorPage from "./pages/ErrorPage";
+import HomePage from "./pages/HomePage"
+import DataExpress, {loader as expressLoader} from "./pages/DataExpress";
+import DetailsInfo, {loader as infoLoader} from "./pages/DetailsInfo";
 
 function App() {
 
+  const router = createBrowserRouter([{
+    path : '/',
+    element : <StartPage></StartPage>,
+    errorElement : <ErrorPage></ErrorPage>,
+    id : 'dataId',
+    loader : expressLoader,
+    children : [
+      {
+        path : 'home',
+        element : <HomePage></HomePage>,
+        children : [
+          {
+            path : 'lazy',
+            element : <p>This is homeLazy</p>
+          }
+        ]
+      },
+      {
+        path : 'dataExpress',
+        element : <DataExpress></DataExpress>
+       
+      },{
+        path : 'dataExpress/:dataId',
+        element : <DetailsInfo></DetailsInfo>,
+        loader : infoLoader
+      }, 
+      
+    ]
+  }]);
 
-const Koala3121 = ()=>{
   return (
     <>
-      <div>goodLuck</div>
-    </>
-  )
-}
-
-  return (
-    <>
-      <ChangeRootContext>
-        <Player1 Com1={<Koala3121></Koala3121>}></Player1>
-        <Player2></Player2>
-        <Player3></Player3>
-      </ChangeRootContext>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }

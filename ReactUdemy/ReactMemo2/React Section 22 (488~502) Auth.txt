@@ -1,1 +1,76 @@
-1.
+1. 인증이란?
+Client에서 Server로 요청을 보낼 떄 ID/Paaword를 보내서 자격증명이 성공하면 앱의 리소스에 접근이 가능하다는 응답을 준다.
+
+해당 응답이 단순하면 조작당할 위험이 크기 떄문에 세션이나 인증토큰을 사용한다.
+
+서버 사이드 세션
+=> 로그인 => 서버 검증 => 서버에 고유 식별자 저장 => 고유 식별자+id 클라이언트<-->백엔드 검증에 사용
+=> 클라이언트 측과 서버측이 긴밀히 연결되어야 한다. React는 x/ 풀스택에서 많이 사용된다.
+
+인증 토큰
+=> 자격 증명이 생성되면 허가 토큰 데이터를 보내주고 저장하지 않는다. 토큰은 알고리즘+기본키에 의해 생성되고 클라이언트로 보내져서 저장된다. 해당 토큰은 백엔드에서만 확인하고 검증할 수 있다. (백엔드만이 알고있는 기본키로 토큰을 생성했기 때문이다.)
+=> 위의 과정이 성립되면 클라이언트에서 리소스에 접근할 떄 토큰을 보내고 백엔드에서 토큰의 유효성 검사, 해당 토큰이 해당 백엔드에서 만들어졌는가를 검사하고 문제가 없다면 리소스에 접근이 승인된다.
+
+
+2. query Parameter
+쿼리 매개변수 : URL ? 뒤에 붙은 매개변수
+
+useSearchParams=> 현재 활성화된 라우트의 쿼리 파라미터에 대한 Hooks
+const [query, setQuery] = useSearchParams();
+query => 쿼리 객체 => get 메서드를 통해 쿼리 매개변수를 얻을 수 있다.
+setQuery => 쿼리를 바꾸는 setFunc()
+
+Logic
+<Link to={`?mode=${isLogin ? 'signup': 'login'}`}>
+            {isLogin ? 'Create new user' : 'Login'}
+          </Link>
+=> Link을 통해 다른 라우트를 활성화시키면 해당 path의 element 재평가-리렌더링
+=> ?isLogin ? 'signUp' : 'login' => ! 효과를 낸다.
+=>  {isLogin ? 'Create new user' : 'Login'} => 이름을 change한다.
+
+
+3. action/loader data get
+데이터를 얻을 떄는 loader나 action의 return 데이터를 받는다. => but 이 리턴 데이터가 백엔드에서 오는 데이터일 수 도 있다.
+=> 프론트 코드에서 확인하기 어려울 수 있다.
+
+
+4. Token
+백엔드가 authToken으로 리소스를 보호하는 로직을 갖췄다면 백엔드에 보내는 요청은 Token이 첨부되어 있어야 한다.
+
+1. 로그인 시에 token을 보내주는 백엔드
+2. 로그인 성공시에 token을 받아서 localStorage.setItem을 통해 저장한다.
+3. 리소스에 접근하기 위해 백엔드에 요청할 떄 headers에 token을 첨부한다.
+4. localStorage.get를 통해 가져와서 headers : {'Authorization' : 'Bearer '+token}을 추가한다.
+5. 백엔드가 토큰을 식별하고 요청을 처리하고 보내준다.
+
+
+5. token에 따라서 UI가 달라져야 한다. login시에 action을 통해서 token을 local에 저장하고 token의 유무에 따라 ui를 설정한다.
+
+
+6. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
