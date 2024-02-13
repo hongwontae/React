@@ -31,6 +31,13 @@ npm run build => 최적화된 변환 코드 번들이 생성된다.
 => 정적 웹사이트 호스트를 사용하면 된다.
 => 일반 React SPA는 서버 호스트 필요없다.
 
+FireBase Hosting
+5-1. npm install -g firebase-tools
+5-2. firebase login
+5-3. firebase init
+5-4. hosting만 허용/ build 파일 알려주기/ SPA 설정 Yes/ 덮어쓰기 x
+
+
 
 6. 서버 측 라우팅 및 필요한 환경설정
 Hosting 할 떄 SPA 여부가 중요하다. => 다른 URL를 사용하면 라우트 전환이 된다. => 브라우저에서 실행한다.
