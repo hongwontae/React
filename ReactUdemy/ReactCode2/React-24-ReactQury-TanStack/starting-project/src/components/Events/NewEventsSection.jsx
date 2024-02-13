@@ -8,6 +8,7 @@ import {fetchEvents} from '../util/http.js'
 
 export default function NewEventsSection() {
 
+
   const {data, isPending, isError, error} = useQuery({
     queryKey : ['events'],
     queryFn : fetchEvents,
