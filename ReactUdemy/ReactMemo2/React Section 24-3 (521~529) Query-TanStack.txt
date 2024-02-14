@@ -1,0 +1,9 @@
+1. refetchType => inValidateQueries의 인자 객체의 프로퍼티
+=> Invalid는 기본동작이 기존의 쿼리키에 해당하는 쿼리함수를 무효화하고 다시 실행시켜서 데이터를 가져오는 방식이다.
+=> refetchType은 무효화만 시킨다.
+
+
+2. useParams => React-router-dom의 활성화된 라우트의 동적 세그먼트를 가져올 수 있는 훅이다.
+
+
+3. 

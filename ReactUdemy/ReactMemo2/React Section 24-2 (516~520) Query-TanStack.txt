@@ -37,6 +37,14 @@ const {mutate, isPending, isError, error} = useMutation({
 => error => 에러 객체
 
 
+5. onSuccess => mutate가 성공한 이후에만 트리거되는 useMutation인자의 프로퍼티
+
+
+6. queryClient.invalidateQueries({queryKey : ['events'], exact : true})
+=> 해당 함수가 호출되었을 떄 이전의 쿼리로 데이터가 표시된 경우 만료시키고 다시 데이터를 가져오는 함수를 호출하라고 하는 것
+=> queryKey의 배열의 값에 해당하는 이전 쿼리들의 데이터만 만료하고 가져와라. 이 떄 'events' 값만 존재하거나 'events'와 다른 키를 가지고 있는 쿼리 함수도 포함한다.
+=> exact : true => Invalid queryKey에 정확히 해당하는 것만 트리거시켜라
+
 
 
 
