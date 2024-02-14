@@ -4,7 +4,66 @@
 => 같은 쿼리 키를 사용하면 먼저 트리거된 queryFn의 queryKey가 우선이다.
 => 이 떄 queryKey가 같다면 다른 queryFn을 사용하더라고 먼저 트리거된 queryFn을 사용한다.
 
+키를 동적으로 생성하면 다양한 캐시 데이터를 구성할 수 있다.
+(동적이란 것은 다르다는 것)
+
 
 2. 쿼리 구성 및 객체 및 요청 취소
-리액트 쿼리는 쿼리 함수에 기본적으로 기본 데이터를 전달한다.
+useQuery의 queryFn은 http를 구성하는 함수에 자동으로 객체를 보낸다.
+=> queryFn : (obj) => {
+	return fetchEvent(obj, startTerm)
+}
+obj = {meta : '', signal : ..., queryKey : ['events']}
+
+
+3. enabled => ture면 queryFn 활성화/ false면 queryFn 비활성화
+(State와 Input의 상관관계 => useState의 초기값이 비워져 있다면 초기값은 undefined이다. input에 이를 할당하고 input을 보내면 그 값은 undefined이다. 하지만 input에 무엇가를 적고 다 지우면 그 값은 undefined가 아니라 빈 문자열이다.)
+
+isPending => queryFn이 enabled의 false에 의해 비활성화 상태이면 isPending은 true 값을 갖는다.
+isLoading => 쿼리 비활성화가 되도 ture 값을 가지지 않는다. 단지 데이터 상황에만 의거한다.
+
+
+4. useMutaion
+useMutation => 데이터 POST에 적합한 훅/ 요청을 임의적으로 보낼 수 있다.
+
+const {mutate, isPending, isError, error} = useMutation({
+	mutationFn : createNewEvent
+})
+=> mutate는 mutationFn을 트리거한다.
+=> useMutation은 useQuery와 달리 렌더링/리렌더링시 자동으로 요청 전송x
+
+=> isPending => 요청이 전송중이면 true, 그렇지 않으면 false
+=> isError => 에러 Boolean
+=> error => 에러 객체
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
