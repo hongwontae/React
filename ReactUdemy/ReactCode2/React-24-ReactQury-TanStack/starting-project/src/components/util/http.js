@@ -2,7 +2,6 @@ import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient();
 
-// getAll fetch
 export async function fetchEvents({ signal, searchTerm }) {
   console.log(searchTerm);
   let url = 'http://localhost:3000/events';
@@ -25,7 +24,7 @@ export async function fetchEvents({ signal, searchTerm }) {
   return events;
 }
 
-// post Fetch
+
 export async function createNewEvent(eventData) {
   const response = await fetch(`http://localhost:3000/events`, {
     method: 'POST',
@@ -47,7 +46,6 @@ export async function createNewEvent(eventData) {
   return event;
 }
 
-// form image select Fetch
 export async function fetchSelectableImages({ signal }) {
   const response = await fetch(`http://localhost:3000/events/images`, { signal });
 
@@ -63,7 +61,6 @@ export async function fetchSelectableImages({ signal }) {
   return images;
 }
 
-// view Details getFetch
 export async function fetchEvent({ id, signal }) {
   const response = await fetch(`http://localhost:3000/events/${id}`, { signal });
 
@@ -79,7 +76,7 @@ export async function fetchEvent({ id, signal }) {
   return event;
 }
 
-// delete Fetch
+
 export async function deleteEvent({ id }) {
   const response = await fetch(`http://localhost:3000/events/${id}`, {
     method: 'DELETE',
@@ -87,6 +84,25 @@ export async function deleteEvent({ id }) {
 
   if (!response.ok) {
     const error = new Error('An error occurred while deleting the event');
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+
+  return response.json();
+}
+
+export async function updateEvent({ id, event }) {
+  const response = await fetch(`http://localhost:3000/events/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ event }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const error = new Error('An error occurred while updating the event');
     error.code = response.status;
     error.info = await response.json();
     throw error;

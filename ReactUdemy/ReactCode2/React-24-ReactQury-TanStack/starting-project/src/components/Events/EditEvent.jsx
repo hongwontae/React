@@ -1,9 +1,9 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import Modal from "../UI/Modal.jsx";
 import EventForm from "./EventForm.jsx";
-import { fetchEvent } from "../util/http.js";
+import { fetchEvent, updateEvent, queryClient  } from "../util/http.js";
 import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
 
@@ -18,7 +18,25 @@ export default function EditEvent() {
     },
   });
 
-  function handleSubmit(formData) {}
+  const { mutate } = useMutation({
+    mutationFn: updateEvent,
+    onMutate : async (data)=>{
+      const newEvent = data.event
+
+     await queryClient.cancelQueries({queryKey : ['events',param.id]})
+
+      // mutate를 호출하는 즉시 실행된다. => mutate 프로세스가 실행되기 전(웅답 받기 전)
+      // 리액트 캐시 => queryClient
+      queryClient.setQueryData(['events', param.id], newEvent);
+      // 응답을 기다리지 않고 내부적으로 실행 
+      // 
+    }
+  });
+
+  function handleSubmit(formData) {
+    mutate({ id: param.id, event: formData });
+    navigate('../');
+  }
 
   function handleClose() {
     navigate("../");
