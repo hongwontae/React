@@ -5,6 +5,7 @@ HTTP 요청을 쉽게 해주는 라이브러리이다.
 2. TanStack
 => Http 요청을 도와주고 백엔드와 프론트엔드의 동기화를 도와주는 라이브러리이다.
 npm install @tanstack/react-query
+주요 기능 => 데이터를 메모리에 저장해서 재사용하는 기능이다.
 
 useQuery()
 => HTTP를 전송하는 로직이 내장X/ 요청을 전송하는 코드는 직접 작성해야 한다.
@@ -15,10 +16,9 @@ useQuery()
 
 => useQuery({queryKey : ['events'] })
 => 전송하는 모든 요청에는 쿼리키가 존재한다.
-=> 쿼리 키를 이용해 요청으로 생성된 데이터를 캐시 처리한다.
+=> 쿼리 키를 이용해 요청으로 생성된 데이터를 캐시 처리한다. (매우 중요)/ 키가 캐시된 데이터를 식별하거나 조종한다.
 => 동일한 요청 => 응답 재사용
-=> 프로퍼티의 값은 배열이고 내부적으로 저장한다.
-=> 저장된 값은 데이터 재사용을 식별한다.
+=> 프로퍼티의 값은 배열이다.
 => 배열의 값은 타입 구애를 받지 않는다.
 
 useQuery의 인자로 객체를 받고 객체의 프로퍼티로 queryFn, queryKey를 받고 실행하면 객체가 할당된다.
@@ -26,34 +26,31 @@ useQuery의 인자로 객체를 받고 객체의 프로퍼티로 queryFn, queryK
 
 const {data, isPending, isError} = useQuery({....})
 => data => fn의 실행결과 데이터
-=> isPending => 요청의 결과에 대해서 알려준다.
+=> isPending => 요청의 상태를 나타낸다.
 => isError => queryFn 요청의 결과가 에러가 발생하고 throw를 던지면 isError가 true 값을 갖는다. 기본적으로는 false
 => error => error가 발생하면 그에 대한 데이터가 들어가 있다.
+=> refetch => useQuery를 다시 실행하는 메서드
 
 react query-useQuery를 사용하려면 해당 기능을 사용할 컴포넌트를 Tanstack 쿼리가 제공하는 특수한 프로바이더로 래핑해야 한다.
 
+=> 설정
 import {queryClient, queryClientProvider} from '@tanStack/react-query'
-
 const queryClient = new QueryClient();
-
 <QueryClientProvider client={queryClient}><RouterProvider router={router}></QueryClientProvider>
 => tanStack를 사용할 준비가 완료되었다.
 
-tanStack를 사용하면 다른 웹페이지를 방문하고 tanStack 페이지를 방문하면 자동으로 tanStack의 queryFn이 실행된다.
-=> 실시간 데이터 변동에 유용하다.
-
-(useQuery queryFn(프로미스 반환하는 Http 요청 함수), queryKey(배열, 타입 구애x, 값으로 캐시 처리))
-(useQuery {data(queryFn의 성공시 데이터), isPending(loading), isError(queryFn의 throw 처리시 true로 값 설정/ 기본값은 false), error(throw 던졌을 떄 에러 데이터)})
-(tanstack 사용하기 위해 사용할 컴포넌트 덮어야 함 => queryClient, queryClientProvider
-const queryClient = new QueryClient(); => <queryClientProvider client={queryClient}></queryClientProvider>
-)
+tanstack-query의 세부적인 처리
+NewEventSection이 마운트된다. => useQuery가 실행되고 데이터를 받아오고 NewEventSection이 다시 실행된다.
+=> stale 상태+화면 다시 포커스 => fetchEvents가 실행된다. => 변경된 데이터 x라면 컴포넌트 리렌더링x, 변경된 데이터가 존재하면 리렌더링
 
 
 3. 캐시 처리
-리액트 쿼리는 응답 데이터를 캐시 처리한다. => 나중에 동일한 쿼리 키를 가진 다른 useQuery가 실행되면 데이터를 재사용한다. => 데이터를 즉시 제공한다. => 동시에 내부적으로 요청을 다시 전송해서 업데이트 데이터가 있는지 확인
-=> 업데이트 데이터 존재하면 {data}를 자체적으로 교체한다. => 업데이트 데이터가 화면에 표시된다.
+리액트 쿼리는 staleTime이 0이라도 다시 렌더링되면 캐시된 데이터를 보여주고 업데이트 요청을 날린다. 그리고 업데이트된 데이터가 존재하면 해당 데이터로 교체한다.
 
-(캐시 처리를 한다는 것은 컴포넌트 재평가를 한다는 것이 아니다.)
+staleTime의 핵심은 http 요청을 컨트롤한다는 것이다. staleTime이 5초라면 5초동안 화면의 포커스를 바꿔도, 페이지 이동을 해도 http 요청을 날리지 않는다.
+
+gcTime은 캐시된 데이터의 보관 시간이다. 	보관시간이 없다면 캐시된 데이터가 없기 때문에 useEffect랑 같다고 보면 된다.
+
 
 useQuery({staleTime : })
 => 캐시에 데이터가 있을 떄 업데이트 데이터를 가져오기 위한 요청을 자체적으로 전송하기 전에 기다릴 시간을 설정하는 프로퍼티이다.

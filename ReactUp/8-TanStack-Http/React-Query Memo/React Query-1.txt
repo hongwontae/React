@@ -1,0 +1,67 @@
+1. 클라이언트 상태는 Redux, mobX가 처리하고 서버 상태는 React-query가 처리
+=> 서버 상태를 관리하기 위해 React-query가 탄생하고 사용되어 진다고 생각
+=> 네트워크 통신은 최소화하는 것이 좋기 떄문에 복수의 컴포넌트가 fetching을 여러번 하는 것을 방지할 수 있다.
+
+2. 클라이언트 상태는 ex) input 서버 상태는 DB
+
+3. const queryClient = new QueryClient(options);
+<QueryCleintProvider>...</QueryClientProvider>
+=> react Query를 사용하기 위한 설정
+
+
+4. Query들은 4가지 상태를 가진다.
+4-1. fresh => 새롭게 추가된 인스턴스/ active의 시작이다.
+4-2. fetching => 요청을 수행중인 쿼리
+4-3. stale => 인스턴스가 존재하지만 이미 패칭이 완료된 쿼리/ stale 상태에서 쿼리 마운트를 시도하면 캐싱된 데이터를 반환하면서 리패칭을 시작한다.
+4-4. incative
+
+stale하다는 것은 신선하지 않다는 것이다.
+=> React-query는 데이터가 stale하다면 업데이트가 필요하다고 생각한다.
+=> 데이터가 stale + 특정 상황에 도달하면 쿼리를 refetch한다.
+1. 새로운 인스턴스가 마운트 될때 👉🏻 refetchOnMount
+2. 브라우저 화면이 다시 focus 됐을 때 👉🏻 refetchOnWindowFocus
+3. 네트워크가 재연결됐을 때 👉🏻 refetchOnReconnect
+4. 특별히 설정한 refetch interval이 있을 때 👉🏻 refetchInterval
+
+키와 fn만 존재하는 useQuery의 데이터로 표현된 컴포넌트가 다시 렌더링된다면 자동으로 캐시된 데이터를 사용하는가?
+=> 그렇지 않다.
+=> staleTime이란 것이 존재한다. 쿼리를 fetch한 이후에 데이터가 stale상태가 되는데까지 소요되는 시간을 말한다. default가 0이다. 쿼리를 fetch 하자마자 stale 상태가된다. 첫 번쨰 조건에 의해서 refetch가 된다. 데이터가 캐시되었지만 캐시된 데이터를 사용하지 못하는 상태가 된다.
+
+
+5. cacheTime
+캐시가 되어있는 시간을 의미한다. default는 30000(5분)이다. 지정 시간이 지나면 가비지 컬렉터가 수거하여 캐시에서 사라진다.
+
+
+6. useQuery
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

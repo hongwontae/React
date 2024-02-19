@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
+import MainNavigation from "./MainNavigaion";
 
 function HomePage(){
 
 
-    return(
+    return (
         <>
-            <div>
-                This is Home page
-            </div>
+            <MainNavigation></MainNavigation>
             <Outlet></Outlet>
         </>
     )
