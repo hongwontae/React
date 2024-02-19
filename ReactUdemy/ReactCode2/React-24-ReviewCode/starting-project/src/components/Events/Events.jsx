@@ -6,6 +6,7 @@ import FindEventSection from './FindEventSection.jsx';
 import NewEventsSection from './NewEventsSection.jsx';
 
 export default function Events() {
+
   return (
     <>
       <Outlet />
