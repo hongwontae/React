@@ -29,6 +29,17 @@ function MainNavigation() {
               Detail
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/rerender"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              rerendering?
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>

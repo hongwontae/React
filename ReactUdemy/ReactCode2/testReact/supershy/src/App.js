@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import HomeDetail from "./pages/HomeDetail";
+import RerenderSure from "./pages/RerenderSure";
 
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
         {
           path : '/detail',
           element : <HomeDetail></HomeDetail>
+        },
+        {
+          path : '/rerender',
+          element : <RerenderSure></RerenderSure>
         }
       ]
     }

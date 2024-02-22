@@ -10,6 +10,7 @@ npm install @tanstack/react-query
 useQuery()
 => HTTP를 전송하는 로직이 내장X/ 요청을 전송하는 코드는 직접 작성해야 한다.
 => 요청을 관리하는 로직 존재하는 것이다.
+=> 컴포넌트가 렌더링이되고나서 useQuery를 실행하여 데이터를 가져온다. => useEffect와 비슷하다.
 
 => useQuery({queryFn : func})
 => queryFn 프로퍼티의 함수는 Promise를 반환해야 한다.

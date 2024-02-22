@@ -8,15 +8,19 @@ import EventItem from "./EventItem";
 export default function FindEventSection() {
   const searchElement = useRef();
 
+ 
+
   const [serachTerm, setSearch] = useState();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["events", { serachTerm }],
-    queryFn: ({signal}) => {
-      return fetchEvents({signal, serachTerm});
+    queryFn: ({signal, serachTerm}) => {
+      return fetchEvents({signal, serachTerm : serachTerm});
     },
     enabled : serachTerm !== undefined
   });
+
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -59,6 +63,7 @@ export default function FindEventSection() {
             ref={searchElement}
           />
           <button>Search</button>
+          
         </form>
       </header>
       {content}
