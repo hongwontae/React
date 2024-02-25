@@ -4,9 +4,11 @@
 2. 가벼운 CSS 애니메이션은 transition으로 해결해도 된다.
 
 CSS 트랜지션이란?
-
+=> 요소의 스타일을 직접 변경하는 것이 아니고 요소의 변화가 있을 떄 에니메이션 효과가 작동하게 하는 것
+=> 도움같은 느낌
 
 CSS 애니메이션이란? 
+=> 전체을 통제하는 느낌
 @Keyframes라는 구문을 통해 일련의 단계를 작성하는 CSS
 
 
@@ -27,7 +29,60 @@ transtion => 애니메이션 효과를 의미한다.
 ex) type=> 'spring' (튕기는 효과)/ duration : 0.5(애니메이션의 지속시간)
 
 
-5.  
+5. animate props에 조건부로 key에 대한 value를 줄 수 있다.
+
+
+6. 진입 애니메이션 추가하기
+motion.element의 initial props는 motion.element가 처음 Dom에 등장했을 떄의 상태를 규정할 수 있는 프로퍼티이다.
+=> 애니메이션 첫 시작을 규정
+=> 이 후 amimate의 상태로 달려간다.
+
+
+7. 요소가 사라지는/ 삭제되는 애니메이션 넣기
+motion.element의 exit props => Dom에 삭제될 떄 나타나는 애니메이션 속성
+=> but 아무것도 설정하지 않으면 React의 특징 떄문에 exit props가 무시된다.
+=> React는 컴포넌트를 return할 떄 포함되어 있지 않으면 아무런 처리하지 않고 퇴장시킨다. => 이 기능을 제어해야 한다.
+=> import {AnimatePresence} from 'framer-motion';
+=> 해당 컴포넌트로 감싸지면 안에 렌더링되는 컴포넌트가 Dom에서 사라질 떄 exit 속성이 있는지 관찰하고 있다면 exit props가 동작하도록 React 기본 동작을 막는다.
+
+
+8. 마우스 오버 애니메이션
+transition props는 whileHover나 exit, animate 등을 설정했든 요소에 적용된 모든 애니메이션에 반영해준다.
+transition : 'spring' => 튕겨나가는 효과
+
+
+9. 중첩 애니메이션과 Variant
+=> Variant props는 애니메이션 상태를 정의하고 재사용하도록 도와준다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
