@@ -1,0 +1,49 @@
+1. 리액트 애니메이션을 다루기 위해 프레이어 모션이라는 라이브러리를 사용한다.
+
+
+2. 가벼운 CSS 애니메이션은 transition으로 해결해도 된다.
+
+CSS 트랜지션이란?
+
+
+CSS 애니메이션이란? 
+@Keyframes라는 구문을 통해 일련의 단계를 작성하는 CSS
+
+
+3. CSS 애니메이션은 DOM를 나타나게 할 수는 있지만 사라지게 할 수 없다. CSS만으로 애니메이션을 작성하면 난해하고 어려운 코드를 작성해야 한다. 부드러운 효과를 내기가 어렵다. => 3가지 단점
+
+설치 => npm install framer-motion
+
+
+4. 프레이어 모션 Basic
+import {motion} from 'framer-motion' => 사용하기 위해 motion이라는 컴포넌트를 import한다.
+=> 프레이어 프로퍼티를 사용할 수 있는 HTML이다. 
+
+<motion.div/>
+animate = {{}} => 객체를 값으로 받는다. key에 해당하는 value가 변경될 떄마다 애니메이션을 적용시켜 반영한다.
+Key는 CSS 요소를 의미한다.
+
+transtion => 애니메이션 효과를 의미한다. 
+ex) type=> 'spring' (튕기는 효과)/ duration : 0.5(애니메이션의 지속시간)
+
+
+5.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
