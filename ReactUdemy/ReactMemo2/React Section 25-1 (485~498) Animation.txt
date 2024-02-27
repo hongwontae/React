@@ -12,7 +12,7 @@ CSS 애니메이션이란?
 @Keyframes라는 구문을 통해 일련의 단계를 작성하는 CSS
 
 
-3. CSS 애니메이션은 DOM를 나타나게 할 수는 있지만 사라지게 할 수 없다. CSS만으로 애니메이션을 작성하면 난해하고 어려운 코드를 작성해야 한다. 부드러운 효과를 내기가 어렵다. => 3가지 단점
+3. CSS 애니메이션은 DOM를 나타날 떄의 효과를 설정할 수 있지만 사라지게 할 수 없다. CSS만으로 애니메이션을 작성하면 난해하고 어려운 코드를 작성해야 한다. 부드러운 효과를 내기가 어렵다. => 3가지 단점
 
 설치 => npm install framer-motion
 
@@ -53,6 +53,15 @@ transition : 'spring' => 튕겨나가는 효과
 
 9. 중첩 애니메이션과 Variant
 => Variant props는 애니메이션 상태를 정의하고 재사용하도록 도와준다.
+
+motion으로 이루어진 컴포넌트의 props 중 variant가 존재한다.
+=> variant는 객체를 값으로 받고 첫 번쨰 객체을 통해 motion props의 value를 정의하거나 재사용을 도와준다.
+
+ex) variant = {{
+	hidden = {opacity : 0, y : 30}
+}}
+initial = 'hidden';
+
 
 
 

@@ -11,6 +11,7 @@ export default function Modal({ title, children, onClose }) {
           visible: {
             opacity: 1,
             y: 0,
+            // transition : {staggerChildren : 0.05}
           },
         }}
         initial="hidden"
