@@ -17,4 +17,4 @@ variant props는 부모 컴포넌트에서 variant를 사용해서 props에 들�
 
 2. 스태거링
 transition : {staggerChildren : 0.05}
-=> 
+=> 자식 motion 컴포넌트 

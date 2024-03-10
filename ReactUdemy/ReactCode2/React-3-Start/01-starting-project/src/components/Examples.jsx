@@ -8,14 +8,15 @@ const Examples = () => {
   const [topic, setTopic] = useState("");
 
   const clickHandler = (selectedButton) => {
-    setTopic(selectedButton);
+
+    setTopic(selectedButton)
   };
 
   let tabContent = <p>Choose the topic you want</p>;
 
   if (topic) {
     tabContent = (
-      <div id="tab-content">
+      <div id="tab-content" >
         <h3>{EXAMPLES[topic].title}</h3>
         <p>{EXAMPLES[topic].description}</p>
         <pre>
