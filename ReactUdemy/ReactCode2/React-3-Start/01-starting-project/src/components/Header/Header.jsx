@@ -3,6 +3,9 @@ import img2 from "../../assets/react-core-concepts.png";
 import './Header.css'
 
 const Header = () => {
+
+  console.log()
+
   return (
     <React.Fragment>
       <header>
@@ -10,7 +13,7 @@ const Header = () => {
         <h1>React Essentials</h1>
         <p>
           Fundamental React concepts you will need for almost any app you are
-          going to build!w
+          going to build!
         </p>
       </header>
     </React.Fragment>

@@ -43,7 +43,9 @@ const Examples = () => {
           <>
             <TabButton
               isSelected={topic === "components"}
-              onClick={() => clickHandler("components")}
+              onClick={()=>{
+                return clickHandler('components')
+              }}
             >
               Componets
             </TabButton>
