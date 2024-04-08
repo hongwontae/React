@@ -1,7 +1,6 @@
-const Tabs = ({ children, buttons, ButtonContainer, Good}) => {
+const Tabs = ({ children, buttons, ButtonContainer}) => {
   return (
     <>
-      {Good}
       <ButtonContainer>{buttons}</ButtonContainer>
       {children}
     </>

@@ -4,7 +4,7 @@ import './Header.css'
 
 const Header = () => {
 
-  console.log()
+  console.log(typeof img2)
 
   return (
     <React.Fragment>

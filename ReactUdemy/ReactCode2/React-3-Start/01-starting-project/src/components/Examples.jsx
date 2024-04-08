@@ -26,19 +26,11 @@ const Examples = () => {
     );
   }
 
-  const Good = ()=>{
-    return (
-      <>
-        <div>Koala3121</div>
-      </>
-    )
-  }
 
   return (
     <Section title="Examples" id="examples">
       <Tabs
       ButtonContainer="menu"
-      Good={<Good></Good>}
         buttons={
           <>
             <TabButton
