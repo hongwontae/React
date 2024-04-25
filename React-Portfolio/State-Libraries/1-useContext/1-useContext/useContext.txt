@@ -35,3 +35,7 @@ return <ReactContext.Provider value={ctxRC}>{children}</ReactContext.Provider>�
 => 그러나 모든 상태를 그렇게 관리하기에는 가독성이 떨어진다.
 
 10. 그래서 redux나 recoil을 사용한다.
+
+
+*** Context.Provider value로 덮힌 컴포넌트들이 useContext를 통해 저장소에 접근할 수 있다. => children +
+*** createContext의 변수명, value의 변수명이 같아야 한다. => 제일 중요, 이것 떄문에 오류난다.
