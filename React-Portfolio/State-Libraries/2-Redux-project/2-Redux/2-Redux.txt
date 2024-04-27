@@ -13,7 +13,7 @@
 
 2-3. 리덕스 관련 파일 => store에 저장한다.
 2-4. reducerFunc - store를 연결한 뒤 export로 내보낸다.
-=> reducerFunc은 인자로 현재 상태와 액션을 받는다. 현재 상태에는 default 값이 부여되야 한다.
+=> *** reducerFunc은 인자로 현재 상태와 액션을 받는다. 현재 상태에는 default 값이 부여되야 한다.
 
 2-5. Provider react-redux 컴포넌트를 최상단 <App>에 덮는다.
 2-6. store prop에 앞선 작업의 store을 불러서 넣는다.
@@ -43,6 +43,61 @@ function incrementHandler(){
 => React에 의해서 값이 변경되어 리렌더링을 야기시켜야 올바르다.
 
 => 객체의 프로퍼티의 접근해봤자 해당 객체의 참조값과는 관련없다.
+
+
+2-11. Redux-Toolkit
+
+일반적인 redux의 문제점
+1. action의 식별자를 틀리거나 충돌할 수 있다. 
+=> 상수를 생성하여 해결한다.
+
+2. 많은 상태가 있을수록 복사해야할 객체도 많아지고 파일이 비대해진다.
+=> 여러개의 redux 파일은 둬서 해결한다.
+
+3. 상태 객체를 올바르게 반환해야하기 떄문에 작은 실수에 에러가 날 가능성이 높다.
+=> 잘 검토해본다.
+
+1,2,3 모두 redux-toolkit를 사용하면 해결할 수 있다.
+
+4. 설치
+=> npm install @reduxjs/toolkit
+=> 기존 리덕스 삭제
+
+5. createSlice();
+=> 초기 상태를 정의하고 리듀서 function을 정의하는 함수이다.
+=> 인자로 객체를 받고 name, initialState, reducers를 정의한다.
+ex) createSlice({
+    name : 'counter',
+    initialState,
+    reducers : {
+        increment(state, action){
+            state.counter++;
+        }
+    }
+})
+=> 나중에 리덕스에 의해 호출되고 현 state를 자동으로 받는다.
+=> 리덕스 툴킷은 내부적으로 immer라는 패키지 사용 => 기존 상태 변경을 막고 새로운 객체로 만들어낸다.
+
+
+6. configureStore()
+=> store를 생성하고 리듀서 함수를 객체 형식으로 받는다.
+=> 리듀서 함수를 받을 떄 객체형식을 띄기 떄문에 여러 Slice를 받아서 하나의 리듀서처럼 받아들인다.
+
+const store = configureStore({
+    reducer : {
+        counter : counterSlice.reducer
+    }
+})
+
+
+7. redux-toolkit의 Action
+7-1. createSlice는 리듀서의 각 프로퍼티들에 고유 action 식별자를 자동으로 생성한다.
+7-2. 액션 식별자 값을 얻기위해서는 counterSlice.actions에 접근하면 된다.
+7-3. 각 키들은 리듀서의 메서드 이름과 같고 이들도 메서드이다.
+7-4. 메서드가 호출되면 액션 객체가 생성된다. => 액션 생성자라고 불린다. => 이미 type이라는 프로퍼티를 가지고 있다.
+
+7-5. payload가 필요한 경우 액션 생성자를 호출하고 인자에 값을 넣어주면 된다.
+=> reducer가 알아서 payload로 받는다.
 
 
 
