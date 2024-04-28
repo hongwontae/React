@@ -24,3 +24,25 @@ button:active {
   background-color: #5b14ac;
   border-color: #5b14ac;
 }
+
+.header{
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid white;
+  margin-bottom: 3rem;
+}
+
+.buttonContainer{
+  margin-top: 1.5rem;
+}
+
+.buttonContainer .bt1{
+  position: relative;
+  right: 0.5rem;
+}
+
+.buttonContainer .bt2{
+  position: relative;
+  left: 0.5rem;
+}
