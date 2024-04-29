@@ -1,20 +1,21 @@
 import "../index.css";
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
+import {authAction} from '../store/store'
 
 function Header() {
 
     const auth = useSelector((state)=>{
-        return state.auth
+        return state.auth.isAuthentication
     })
 
     const dispath = useDispatch();
 
     function loginHandler(){
-        dispath({type : 'login'});
+        dispath(authAction.isLogin());
     }
 
     function logoutHandler(){
-        dispath({type : 'logout'});
+        dispath(authAction.isLogout());
     }
 
   return (

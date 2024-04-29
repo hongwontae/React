@@ -1,38 +1,55 @@
-import {createStore} from 'redux';
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    counter : 0,
-    auth : false
-}
+const initialCounterSlice = {
+  counter: 0,
+  toggle: true,
+};
 
-const reducerFunc = (state =initialState, action )=>{
-    if(action.type === 'increment'){
-        return {
-            counter : state.counter+1,
-            auth : state.auth
-        }
-    }
-    if(action.type === 'decrement'){
-        return {
-            counter : state.counter-1,
-            auth : state.auth
-        }
-    }
-    if(action.type === 'login'){
-        return {
-            auth : true,
-            counter : state.counter,
-        }
-    }
-    if(action.type === 'logout'){
-        return {
-            auth : false,
-            counter : state.counter,
-        }
-    }
-    return state; // useSelector로 접근할 떄의 값이다.
-}
+const CounterSlice = createSlice({
+  name: "counter",
+  initialState: initialCounterSlice,
+  reducers: {
+    increment(state) {
+       state.counter++;
+    },
+    decrement(state) {
+       state.counter--;
+    },
+    increase(state, action) {
+       state.counter + action.payload;
+    },
+    toggle(state) {
+       state.toggle = !state.toggle;
+    },
+  },
+});
 
-const store = createStore(reducerFunc);
+const initialAuthState = {
+  isAuthentication: false,
+};
+
+const AuthSlcie = createSlice({
+  name: "auth",
+  initialState: initialAuthState,
+  reducers: {
+    isLogin(state) {
+       (state.isAuthentication = true);
+    },
+    isLogout(state) {
+       (state.isAuthentication = false);
+    },
+  },
+});
+
+const store = configureStore({
+  reducer: {
+    counter: CounterSlice.reducer,
+    auth: AuthSlcie.reducer,
+  },
+});
+
+export const counterAction = CounterSlice.actions;
+export const authAction = AuthSlcie.actions;
+
 
 export default store;
