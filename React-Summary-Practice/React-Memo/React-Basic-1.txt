@@ -1,0 +1,95 @@
+1. 리액트 설치
+1-1. npx create-react-app AppName
+1-2. npm create vite@latest => vite 빌드 도구를 통한 react 프로젝트
+
+
+2. JSX
+정의 : JavaScript Extenstion, JS안에 HTML을 사용할 수 있는 문법을 의미한다.
+
+
+3. Components
+정의 : 특정한 규칙을 가진 JS 함수를 의미한다.
+
+3-1. Components을 통해 UI를 설계한다.
+3-2. Component의 함수는 대문자로 시작, 하나의 루트 JSX를 반환해야 한다.
+
+
+4. React => 브라우저
+4-1. 브라우저가 서버에 요청을 하면 react 서버는 index.html을 건네준다.
+4-2. index.html은 하나의 script defer가 존재한다. => 이를 통해서 브라우저를 렌더링한다.
+
+
+5. 커스텀 컴포넌트 vs 내장 컴포넌트
+
+5-1. 커스텀 컴포넌트
+=> 대문자로 시작하고 사용자가 직접만든 컴포넌트를 의미한다.
+=> export 해야 다른 컴포넌트에서 사용가능
+
+5-2. 내장 컴포넌트
+=> React에서 생성한 DOM 노드를 의미한다.
+
+
+6. React Image tag
+=> src={import variable}
+=> react 빌드 프로세스에 사진을 가져올 떄 최적화된 방법이다. 
+
+
+7. props
+7-1. 컴포넌트 간에 데이터를 전달하는 방식이다.
+7-2. <components title="..." data={data}/>
+7-3. spread 연산자를 통해서 props를 보낼 수 있다.
+7-4. props를 받을 떄 객체 형식으로 오기 떄문에 객체 구조 분해를 통해서 데이터를 받을 수 있다.
+
+
+8. props.children
+8-1. 컴포넌트 열림과 닫힘 사이에 contents들은 일반적으로는 react가 인식하지 못한다.
+8-2. props.children을 통해서 사이에 있는 contents들을 받을 수 있다.
+
+* children 대신 props를 이용한 방식도 children과 다를것이 없다.
+
+
+9. React Event Handler
+9-1. 리액트 내장 컴포넌트에 해당하는 DOM API event-props를 사용해서 function을 연결하면 된다.
+9-2. onClick={()=> myFunc(...args)}
+=> 이벤트 핸들러에게 인자를 전달할 수 있다.
+=> 이벤트를 실행할 떄 인자를 받을 수 있는 구조이다.
+
+
+10. React Rerendering
+10-1. UI가 변경되려면 리액트에 의해서 컴포넌트가 재평가되어야 한다.
+=> 일반적인 function으로는 불가능하다.
+
+
+11. Hooks and useState
+11-1. Hooks는 컴포넌트 안에서, 최상단 루트에서 실행되어야한다.
+
+11-2. useState
+=> 데이터가 리액트에 의해서 관리된다.
+=> 원시값은 불변하기 떄문에 그냥 바꿔도 기존의 값을 건들이는 것이 아니다.
+=> but 참조값은 그렇지 않다.
+
+=> const [] = useState('');
+useState는 인자를 받으면 2개의 값을 가진 배열을 반환한다.
+하나는 인자의 초기값을 받은 상태값/ 하나는 상태 변화를 일으키는 함수
+
+
+12. 조건부 렌더링
+=> 삼항 연산자, &&, ||을 통해서 조건부로 컴포넌트를 렌더링할 수 있다.
+
+
+13. 컴포넌트 동적 출력
+배열 데이터를 props로 전달한다. => 몇 개를 보내는지? 그리고 많다면 어쩔 건지?
+=> {data.map((ele, idx, arr)=>{
+    return <>
+        <Components title={ele.title}.....></co...>
+    </>
+})}
+=> 이런 방식으로 동적으로 데이터를 표현할 수 있다.
+
+
+
+
+
+
+
+
