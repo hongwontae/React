@@ -1,4 +1,4 @@
 1. 리액트 상태 관리 라이브러리 정리
 1-1. context-API (완료)
-1-2. Redux (..ing)
+1-2. Redux (완료)
 1-3. Recoil
