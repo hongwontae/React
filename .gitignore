@@ -3,6 +3,9 @@
 
 *.png
 *.jpg
+*.svg
+*.ico
+*robots.txt
 
 ### react ###
 .DS_*
