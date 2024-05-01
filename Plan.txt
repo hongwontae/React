@@ -15,3 +15,7 @@
 3-1. inline, Module
 3-2. styled-components
 3-3. tailwind
+
+
+4. etc...
+4-1. public/assets Image 보관 및 처리 과정

@@ -20,4 +20,52 @@
 <Props></Props>
 
 
-4. 
+4. default Parameter value
+=> props + 객체 구조 분해를 통해서 받은 값은 default Parameter을 통해 기본값을 설정할 수 있다.
+=> {title = "Korean Man"}
+
+
+5. 상태를 이전 값에 기반하여 변경하는 경우 setFunc(callback)을 사용해야한다.
+5-1. setFunc((prevState)=>{
+    return !prevState;
+})
+
+5-2. prevState를 사용하면 언제나 최신의 상태값을 가져온다.
+5-3. 리액트는 이벤트 핸들러 내에서 setFunc()을 바로 처리하지 않고 미래의 어느시점에 처리한다.
+=> 그렇기에 setFunc(value)가 이벤트 핸들러 내에서 여러 개 있어도 여러 번 실행되지 않는다.
+5-4. but prevState는 언제나 최신값을 받도록 되어 있기에 setFunc이 여러개 존재하면 이를 실행한 시점 이후에
+값을 받아서 처리한다.
+
+
+6. input value
+6-1. value => 입력창에서 보이는 값
+6-2. onChange => 인풋 태그에 문자가 입력될 떄마다 실행되는 이벤트
+6-3. defaultValue => input의 기본값 처리해주는 props
+6-4. 양방향 바인딩 : state와 value와 onChange을 사용하여 인풋태그의 문자을 실시간으로 상태값으로 가져오는 행위
+
+
+7. 참조값 상태 변경
+7-1. 원시값은 불변하기 떄문에 직접 값을 변경한다해도 상관없다.
+7-2. 참조값은 불변하지 않고 해당 주소값에 접근하여 값을 변경시킬 수 있다.
+=> 이러한 상황은 react에 의해 상태값이 변경되지 않고 인위적으로 변경시키 값을 return 할 수 있다.
+=> 에러나 오류가 발생한다.
+
+
+8. 상태 끌어올리기
+8-1. 부모 컴포넌트에서 useState를 사용하고 setFunc의 로직이 담긴 function을 자식에게 props로 전달한다.
+8-2. 자식은 부모에게서 받은 props를 원할 떄 인자에 값을 담아서 사용한다.
+8-3. 이 떄 부모에게 값이 전달되며 부모의 state가 변경된다.
+8-4. 이제 부모가 각 컴포넌트에게 변경된 state을 전달한다.
+
+
+9. 이벤트의 event object
+9-1. onClick, onChange 같은 이벤트들은 매개변수에 자동으로 event 객체를 준다.
+
+9-2. onClick={(e)=>{
+    console.log(e)
+}}
+bubbles, altkey,target... 등 event 객체가 나타난다.
+
+
+
+

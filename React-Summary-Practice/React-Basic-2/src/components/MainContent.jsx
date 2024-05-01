@@ -1,11 +1,11 @@
 import '../App.css';
 import MainContentAside from './MainContentAside';
-import Dummy from '../components/Dummy';
 
-function MainContent({...props}) {
+// eslint-disable-next-line react/prop-types
+function MainContent({id, title,change}) {
   return (
     <>
-      <main {...props}>
+      <main id={id}>
         <div>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
           atque, necessitatibus dicta laudantium pariatur molestias suscipit ut
@@ -14,8 +14,7 @@ function MainContent({...props}) {
         </div>
       </main>
 
-      <MainContentAside Container="div"></MainContentAside>
-      <MainContentAside Container={Dummy}></MainContentAside>
+      <MainContentAside title={title} change={change} Container="div"></MainContentAside>
       
     </>
   );

@@ -1,8 +1,9 @@
-function Header() {
+// eslint-disable-next-line react/prop-types
+function Header({title}) {
   return (
     <>
       <header >
-        <h1>Hello!</h1>
+        <h1>{title}</h1>
         <div>
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
