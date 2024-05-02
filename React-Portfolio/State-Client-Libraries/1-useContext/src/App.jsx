@@ -1,15 +1,21 @@
 import InputPage from "./components/InputPage";
 import InputContext from "./context/InputContext";
-import ButtonContext from './context/ButtonContext'
+import ButtonContext from "./context/ButtonContext";
+
+import ButtonImage from "./context/ButtonImage";
+import ButtonImageComponent from "./components/ButtonImageComponent";
 
 function App() {
   return (
     <>
-      <InputContext>
-        <ButtonContext>
-          <InputPage></InputPage>
-        </ButtonContext>
-      </InputContext>
+      <ButtonImage>
+        <InputContext>
+          <ButtonContext>
+            <InputPage></InputPage>
+            <ButtonImageComponent></ButtonImageComponent>
+          </ButtonContext>
+        </InputContext>
+      </ButtonImage>
     </>
   );
 }

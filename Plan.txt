@@ -1,3 +1,7 @@
+* default *
+1. review 
+
+
 1. 리액트 상태 관리 라이브러리 정리
 1-1. useContext (완료)
 1-2. Redux (완료)
@@ -19,3 +23,5 @@
 
 4. etc...
 4-1. public/assets Image 보관 및 처리 과정
+4-2. react 빌드란?
+4-3. 리액트 리렌더링 조건

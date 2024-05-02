@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
+import InputCal from "./components/InputCal";
 
 function App() {
   const [text, setText] = useState('Hello Everyone!');
@@ -18,6 +19,7 @@ function App() {
         title={text}
         change={changeTitleHandler}
       ></MainContent>
+      <InputCal></InputCal>
     </>
   );
 }

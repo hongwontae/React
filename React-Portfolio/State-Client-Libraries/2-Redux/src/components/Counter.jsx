@@ -1,37 +1,33 @@
-import { useDispatch, useSelector } from "react-redux";
-import { counterAction } from "../store/store";
+import {useDispatch, useSelector} from 'react-redux';
+import {counterSliceAction} from '../store/store2'
 
-function Counter() {
-  const dispatch = useDispatch();
+import '../App.css'
 
-  const counterState = useSelector((state) => {
-    return state.counter.counter;
-  });
+function Counter(){
 
-  const toggleState = useSelector((state) => {
-    return state.counter.toggle;
-  });
-  console.log(counterAction)
+    const dispatch = useDispatch();
+    const stateCounter = useSelector((state)=>{
+        return state.counter
+    })
 
-  function plusButtonHandler() {
-    dispatch(counterAction.increment());
-  }
+    function plusEvent(){
+        dispatch(counterSliceAction.counterAdd());
+    };
 
-  function minusButtonHandler() {
-    dispatch(counterAction.decrement());
-  }
+    function minusEvent(){
+        dispatch(counterSliceAction.counterMinus());
+    }
 
-  function toggleOn(){
-    dispatch(counterAction.toggle());
-  }
-  return (
-    <>
-      {toggleState ? <div>{counterState}</div> : undefined}
-      <button onClick={plusButtonHandler}>Click and +</button>
-      <button onClick={minusButtonHandler}>Click and -</button>
-      <button onClick={toggleOn}>Toggle</button>
-    </>
-  );
+
+
+
+    return(
+        <>
+            <div>{stateCounter}</div>
+            <button onClick={plusEvent}>+++</button>
+            <button onClick={minusEvent}>---</button>
+        </>
+    )
 }
 
 export default Counter;

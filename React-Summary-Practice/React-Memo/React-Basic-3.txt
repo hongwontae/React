@@ -1,0 +1,17 @@
+1. setFunc의 콜백함수의 의의
+=> 초기값이 객체 형식이고 객체 중 일부만 바뀌고 기존의 값을 가져가고 싶을 떄 이전에 값에 기대어 변경하는 setFunc 콜백함수가 유용
+=> setFunc((prevState)=>{
+    return {
+        ...prevState,
+        name,
+        age,     
+    }
+})
+
+
+2. img
+=> img css 처리를 하지 않으면 원본 size가 렌더링된다.
+=> width, height css가 크기에 맞게 고정되기 떄문에 조정이 어렵지 않다.
+
+
+---- React-Basic-2 프로젝트에서 1,2 개념 존재
