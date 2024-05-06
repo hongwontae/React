@@ -1,5 +1,6 @@
 import { useState, useReducer } from "react";
 import "./App.css";
+import RiverPool from "../components/RiverPool";
 
 function reducerFunc(state, action){
   if(action.type === 'increment'){
@@ -64,6 +65,9 @@ function App() {
       <button onClick={plusTwoHandler}>+++</button>
       <button onClick={minusTwoHandler}>---</button>
       <button onClick={toggleHandler}>Toggle</button>
+      <div>
+        <RiverPool></RiverPool>
+      </div>
     </>
   );
 }

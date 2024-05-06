@@ -9,8 +9,8 @@
 
 
 2. 리액트 Hooks
-2-1. useState
-2-2. useReducer
+2-1. useState (o)
+2-2. useReducer (o)
 2-3. useEffect/ useLayoutEffect
 2-4. useRef/ useImperativeHandle
 

@@ -12,7 +12,7 @@ function Counter(){
 
     function plusEvent(){
         dispatch(counterSliceAction.counterAdd());
-    };
+    }
 
     function minusEvent(){
         dispatch(counterSliceAction.counterMinus());
