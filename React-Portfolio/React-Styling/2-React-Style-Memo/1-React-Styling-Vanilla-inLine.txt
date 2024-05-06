@@ -1,0 +1,33 @@
+1. 일반적인 CSS 파일을 컴포넌트에서 사용하려면 import 'css path';
+1-1. style 태그에 의해서 html에 css가 추가된다.
+1-2. html의 <head> 사이에 <style>에 모든 css 구문이 존재하고 이는 컴포넌트 scope가 존재하지 않는다는 것이다.
+1-3. 어느 컴포넌트든지 CSS를 import하면 모든 컴포넌트는 Style CSS의 적용대상이다.
+1-4. class => className
+
+
+2. inline-Style
+2-1. HTML에 직접적으로 CSS를 적용하는 방법
+2-2. style = {{
+        color : 'red',
+    textAlign : 'center'
+}} => react-native에 스타일을 추가하듯이 한다.
+2-3. inline-style의 스코프는 해당 컴포넌트이다.
+
+
+3. 인라인 스타일 동적 적용
+=> style={{
+    backgroundColor : state ? '#d2d22d' : '#aa22dd'
+}};
+
+
+4. CSS className을 활용한 동적 및 조건적 스타일링
+4-1. 조건부로 바닐라 CSS, 인라인 CSS를 하는 이유는 false가 className이나 value가 되어 오류가 발생하기 떄문이다.
+4-2. className을 통해서 상태 + 삼항 연산자를 사용하여 toggle, 시각효과를 줄 수 있따.
+
+
+
+
+
+
+
+

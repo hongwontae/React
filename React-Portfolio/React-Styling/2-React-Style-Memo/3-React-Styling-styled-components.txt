@@ -1,0 +1,43 @@
+1. Styled-Components
+1-1. 컴포넌트 내에서 CSS를 정의하는 패키지
+1-2. Const StyledDiv = styled.div`
+    display : flex;
+    flex-direction : column
+    ..
+` => div을 반환하고 children을 내부에 구현하여 해당 CSS를 적용되도록 한다.
+1-3. 이 또한 style 태그를 사용하여 내부적으로 calssName 겹치지 않게 생성한다.
+
+1-4. 스타일 컴포넌트가 되어도 기존의 내장 컴포넌트에 CSS+Children을 구현한 것뿐이다. 
+=> 속성이나 이벤트 props이 사라지는 것이 아니다. 그대로 사용가능하다.
+
+
+2. styled-Components 동적 스타일링
+2-1. 해당 element에서 존재하지 않는 key = {value}을 통해 값을 전달할 수 있다.
+(기본적인 내장 속성과 충돌하지 않도록 $을 붙이는 것이 관례이다.)
+2-2. 동적인 반환을 사용하고 싶은 스타일의 값에 함수를 할당한다.
+2-3. 함수의 매개변수는 props를 받고 props는 전달받은 key=value을 가지고 있다.
+=> color : ${(props)=>{
+    return props.state ? 'red' : 'black'
+}} => 동적으로 처리가 가능해졌다.
+
+
+3.styled-components : 가상 선택자, 중첩, 미디어 쿼리
+3-1. & => styled.htmlElement을 의미한다.
+ex) & p {...} === header p {...};
+ex) styled.div => & h1{...} === div h1{...}
+
+3-2. 가상 선택자 &:hover{
+    ...
+} => 단순하게 사용하면 된다.
+
+
+ 
+** 컴포넌트에 scope가 종속되어 있다.
+** CSS를 모르면 할 수가 없다.
+** 설치 명령어 => npm install styled-components
+
+
+
+
+
+
