@@ -13,3 +13,23 @@
 2-3. index.css에서 3가지 명령문을 처리했지만 그 외의 코드가 없어야 하는 것은 아니다.
 2-4. html로 가져온 link의 font-family를 tailwind에서 사용하려면 
 => tailwind.config.js의 theme => extends => fontFamily => ttitle: ['"font"','font']
+
+
+3. Tailwind 가상 선택자, media-query
+3-1. me => media-query
+3-2. hover => hover:bg-amber-500 (그냥 사용하면 된다.)
+
+
+4. Tailwind 동적 스타일링
+4-1. tailwind 문자열을 하나의 변수로 만들어서 사용할 수 있다.
+4-2. if, switch-case, state을 통해 조건부로 tailwind을 추가하여 렌더링할 수 있다.
+
+
+5. Tailwind 장-단점
+5-1. 빠르게 개발이 가능하다. => extensions, IDE가 좋다.
+5-2. 스타일 충돌을 피할 수 잇다.
+5-3. 개인 설정, 맟춤 기능 => 높은 설정 기능
+
+5-4. className이 길어진다.
+5-5. JSX가 길어진다.
+
