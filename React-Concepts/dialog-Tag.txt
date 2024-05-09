@@ -3,5 +3,5 @@
 1-2. dialog 기본적으로 open={false}이다.
 1-3. 내장 backdrop이 존재한다./ dialog을 open props을 인위적으로 주면 backdrop이 사라진다.
 1-4. dialog.showModal() => 호출하면 dialog가 backdrop을 가진채 표시된다.
-1-5. dialog가 html 코드 상에 존재하면 보이지 않을 뿐이다. 
+1-5. dialog가 html 코드 상에 존재하지만 보이지 않을 뿐이다. 
 1-6. onClose 속성은 esc를 눌렀을 떄 꺼지는 속성이다. => 해당 속성을 이용해서 modal 사라진 상태도 넣어줘야 한다.

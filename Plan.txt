@@ -12,7 +12,7 @@
 2-1. useState (o)
 2-2. useReducer (o)
 2-3. useEffect/ useLayoutEffect
-2-4. useRef/ useImperativeHandle
+2-4. useRef/ useImperativeHandle (o)
 
 
 3. 리액트 Styling
@@ -21,7 +21,24 @@
 3-3. tailwind (2024/05/07)
 
 
-4. etc...
-4-1. public/assets Image 보관 및 처리 과정
-4-2. react 빌드란?
-4-3. 리액트 리렌더링 조건
+4. React 기술
+4-1. forwardRef (o)
+4-2. Portals(o)
+
+
+5. React 생명주기
+
+
+
+
+
+
+
+
+
+
+etc...
+1. public/assets Image 보관 및 처리 과정
+2. react 빌드란?
+3. 리액트 리렌더링 조건
+4. keys?

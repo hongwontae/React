@@ -9,7 +9,7 @@
 2-1. 자식 컴포넌트에서 props를 받을 떄 객체 구조 분해를 통해 받을 수 있다.
 2-2. 2-1 시점에 {...props}로 rest-parameter를 통해 받을 수 있다.
 => props = {title.., age:....,}
-2-3. JSX에 건너줄 떄 {...props}로 전달할 수 있다. => spread-operator
+2-3. JSX에 건네줄 떄 {...props}로 전달할 수 있다. => spread-operator
 
 
 3. props로 내장 컴포넌트 or 커스텀 컴포넌트 전달하기
