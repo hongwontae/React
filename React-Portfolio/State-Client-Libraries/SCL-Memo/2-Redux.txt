@@ -13,8 +13,11 @@
 
 2-3. 리덕스 관련 파일 => store에 저장한다.
 2-4. reducerFunc - store를 연결한 뒤 export로 내보낸다.
-=> *** reducerFunc은 if의 return과 직접적인 return state가 필요하다.
+=> *** reducerFunc은 if의 return과 직접적인 return state가 필요하다. => useReducer의 reducer와 매우 유사하다.
 => *** reducerFunc은 인자로 현재 상태와 액션을 받는다. 현재 상태에는 default 값이 부여되야 한다.
+=> *** 값을 변경할 떄 초기 값이 객체라면 초기값을 건들이는 행위를 하지 말아야한다. => redux에 의해 값이 변경되어 리렌더링이
+일어나야 하기 떄문이다.
+
 
 2-5. Provider react-redux 컴포넌트를 최상단 <App>에 덮는다.
 2-6. store prop에 앞선 작업의 store을 불러서 넣는다.
@@ -25,6 +28,7 @@
 => const counter = useSelector((state)=>{
     return state.counter
 }) => 데이터를 가져오는 훅이자 구독도 시켜주는 훅
+   => state.초기값의 변수명
 *** 구독이 되었기 떄문에 저장소의 데이터가 변경되면 자동으로 컴포넌트가 업데이트된다.
 
 2-8. useDispatch()의 호출을 통해서 dispatch() 함수를 얻을 수 있다. dispatch의 인자는 action이다.

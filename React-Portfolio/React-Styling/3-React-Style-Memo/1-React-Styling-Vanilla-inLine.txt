@@ -22,7 +22,7 @@
 
 4. CSS className을 활용한 동적 및 조건적 스타일링
 4-1. 조건부로 바닐라 CSS, 인라인 CSS를 하는 이유는 false가 className이나 value가 되어 오류가 발생하기 떄문이다.
-4-2. className을 통해서 상태 + 삼항 연산자를 사용하여 toggle, 시각효과를 줄 수 있따.
+4-2. className을 통해서 상태 + 삼항 연산자를 사용하여 toggle, 시각효과를 줄 수 있다.
 
 
 

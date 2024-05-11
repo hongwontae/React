@@ -3,7 +3,7 @@
 1-2. 다수의 상태 값을 하나의 값으로 줄이는 것이다.
 
 
-2. const [initialState, dispatch] = useReducer(reducerFunc, initialValue);
+2. const [initialState, dispatch] = useReducer(reducerFunc, initialValue,  init);
 2-1. initialState는 초기 상태 값을 의미한다.
 => useReducer의 두 번쨰 인자 initialValue을 받는다.
 
@@ -14,8 +14,9 @@
 => state는 가장 최신값(setFunc의 prevState)을 자동으로 받는다.
 => action은 dispatch({type : ...})을 받는다.
 
-2-4. 이벤트 핸들러에서 dispatch을 호출하고 action을 인자로 넣으면 원하는 상태 로직을 걸쳐 상태값이 업데이트된다.
+2-4. init => 초기 함수이다. 두 번쨰 함수의 초기 값을 함수를 실행시켜서 넣어주는데 없으면 두 번쨰 인자의 값으로 한다.
 
+2-5. 이벤트 핸들러에서 dispatch을 호출하고 action을 인자로 넣으면 원하는 상태 로직을 걸쳐 상태값이 업데이트된다.
 
 
 *** 리덕스 툴킷을 사용하지 않은 리덕스와 useReducer가 비슷한 느낌이다.

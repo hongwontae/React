@@ -12,7 +12,7 @@ const Counter = () => {
     dispatch(counterActions.increment());
   };
 
-  const increaseHandler = () => {
+  const increaseHandler =   () => {
     dispatch(counterActions.increase(10)); // { type: SOME_UNIQUE_IDENTIFIER, payload: 10 }
   };
 
