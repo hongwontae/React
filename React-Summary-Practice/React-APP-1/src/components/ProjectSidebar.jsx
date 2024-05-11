@@ -1,8 +1,8 @@
-function ProjectSidebar() {
+/* eslint-disable react/prop-types */
+import Button from "./Button";
 
-  const buttonStyle =
-    "px-4 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100";
-
+// eslint-disable-next-line react/prop-types
+function ProjectSidebar({ onStart, projectData, selectPage }) {
   return (
     <>
       <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -10,11 +10,24 @@ function ProjectSidebar() {
           My Project
         </h2>
         <div>
-          <button className={buttonStyle}>
-            + Add Project
-          </button>
+          <Button onClick={onStart}>+ Add Project</Button>
         </div>
-        <ul ></ul>
+        <ul className="mt-8">
+          {projectData.map((ele) => {
+            return (
+              <>
+                <li key={ele.id}>
+                  <button
+                    onClick={()=>selectPage(ele.id)}
+                    className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stoen-800"
+                  >
+                    {ele.title}
+                  </button>
+                </li>
+              </>
+            );
+          })}
+        </ul>
       </aside>
     </>
   );

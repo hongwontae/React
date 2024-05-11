@@ -2,9 +2,32 @@
 
 1-1. 부모 컴포넌트에서 props를 내려주는데 value가 존재하지 않다면 default로 true가 전달된다.
 
+1-2. 상태값을 객체로 하고 값을 바꿔 보여줄 컴포넌트를 다르게 하려면 prevState가 거의 필수적이다.
+=> 이전값을 다 써주기가 귀찮기도 하고 이전값과 비교하는 로직이 필요한 경우도 존재하기에..
+=> 이전값을 잃어버리게 되면 원치 않는 렌더링이 발생할 수 도 있다.
+
+1-3. useRef-forwardRef을 통해 부모 컴포넌트에서 data를 받아올 수 있다.
+=> props drilling을 통해서 ref 데이터를 app (부모) 컴포넌트에게 넘겨준다.
+=> 이 떄 prevState을 통해서 이전 값을 지키고 id를 생성해서 key 값에 대비한 뒤 배열의 객체 값으로 넣어준다.
+(prevState는 초기 useState 값 형태를 그대로 가지고 있는다. ...prevState.projects 이렇게 표현할 수 도 있다.)
+
+
+1-4. 유효성 검사 + forwardRef, useImperativeHandle, useRef, dialog를 통해 유효성 검사 실패 시 Modal 처리
+=> dialog의 form의 method가 dailog 일떄는 button을 누르기만 하면 modal이 닫힌다.
+
+1-5. sidebar의 button의 onClick을 통해서 다른 component을 트리거한다. 
+=> arr.find을 통해서 해당되는 데이터를 찾고 받아들인 input을 표현하는 컴포넌트를 반환한다.
+
+1-6. React의 삭제 로직은 비슷하다.
+=> prevState 의미하는 것은 업데이트가 완료된 최신값을 의미한다.
+=> arr.filter을 사용해서 삭제한다. button을 클릭해서 input-Expression page로 들어오면 state가 업데이트 되어 값을 받아온다.
+=> 그 값(prevState)와 현 상태의 배열 값이 같다면 삭제한다. => 정확히 해당 배열 객체만 target할 수 있다.
+=> 이 떄 전제조건은 각 인스턴스들의 id가 유일해야 한다.
+
 
 
 2. tailwind CSS 해석
+
 2-1. w-1/3 => width : 33.333333%
 w-full => width : 100%
 
@@ -22,3 +45,5 @@ w-full => width : 100%
 2-10. gap => flex row/column에 따라 달라진다.
 
 2-11. flex => row and stretch;
+
+2-12. backdrop:bg-stone-900/90 => 백 드롭을 지정한다. + /90은 투명도를 가리킨다.

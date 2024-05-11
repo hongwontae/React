@@ -1,5 +1,7 @@
+import { forwardRef } from "react";
+
 // eslint-disable-next-line react/prop-types
-function Input({ label, textarea, ...props }) {
+const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
   let texareaStyle =
     "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
 
@@ -10,13 +12,13 @@ function Input({ label, textarea, ...props }) {
           {label}
         </label>
         {textarea ? (
-          <textarea className={texareaStyle}></textarea>
+          <textarea ref={ref} className={texareaStyle}></textarea>
         ) : (
-          <input {...props}></input>
+          <input ref={ref} {...props}></input>
         )}
       </p>
     </>
-  );
-}
+  )
+})
 
 export default Input;
