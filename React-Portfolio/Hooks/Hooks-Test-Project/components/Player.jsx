@@ -24,7 +24,6 @@ export default function Player() {
   function saveTitleHandler() {
     setBol(!bol);
   }
-  console.log(inputRef.current)
 
   return (
     <section id="player">
