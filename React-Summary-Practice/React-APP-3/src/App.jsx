@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Counter from './components/Counter/Counter.jsx';
 import Header from './components/Header.jsx';
 import { log } from './log.js';
+import Baching from './components/Counter/Baching.jsx';
 
 function App() {
   log('<App /> rendered');
@@ -28,8 +29,10 @@ function App() {
           <input type="number" onChange={handleChange} value={enteredNumber} />
           <button onClick={handleSetClick}>Set</button>
         </section>
-        <Counter initialCount={chosenCount} />
+        <Counter key={chosenCount} initialCount={chosenCount} />
+        <Counter initialCount={0} />
       </main>
+      <Baching></Baching>
     </>
   );
 }

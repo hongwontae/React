@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import quizCompleteImg from '../assets/quiz-complete.png';
 import QUESTIONS from '../question.js';
 

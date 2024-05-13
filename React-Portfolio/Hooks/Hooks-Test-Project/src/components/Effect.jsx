@@ -7,7 +7,7 @@ function Effect(){
         return ()=>{
             console.log('Clean-Up -Fun')
         }
-    })
+    }, [])
 
     return(
         <>
