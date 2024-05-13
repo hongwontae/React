@@ -1,0 +1,6 @@
+1. useEffect과 useLayoutEffect의 실행시점
+1-1. useEffect는 컴포넌트가 layout과 paint가 된 이후에 실행된다. 그렇기에 dom에 영향을 주는 코드는 깜빡임을 볼 수 있다.
+1-2. useLayoutEffect layout-paint 되기 전에 실행된다. 그렇기에 깜빡임을 경험하지 않는다.
+
+
+2. 그 외 나머지는 useEffect와 동일하다.
