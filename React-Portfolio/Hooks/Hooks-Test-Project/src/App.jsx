@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      {test ? <Effect data='He'></Effect> : undefined}{" "}
+      {test ? <Effect data='He' sss={data}></Effect> : undefined}{" "}
       <button onClick={() => setTest(!test)}>Button!</button>
       <div>
         <input onChange={(e)=>setData(e.target.value)} value={data}></input>
