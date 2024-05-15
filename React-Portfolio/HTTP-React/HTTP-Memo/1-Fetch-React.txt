@@ -1,1 +1,29 @@
-1. 
+1. Fetch는 web API이자 promise를 반환한다.
+
+
+2. fetch 함수를 루트 컴포넌트 안에서 사용하면 무한루프가 된다.
+=> useEffect와 함께 사용한다.
+
+
+3. fetch
+3-1. fetch('http://....') => get
+3-2. fetch('', {
+    method : 'GET/POST/PUT/DELETE'
+});
+3-3. fetch POST나 PUT 요청일 떄 body와 headers을 정의해줘야 한다.
+=> body는 json.stringify를 통해 직렬화를 한다.
+=> headers : {
+    'Content-Type' : 'application/json'
+};
+
+
+4. 서버 상태 관리 라이브러리를 사용하지 않고 http를 구현하려면 로딩 상태, 에러 상태, 데이터 통신 완료 상태를
+스스로 구현해야 한다. 
+=> useState를 통해 3개의 상태 + useEffect 안에서 async 함수 생성 후 호출 + try/catch로 에러+로딩+데이터 통신 상태처리
+
+
+5. 데이터를 수정하거나 추가할 떄 상태를 먼저 업데이트할건지, 통신을 먼저할지는 떄에 따라 다르다.
+
+
+
+

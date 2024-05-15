@@ -13,7 +13,10 @@ function FetchData({onDelete}) {
     async function fetchFunction() {
       try {
         const response = await fetch(
-          "https://jsonplaceholder.typicode.com/albums"
+          "https://jsonplaceholder.typicode.com/albums",
+          {
+            method : 'GET'
+          }
         );
         const data = await response.json();
         setData(data);
