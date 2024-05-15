@@ -1,10 +1,13 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback } from "react";
 
-import Places from './components/Places.jsx';
-import Modal from './components/Modal.jsx';
-import DeleteConfirmation from './components/DeleteConfirmation.jsx';
-import logoImg from './assets/logo.png';
-import AvailablePlaces from './components/AvailablePlaces.jsx';
+import Places from "./components/Places.jsx";
+import Modal from "./components/Modal.jsx";
+import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
+import logoImg from "./assets/logo.png";
+import AvailablePlaces from "./components/AvailablePlaces.jsx";
+import Error from './components/Error.jsx'
+
+import { updateUserPlaces } from "./http.js";
 
 function App() {
   const selectedPlace = useRef();
@@ -12,6 +15,8 @@ function App() {
   const [userPlaces, setUserPlaces] = useState([]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [errorModal, setErrorModal] = useState();
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -22,7 +27,7 @@ function App() {
     setModalIsOpen(false);
   } // 모달을 닫는다.
 
-  function handleSelectPlace(selectedPlace) {
+  async function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -33,6 +38,12 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
+    try {
+      await updateUserPlaces([...userPlaces, selectedPlace]);
+    } catch (error) {
+      setUserPlaces(userPlaces);
+      setErrorModal({message : 'fail!' || 'ladio'});
+    }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
@@ -43,8 +54,14 @@ function App() {
     setModalIsOpen(false);
   }, []);
 
+  function handleSetNullError(){
+    setErrorModal(null)
+  }
+
   return (
     <>
+
+
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
@@ -65,7 +82,7 @@ function App() {
           title="I'd like to visit ..."
           fallbackText="Select the places you would like to visit below."
           places={userPlaces} // 첫 렌더링 => 빈 배열
-          onSelectPlace={handleStartRemovePlace} 
+          onSelectPlace={handleStartRemovePlace}
         />
 
         <AvailablePlaces onSelectPlace={handleSelectPlace} />
