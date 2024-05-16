@@ -53,14 +53,24 @@ label for => React label => htmlFor
 6. 유효성 검사
 
 6-1. state 유효성 검사
-string일 떄 includes 메서드를 사용해서 포함여부 boolean으로 조건부 렌더링
+1. string일 떄 includes 메서드를 사용해서 포함여부 boolean으로 조건부 렌더링
+2. onBlur 이벤트 트리거 => 포커싱 해제시 이벤트가 트리거 된다.
+
+** 이런 boolean 로직은 &&을 잘 파악해야 한다.
+=> false를 찾는다고 생각하면 된다.
+
+6-2. ref 유효성 검사
+=> 이 떄는 submit 시점에 검사를 행해야한다.
+
+6-3. Dom props를 통한 유효성 검사
+1. required => submit 시에 해당 input이 비워져 있으면 안된다.
+2. minLength => submit 시에 해당 input의 length의 최소 값
+3. readOnly => 해당 속성에 접근할 수 없다.
 
 
+7. React Form Library가 존재한다.
 
 
-
-
-
-
-
-
+*** custom Hooks
+=> Hooks를 이용한 로직을 따로 뺴낸 사용자 hooks를 만드는 것이다.
+=> 매개변수를 받아들여서 state와 stateFunction을 내보내는 것이 목적이다.

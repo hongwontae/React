@@ -1,55 +1,52 @@
-import { useState } from "react";
+import Input from "./Input";
+import { useInput } from "../hooks/useInput";
 
 export default function Login() {
-  const [enteredState, setEnteredState] = useState({
-    email: "",
-    password: "",
-  });
+  const {
+    didEit: didEditEmail,
+    enteredState: enteredStateEmail,
+    handleBlur : handleBlurEmail,
+    inputHandler : inputHandlerEmail,
+  } = useInput("", false);
+
+  const {
+    enteredState: enteredStatePassword,
+    handleBlur : handleBlurPassword,
+    inputHandler : inputHandlerPassword,
+  } = useInput("", false);
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(enteredState.email);
-    console.log(enteredState.password);
+    console.log(enteredStateEmail);
+    console.log(enteredStatePassword)
   }
 
-  function inputHandler(event, identfier) {
-    setEnteredState((prevState) => {
-      return {
-        ...prevState,
-        [identfier]: event.target.value,
-      };
-    });
-  }
-
-  let emailState = enteredState.email !== "" && !enteredState.email.includes("@");
-  
+  let emailState = didEditEmail && !enteredStateEmail.includes("@");
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
 
       <div className="control-row">
-        <div className="control no-margin">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={enteredState.email}
-            onChange={(event) => inputHandler(event, "email")}
-          />
-        </div>
+        <Input
+          label="Email"
+          id="email"
+          type="email"
+          name="email"
+          value={enteredStateEmail}
+          onChange={(event) => inputHandlerEmail(event)}
+          onBlur={() => handleBlurEmail()}
+        ></Input>
 
-        <div className="control no-margin">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={enteredState.password}
-            onChange={(event) => inputHandler(event, "password")}
-          />
-        </div>
+        <Input
+          label="Password"
+          id="password"
+          type="password"
+          name="password"
+          value={enteredStatePassword}
+          onChange={(event) => inputHandlerPassword(event)}
+          onBlur={() => handleBlurPassword()}
+        ></Input>
       </div>
 
       <div className="control-error">
