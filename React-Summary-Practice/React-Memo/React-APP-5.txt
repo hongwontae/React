@@ -1,0 +1,66 @@
+1. HTML input/label
+label for => React label => htmlFor
+
+2. form의 용도
+2-1. 데이터를 추출하고 전송하는 역할
+2-2. 입력 데이터를 검증하는 역할
+
+3. form-button
+3-1. form의 button의 기본 동작은 서버에 http 요청을 하고 새로고침하는 것이다.
+3-2. form의 input의 name를 기반으로 http 파라미터로 사용한다.
+
+3-3. 기본동작을 막기 위해서 button의 type="button" 설정
+3-4. form의 onSubmit 이벤트는 form에서 button이 트리거되었을 떄 발동되는 이벤트이다.
+=> event.preventDefault()를 사용한다.
+
+
+4. 입력값 관리 방법/ 관리 로직
+
+4-1. useState();
+1. onChange/handler => 양방향 바인딩을 사용한다.
+2. 이 떄 여러 개의 state를 생성해서 사용할 수 도 있지만 useState+객체를 이용하여 구성할 수 도 있다.
+3. 객체의 키를 identifier라는 변수로 식별 + prevState 로직로 업데이트한다.
+4. 이벤트들은 이벤트 핸들러에게 자동으로 event 객체를 준다. => target(이벤트가 발동되는 html)/ value => input의 실제 값
+
+4-2. useRefe();
+1. ref 연결을 통해 html과 연결한다.
+2. current.value를 통해서 값을 가져온다.
+
+4-3. new FormData();
+1. 브라우저 내장된 생성자 함수이다.
+2. 양식의 값들을 쉽게 가져올 수 있게 도와주는 객체이다.
+
+3. 조건
+1. form tag에 onSubmit에 핸들러 함수일 떄
+2. const fd = new FormData(event.target)
+=> form의 여러 값에 접근할 수 있다.
+3. fd.get(nameProps); => input, select..의 name의 value가 반환된다.
+4. fd.get(nameProps) => nameProps에 해당하는 values들을 배열 형태로 반환한다.
+
+5. Object.fromEntried(fd.entries());
+=> 모든 값들이 객체 형태로 반환된다. name : value/ name : value
+=> 다만 하나의 이름으로된 여러 요소인데 value가 다른 것은 가져오지 않는다.
+=> fd.getAll()를 통해 배열로 가져오는 것이 best
+
+
+5. Reset 처리
+5-1. button props type="reset" => 클릭시 form의 요소들이 reset 처리된다.
+5-2. useState일 떄 setFunc으로 초기화 업데이트
+5-3. useRef 연결 일 떄 강제 초기화 => 지양해야함
+5-4. event.target.reset(); => form에 연결된 양식들을 초기화하는 event 메서드
+
+
+6. 유효성 검사
+
+6-1. state 유효성 검사
+string일 떄 includes 메서드를 사용해서 포함여부 boolean으로 조건부 렌더링
+
+
+
+
+
+
+
+
+
+
