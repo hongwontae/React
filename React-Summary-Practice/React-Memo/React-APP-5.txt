@@ -22,7 +22,7 @@ label for => React label => htmlFor
 3. 객체의 키를 identifier라는 변수로 식별 + prevState 로직로 업데이트한다.
 4. 이벤트들은 이벤트 핸들러에게 자동으로 event 객체를 준다. => target(이벤트가 발동되는 html)/ value => input의 실제 값
 
-4-2. useRefe();
+4-2. useRef();
 1. ref 연결을 통해 html과 연결한다.
 2. current.value를 통해서 값을 가져온다.
 
