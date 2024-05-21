@@ -6,11 +6,12 @@ import { ModalContext } from "../store/ModalControlContext";
 
 import { currencyFormatter } from "../util/formatting";
 import Button from "./UI/Button";
+import CartItem from "./CartItem";
 
 function Cart() {
-  const { meals } = useContext(MealContext);
+  const { meals, addMeal, removeMeal } = useContext(MealContext);
 
-  const { modalState, showModal, hideModal } = useContext(ModalContext);
+  const { modalState, hideModal, showCheckout } = useContext(ModalContext);
 
   const totalPrice = meals.reduce((acc, cur) => {
     return acc + cur.quantity * cur.price;
@@ -18,21 +19,33 @@ function Cart() {
 
   return (
     <>
-      <Modal className="cart" open={modalState === "cart"}>
+      <Modal
+        className="cart"
+        open={modalState === "cart"}
+        onClose={modalState === "cart" ? hideModal : null}
+      >
         <h2>Your Cart</h2>
         <ul>
           {meals.map((ele) => {
             return (
-              <li key={ele.id}>
-                {ele.name} - {ele.quantity}
-              </li>
+              <CartItem
+                key={ele.id}
+                {...ele}
+                inCrease={() => addMeal(ele)}
+                decrease={() => removeMeal(ele.id)}
+              ></CartItem>
             );
           })}
         </ul>
         <p className="cart-total">{currencyFormatter.format(totalPrice)}</p>
         <p className="modal-actions">
-          <Button textOnly onClick={()=>hideModal()}>Close</Button>
-          <Button>Go to Checkout</Button>
+          <Button textOnly onClick={() => hideModal()}>
+            Close
+          </Button>
+
+          {meals.length > 0 && (
+            <Button onClick={() => showCheckout()}>Go to Checkout</Button>
+          )}
         </p>
       </Modal>
     </>

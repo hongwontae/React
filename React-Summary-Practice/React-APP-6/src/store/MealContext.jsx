@@ -28,8 +28,9 @@ function mealReducer(state, action) {
       });
     }
     return {
+      ...state,
       meals: updateItems, // 완벽히 다른 값으로 교체해버린다.
-    };
+    };  
   }
 
   if (action.type === "REMOVE_ITEM") {
@@ -39,7 +40,8 @@ function mealReducer(state, action) {
 
     const updateItems = [...state.meals];
 
-    if (exisitingMealIndex === 1) {
+
+    if (updateItems[exisitingMealIndex].quantity === 1) {
       updateItems.splice(exisitingMealIndex, 1);
     } else {
       const data = state.meals[exisitingMealIndex];
@@ -50,6 +52,7 @@ function mealReducer(state, action) {
       updateItems[exisitingMealIndex] = updateRemoveItem;
     }
     return {
+      ...state,
       meals: updateItems,
     };
   }

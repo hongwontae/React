@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import {createPortal} from 'react-dom'
 
-function Modal({children, open, className=''}){
+function Modal({children, open, className='', onClose}){
 
     const dialog = useRef();
 
@@ -15,11 +15,10 @@ function Modal({children, open, className=''}){
             // 다음 useEffect가 실행되면서 if문 충족하지 못해 그대로 현상 유지
     }, [open])
 
-    console.log('Modal 컴포넌트')
 
     return createPortal(
         <>
-            <dialog className={`modal ${className}`} ref={dialog}>
+            <dialog className={`modal ${className}`} ref={dialog} onClose={onClose}>
                 {children}
             </dialog>
         </>,

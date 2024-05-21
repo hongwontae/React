@@ -19,3 +19,11 @@
 5-3. Modal의 open props, useEffect 의존성 open => if문을 통해서 open truthy를 이용해서 showModal 구현
 5-4. 사라질 떄는 클린 업 함수를 사용하여 close 구현 => open이 false 값을 가져와서 useEffect가 실행되는데
 if문에 걸린다. 그 전에 cleanUp 함수를 실행한다. 그럼으로 완벽히 DOM에서 inVisible 형태가 된다.
+
+
+6. dialog의 onClose props
+6-1. Esc를 눌렀을 떄 트리거 된다.
+6-2. DOM에서 사라졌을 떄 트리거 된다.
+
+
+7. button의 type이 button이면 form의 onSubmit의 대상이 아니다.
