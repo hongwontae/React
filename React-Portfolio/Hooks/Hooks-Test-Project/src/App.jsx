@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Effect from "./components/Effect";
 import CheckCom from "./components/CheckCom";
+import General from "./components/General";
 
 function App() {
   const [test, setTest] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <input onChange={(e)=>setData(e.target.value)} value={data}></input>
         <p>{data}</p>
       </div>
+      <General></General>
     </>
   );
 }

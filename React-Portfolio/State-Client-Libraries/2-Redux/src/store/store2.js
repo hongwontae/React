@@ -14,6 +14,14 @@ const counterSlice = createSlice({
         },
         counterMinus(state){
             state.counter--;
+        },
+        checkFunc(state){
+            let item = state.counter;
+            if(item){
+                item = 10
+            } else {
+                item++;
+            }
         }
     }
 })

@@ -1,0 +1,45 @@
+1. 리덕스의 reducer function은 순수 함수이고 부수 효과가 없고 동기식 함수여야 한다.
+1-1. why 리듀서 함수가 순수 함수여야 하는가?
+
+
+2. 리덕스를 사용할 떄 비동기식 작업이나 부수 효과가 발생할 떄는?
+2-1. 그냥 컴포넌트 안에 useEffect를 사용한다.
+2-2. action creators라는 개념을 이용한다.
+
+
+3 Review
+3-1. 핵심개념만 안다면 구조를 따라가기만 하면 된다.
+3-2. configureStore를 구성하여 App를 렌더링하는 index.js에 Provider store={store}를 구현한다.
+3-3. configureStore의 reducer : {key : reducer1, key : reducer2}로 reducer 함수를 여러개 구현할 수 있다.
+3-4. slice를 통해 name, initalState, reducers를 구현한다.
+3-5. 3-4 컴포넌트에서 actions, reducer를 export한다.
+3-6. 사용할 컴포넌트에서 useDispatch와 useSelector를 구현한다.
+3-7. immer 로직 덕분에 기존 값과 새로운 값을 구분하지 않고 update 로직을 사용해도 된다.
+3-8. redux-toolkit일 떄의 action 발송은 slice.actions.reducerName({})으로 사용한다.
+=> Action-creators는 action 객체를 생성하고 반환하는 함수이다.
+=> redux-toolkit은 자동으로 action-creator를 확보한다. uiSlice.actions 
+=> 해당 슬라이스의 reducers의 메서드에 두 번쨰 인자 action을 생성하고 트리거한다.
+
+
+4.http 요청을 슬라이스의 리듀서에서 사용할 수 없다.
+=> 비동기 + 부수 효과
+
+
+5. Redux의 로직 위치
+동기적이고 부수효과가 없다면 => reducer
+비동기적이고 부수효과가 존재한다면 = >Action.creator
+
+
+6. Redux & useEffect
+데이터를 가공하고 동기적인 작업은 reducer에게 맡기고 useEffect를 통해서 fetch http를 실행한다.
+=> 컴포넌트 실행 => useEffect 실행 => 컴포넌트 재실행이라서 처음에 의미없는 fetch http 통신을 해결해야 한다.
+
+
+7. 액션 생성자 Thunk
+7-1. 백엔드와 http 통신을 하는 비동기적이고 부수효과를 가진 작업인 경우 redux는 reducer 함수가 실행되기 전에
+추가적인 작업을 할 수 있도록 한다. => 미들웨어
+
+
+
+
+

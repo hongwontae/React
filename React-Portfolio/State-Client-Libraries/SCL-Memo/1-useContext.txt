@@ -1,5 +1,6 @@
 *** 제일 중요한 것은 createContext 객체, provider의 객체의 key의 이름이 모두 동일해야 한다. ***
 *** useContext를 사용하는 이유는 props drilling(props를 전달하기 번거롭기) 때문이다. ***
+*** useContext를 가져올 떄는 모든 상태값이 동일하다. ***
 
 
 1. createContext 생성 후 variable export

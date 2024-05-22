@@ -4,6 +4,9 @@ import ButtonContext from "./context/ButtonContext";
 
 import ButtonImage from "./context/ButtonImage";
 import ButtonImageComponent from "./components/ButtonImageComponent";
+import CheckContextProvider from "./context/CheckContext";
+import CheckComponents from "./components/CheckComponents";
+import Same from "./components/Same";
 
 function App() {
   return (
@@ -11,8 +14,12 @@ function App() {
       <ButtonImage>
         <InputContext>
           <ButtonContext>
-            <InputPage></InputPage>
-            <ButtonImageComponent></ButtonImageComponent>
+            <CheckContextProvider>
+              <InputPage></InputPage>
+              <ButtonImageComponent></ButtonImageComponent>
+              <CheckComponents></CheckComponents>
+              <Same></Same>
+            </CheckContextProvider>
           </ButtonContext>
         </InputContext>
       </ButtonImage>
