@@ -5,56 +5,63 @@ import ErrorPage from './ErrorPage'
 
 import { useDispatch, useSelector } from "react-redux";
 import { getSliceAction } from "../redux-store/Slices/GetSlice";
+import {getActionCreator} from '../redux-store//Slices/GetSlice'
 
 function GetPage() {
   const dispatch = useDispatch();
   const responseState = useSelector((state)=>state.get.comState);
   const responseData = useSelector((state)=>state.get.items);
 
-  useEffect(() => {
-    dispatch(getSliceAction.showReducer({
-        status : 'pending',
-        message : 'Pending 중입니다.',
-        title : 'Suspense.....'
-    }));
+  // useEffect(() => {
+  //   dispatch(getSliceAction.showReducer({
+  //       status : 'pending',
+  //       message : 'Pending 중입니다.',
+  //       title : 'Suspense.....'
+  //   }));
 
-    async function getHttpFunction() {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/albums"
-        );
-        const responseData = await response.json();
-        console.log(responseData)
+  //   async function getHttpFunction() {
+  //     try {
+  //       const response = await fetch(
+  //         "https://jsonplaceholder.typicode.com/albums"
+  //       );
+  //       const responseData = await response.json();
+  //       console.log(responseData)
 
-        if (!response.ok) {
-          dispatch(getSliceAction.showReducer({
-            status : 'fail',
-            message : 'Fail',
-            title : 'Wow! Fail this page'
-          }));
-        }
+  //       if (!response.ok) {
+  //         dispatch(getSliceAction.showReducer({
+  //           status : 'fail',
+  //           message : 'Fail',
+  //           title : 'Wow! Fail this page'
+  //         }));
+  //       }
 
-        dispatch(getSliceAction.showReducer({
-            status : 'success',
-            message : 'Success',
-            title : 'Wow! Success this page'
-        }));
+  //       dispatch(getSliceAction.showReducer({
+  //           status : 'success',
+  //           message : 'Success',
+  //           title : 'Wow! Success this page'
+  //       }));
         
-        dispatch(getSliceAction.getRender(responseData));
+  //       dispatch(getSliceAction.getRender(responseData));
 
         
 
-      } catch (error) {
-        dispatch(getSliceAction.showReducer({
-            status : 'error',
-            message : 'Error',
-            title : 'ㅠㅠ 에러 발생했당'
-        }));
-      }
-    }
+  //     } catch (error) {
+  //       dispatch(getSliceAction.showReducer({
+  //           status : 'error',
+  //           message : 'Error',
+  //           title : 'ㅠㅠ 에러 발생했당'
+  //       }));
+  //     }
+  //   }
 
-    getHttpFunction();
-  }, [dispatch]);
+  //   getHttpFunction();
+  // }, [dispatch]);
+
+  useEffect(()=>{
+    dispatch(getActionCreator());
+  }, [dispatch])
+
+  console.log(responseState);
 
 
   return (
