@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"tittltlt","image":"https://cdn.mmm","date":"2024-06-08","description":"desc","id":"d5e9d14b-e266-418e-9a49-8c42c7035700"},{"title":"asd","image":"https://cdn.mmmasd","date":"2024-05-03","description":"asd","id":"02c03174-545e-4de5-ab7c-d5c193ae1fa4"},{"title":"나에게 전술은 죽음이다.","image":"http://dd","date":"2024-05-10","description":"ㅇㄷㄴㅊ","id":"fa2514cc-596b-4629-a40c-3a198076d6d6"},{"title":"알겠습니다. 부장님!","image":"https://i.namu.wiki/i/09A9tzIX3RL_WNAbTWKuAmgMgkcy5ZdqmXt-zKJzi7otNTGXpQO6woNYRpXgAGjfPlxR7w_wL6B9lnUInqRlcw.webp","date":"2024-05-03","description":"desc-Line","id":"0f814383-0f74-4e52-9aac-c0ae2fb432c4"},{"title":"d","image":"https://cdn.mmm","date":"2024-05-16","description":"ddd","id":"d26bf8a4-d0d7-4ed0-a175-56d5c1d18da5"},{"title":"축구는 사실이다.","image":"https://i.namu.wiki/i/09A9tzIX3RL_WNAbTWKuAmgMgkcy5ZdqmXt-zKJzi7otNTGXpQO6woNYRpXgAGjfPlxR7w_wL6B9lnUInqRlcw.webp","date":"2024-05-26","description":"kkkoaskdoaskpdm,cmvkodiorq,.mlc,mvcokmfqefow","id":"76856cc6-bf86-4371-a466-3adcb0d4010f"},{"title":"Alonse","image":"https://i.namu.wiki/i/09A9tzIX3RL_WNAbTWKuAmgMgkcy5ZdqmXt-zKJzi7otNTGXpQO6woNYRpXgAGjfPlxR7w_wL6B9lnUInqRlcw.webp","date":"2024-05-01","description":"dede","id":"b727520a-9a81-4cfd-a4e2-1af6d0720cbe"},{"title":"titititikola","image":"https://cdn.mmm","date":"2024-05-07","description":"dedede","id":"58f1b7b5-b48e-4028-a4c0-60c09c424ad9"},{"title":"titititit","image":"https://cdn.mmm","date":"2024-05-10","description":"description","id":"b19d52aa-46b0-4d85-bb16-aa285bbf27fd"},{"title":"asd","image":"https://cdn.mmm","date":"2024-05-08","description":"asd","id":"65b13346-4f2a-4199-bae1-2a971e32e569"},{"title":"tttt","image":"https://cdn.mmm","date":"2024-05-10","description":"sdsa","id":"e17db67c-c026-4153-9c7f-ce6d7a87dbc8"},{"title":"asd","image":"http://asdasd","date":"2024-05-22","description":"desc","id":"06d361e8-f022-4cea-92ef-b05242ec769c"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}

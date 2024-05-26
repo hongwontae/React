@@ -1,0 +1,33 @@
+1. action
+1-1. <Form>의 button이 트리거되면 Form의 method props가 존재하면 action을 실행하고 method props가 존재하지 않으면
+prevent.default()를 실행한다.
+1-2. action 이후에는 redirect('path')를 통해 다른 페이지로 보낸다.
+
+
+2. Form 컴포넌트
+2-1. form의 업그레이드 버전이다. 
+2-2. form의 기본 동작을 막는다
+2-3. action에게 데이터를 건네준다.
+2-4. form의 method ="get, post, put, delete"을 설정하면 해당 폼의 요청이 액션으로 간다.
+
+
+3. useLoaderData, useRouteError는 라우터에 등록된 컴포넌트만 사용이 가능하다.
+
+
+4. useSubmit()
+4-1. action을 호출할 떄 사용하는 Hooks이다.
+4-2. 첫 번쨰 인자는 보낼 데이터
+=> 이미 action function에서 http 전송 완료 => null로 처리
+4-3. 두 번쟤 인자는 객체로 method나 navigate 같은 key들이 존재한다.
+
+
+5. action-routerPage의 관계
+5-1. router를 통해 page 렌더링
+5-2. 버튼이나 useSubmit를 통해 action이 트리거될 떄 해당 컴포넌트가 한 번 재실행
+5-3. action 실행
+5-4. action이 끝나고 나서 마지막으로 해당 컴포넌트 실행
+=> useNavigation state 상태를 통해 좋은 UI 전달가능
+
+
+
+

@@ -1,9 +1,20 @@
+/* eslint-disable no-restricted-globals */
 import classes from './EventItem.module.css';
 
-function EventItem({ event }) {
+import {Link, useSubmit} from 'react-router-dom'
+
+function EventItem({event}) {
+
+  const submit = useSubmit();
+
   function startDeleteHandler() {
-    // ...
+    const proceed = confirm('Aro you  sure?');
+
+    if(proceed){
+      submit(null, {method : 'delete', })
+    }
   }
+
 
   return (
     <article className={classes.event}>
@@ -12,7 +23,7 @@ function EventItem({ event }) {
       <time>{event.date}</time>
       <p>{event.description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <Link to={'edit'}>Edit</Link>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>
