@@ -1,15 +1,14 @@
-import {useLocation} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
 function GetOne(){
 
-    const location = useLocation();
-    const {hash, key, pathname, search, state} =  location;
-    console.log(location)
+    const param = useParams();
+    const id = param.getId
 
     return(
         <>
             <h1>Get One!</h1>
-            {pathname}
+            <p>{id}</p>
         </>
     )
 }

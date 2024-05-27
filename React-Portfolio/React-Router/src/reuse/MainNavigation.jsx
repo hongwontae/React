@@ -20,7 +20,7 @@ function MainNavigation() {
             </li>
             <li>
               <NavLink
-                to="/get/board"
+                to="get"
                 className={({ isActive }) => {
                   return isActive ? classes.active : undefined;
                 }}
@@ -30,7 +30,7 @@ function MainNavigation() {
             </li>
             <li>
               <NavLink
-                to="/form"
+                to="form"
                 className={({ isActive }) => {
                   return isActive ? classes.active : undefined;
                 }}
@@ -40,7 +40,7 @@ function MainNavigation() {
             </li>
             <li>
               <NavLink
-                to="/counter"
+                to="counter"
                 className={({ isActive }) => {
                   return isActive ? classes.active : undefined;
                 }}

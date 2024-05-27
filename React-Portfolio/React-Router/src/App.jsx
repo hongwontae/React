@@ -14,15 +14,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, element: <HomePage></HomePage> },
-      { path: "/form", element: <FormPage></FormPage> },
-      { path: "/counter", element: <CounterPage></CounterPage> },
+      { path: "form", element: <FormPage></FormPage> },
+      { path: "counter", element: <CounterPage></CounterPage> },
       {
-        path: "/get/board",
+        path: "get",
         element: <GetBoardPage></GetBoardPage>,
         loader: getBoardLoader,
       },
       {
-        path : '/get/board/:getId',
+        path : 'get/:getId',
         element : <GetOne></GetOne>
       }
       
