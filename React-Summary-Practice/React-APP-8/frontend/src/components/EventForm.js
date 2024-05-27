@@ -1,31 +1,46 @@
-import { Form, useActionData, useNavigate, useNavigation } from 'react-router-dom';
+import {
+  Form,
+  json,
+  redirect,
+  useActionData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 
-import classes from './EventForm.module.css';
+import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
+  
   const navigate = useNavigate();
   const navigation = useNavigation();
 
   const actionData = useActionData();
-  console.log(actionData);
 
-  const isSubmitting = navigation.state === 'submitting';
+
+  const isSubmitting = navigation.state === "submitting";
 
   function cancelHandler() {
-    navigate('..');
+    navigate("..");
   }
 
   return (
-    <Form method="post" className={classes.form}>
-      {}
+    <Form method={method} className={classes.form}>
+      <ul>
+        {actionData &&
+          actionData.errors &&
+          Object.values(actionData.errors).map((ele) => {
+            return <li key={ele}>{ele}</li>;
+          })}
+      </ul>
+
       <p>
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
           name="title"
-          // required
-          defaultValue={event ? event.title : ''}
+          required
+          defaultValue={event && event.event.title}
         />
       </p>
       <p>
@@ -35,7 +50,7 @@ function EventForm({ method, event }) {
           type="url"
           name="image"
           required
-          defaultValue={event ? event.image : ''}
+          defaultValue={event ? event.event.image : ""}
         />
       </p>
       <p>
@@ -45,7 +60,7 @@ function EventForm({ method, event }) {
           type="date"
           name="date"
           required
-          defaultValue={event ? event.date : ''}
+          defaultValue={event ? event.event.date : ""}
         />
       </p>
       <p>
@@ -55,7 +70,7 @@ function EventForm({ method, event }) {
           name="description"
           rows="5"
           required
-          defaultValue={event ? event.description : ''}
+          defaultValue={event ? event.event.description : ""}
         />
       </p>
       <div className={classes.actions}>
@@ -63,7 +78,7 @@ function EventForm({ method, event }) {
           Cancel
         </button>
         <button disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Save'}
+          {isSubmitting ? "Submitting..." : "Save"}
         </button>
       </div>
     </Form>
@@ -71,3 +86,43 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function EventFormAction({ request, params }) {
+  const data = await request.formData();
+
+  const event = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+
+  let url = "http://localhost:8080/events/"
+
+  if(request.method === 'PATCH'){
+    url+=params.eventId
+  }
+
+  const response = await fetch(url, {
+    method: request.method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(event),
+  });
+
+  if (response.status === 424) {
+    return response;
+  }
+
+  if (!response.ok) {
+    throw json(
+      { message: "post not" },
+      {
+        status: 500,
+        statusText: "post not 500",
+      }
+    );
+  }
+  return redirect("/events");
+}

@@ -1,27 +1,46 @@
-/* eslint-disable no-throw-literal */
-import { useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { Await, defer, json, useLoaderData } from "react-router-dom";
 
-import EventsList from "../components/EventsList";
+import EventsList from '../components/EventsList'
+
 
 function EventsPage() {
-  const events = useLoaderData();
+
+  const {events} = useLoaderData();
+
 
   return (
     <>
-      <EventsList events={events} />
+      <Suspense fallback={<p style={{textAlign : 'center'}}>Loading....</p>}>
+        <Await resolve={events}>
+          {(loaderData)=>{
+            return <EventsList events={loaderData}></EventsList>
+          }}
+        </Await>
+      </Suspense>
     </>
-  );
+  )
 }
 
 export default EventsPage;
 
-export async function Eventloader() {
-  const response = await fetch("http://localhost:8080/events");
+async function loadEvents() {
+  const response = await fetch('http://localhost:8080/events');
 
-  if (!response.ok) {
-      throw new Response(JSON.stringify({message : 'Could not find message'}), {status : 500});
+  if(!response.ok){
+    throw json({message : 'could not find page'}, {
+      status : 500,
+      statusText : 'rrd의 json 응답 에러 객체'
+    })
   } else {
     const resData = await response.json();
-    return resData.events;
+    return resData.events
+
   }
+}
+
+export function Eventloader() {
+  return defer({
+    events : loadEvents()
+  })
 }

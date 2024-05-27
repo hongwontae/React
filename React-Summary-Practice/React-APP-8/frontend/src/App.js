@@ -14,6 +14,9 @@ import ErrorPage from "./pages/ErrorPage";
 
 import { Eventloader } from "./pages/EventsPage";
 
+import { EventFormAction } from "./components/EventForm";
+import Newsletter, { action as newsletterAction } from "./pages/Newsletter";
+
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -65,15 +68,21 @@ const route = createBrowserRouter([
               {
                 path: "edit",
                 element: <EditEventPage></EditEventPage>,
+                action: EventFormAction,
               },
             ],
           },
           {
             path: "new",
             element: <NewEventPage> </NewEventPage>,
-            action: NewEventAction,
+            action: EventFormAction,
           },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <Newsletter></Newsletter>,
+        action: newsletterAction,
       },
     ],
   },

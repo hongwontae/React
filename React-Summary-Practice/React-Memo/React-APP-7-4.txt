@@ -2,6 +2,10 @@
 1-1. <Form>의 button이 트리거되면 Form의 method props가 존재하면 action을 실행하고 method props가 존재하지 않으면
 prevent.default()를 실행한다.
 1-2. action 이후에는 redirect('path')를 통해 다른 페이지로 보낸다.
+1-3. action의 객체의 첫 번쨰 인자는 해당 라우터 컴포넌트의 param
+1-4. 두 번쨰 인자는 request를 받는다. request는 method는 Form일 떄 method를 받는다.
+=> request를 이용해서 재사용가능한 action을 만들 수 있다.
+=> request.method에 따라 다르게 구현
 
 
 2. Form 컴포넌트
@@ -23,10 +27,51 @@ prevent.default()를 실행한다.
 
 5. action-routerPage의 관계
 5-1. router를 통해 page 렌더링
-5-2. 버튼이나 useSubmit를 통해 action이 트리거될 떄 해당 컴포넌트가 한 번 재실행
-5-3. action 실행
+5-2. action 실행
+5-3. action이 실행되면 바로 submitting 상태로 컴포넌트 재실행
 5-4. action이 끝나고 나서 마지막으로 해당 컴포넌트 실행
+=> (그 이후에 redirect or 남아있든가)
 => useNavigation state 상태를 통해 좋은 UI 전달가능
+
+
+6. useActionData()
+6-1. action에서 return한 값을 받을 수 있는 Hooks이다.
+
+
+7. useFetcher()
+7-1. 하나의 컴포넌트가 다른 라우터에 page에 존재하여 loader나 action을 취하고 로직을 실행하지만 이 컴포넌트가 
+다른 곳에서도 자신만의 역할을 할 수 있도록 도와주는 Hooks이다.
+
+7-2. 로직
+1. action은 router에 등록된 컴포넌트에서 사용이 가능하다.
+2. 그러나 router에서 등록된 컴포넌트의 내부 컴포넌트의 Form을 다른 곳에서도 return한다면?
+3. 그 Form의 action이 실행되고 나서 router에 등록된 컴포넌트로 포워딩되버린다.
+=> useFetcher는 전환하지 않은 채로 action과 loader를 사용할 떄 유용한 훅이다.
+
+7-3. const fetcher = useFetcher();
+fetcher.state
+fetcher.data...
+
+
+8. defer();
+8-1. 데이터가 도착하지 않았아도 컴포넌트를 미리 렌더링할 떄 사용
+
+8-2. 순서
+1. loader 함수의 fetch 로직을 일반 함수로 빼낸다.
+2. loader 함수에 return 값으로 defer({key : loaderFunc()})를 사용한다.
+3. 이떄 useLoaderData를 사용하면 defer에 값을 받는다. => const {key} = useLoaderData();
+4. <Await>와 <Suspense> 로직을 사용해서 컴포넌트를 구축한다.
+=> 데이터를 표현할 부분을 제외한 컴포넌트가 렌더링되고 데이터가 오면 데이터가 렌더링된다.
+
+
+
+
+
+
+
+*** 오늘의 삽질
+=> 백엔드에서 424 에러코드를 보내고 해당 에러코드를 트리거하는 if문을 만들고 actionData로 잡았는데
+어리바리로 404로 트리거해서 30분동안 삽질했다.
 
 
 
