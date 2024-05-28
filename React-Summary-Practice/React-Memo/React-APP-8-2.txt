@@ -15,7 +15,8 @@ prevent.default()를 실행한다.
 2-4. form의 method ="get, post, put, delete"을 설정하면 해당 폼의 요청이 액션으로 간다.
 
 
-3. useLoaderData, useRouteError는 라우터에 등록된 컴포넌트만 사용이 가능하다.
+3. useLoaderData, useRouteError, useActionData
+=> 라우터에 등록된 컴포넌트가 주로 사용하지만 useRouterLoader(ParentsId)처럼 예외적으로 사용가능
 
 
 4. useSubmit()

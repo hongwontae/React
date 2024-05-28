@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { counterSliceAction } from "../store/CounterSlice";
 
+
 function CounterPage() {
+
+
   const dispatch = useDispatch();
   const counterState = useSelector((state) => state.counterReducer.counter);
   const toggleState = useSelector((state) => state.counterReducer.toggle);

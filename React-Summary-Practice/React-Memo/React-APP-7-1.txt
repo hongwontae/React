@@ -21,7 +21,7 @@ npm install react-router-dom
 3-5. RouterProvider 컴포넌트를 import하고 router prop에 3-4의 변수를 할당한다.
 3-6. APP JSX는 이제 RouterProvider 컴포넌트만 존재하게 된다.
 
-3-7. router 6.4 이전에는 createRoutesFromElements, Route(컴포넌트)를 사용해서 createBrowserRouter에 인자에 넘겨주었다.
+3-7. router 6.4 이전에는 createRoutesFr   omElements, Route(컴포넌트)를 사용해서 createBrowserRouter에 인자에 넘겨주었다.
 
   // const routerDefinition = createRoutesFromElements(
   //   <Route>
@@ -46,7 +46,7 @@ npm install react-router-dom
 
 5-1. router의 Link 컴포넌트는 a 태그의 기본동작을 하지 않고 해당되는 url의 컨텐츠만 가져온다.
 5-2. Link 컴포넌트는 /붙으면 절대 경로이고 /가 없으면 상대경로이다.
-=> 상대경로일 떄는 현재 url에 to의 문자열을 붙여버린다.
+=> 상대경로일 떄는 현재 url에 to props의 문자열을 붙여버린다.
 
 
 6. 레이아웃 및 중첩된 라우트
@@ -76,8 +76,6 @@ children : [{path... ele:...},{...}]
 
 8-3. end
 => 8-1의 기본사항을 적용하지 않는다.
-
-8-4. 근데 업데이트 된건지 8-1이 적용되지 않네요
 
 8-5. NavLink의 isActive css 적용은 다른 라우트가 트리거될 떄까지 유지한다.
 

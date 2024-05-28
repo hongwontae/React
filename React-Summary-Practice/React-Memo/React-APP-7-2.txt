@@ -11,7 +11,7 @@
 2. useParams
 2-1. 해당 컴포넌트의 경로를 가져온다.
 2-2. const params = useParams()
-2-3. const param = params.동적세그먼트
+2-3. const param = params.동적세그먼트(/eventId)
 => param에 경로 존재
 
 
