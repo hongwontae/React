@@ -13,15 +13,19 @@
 값을 가져온다.
 
 1-6. loader를 정의하면 useLoaderData를 통해 데이터를 가져올 수 있다.
-=> 같은 레벨의 element, 해당 컴포넌트로부터의 자식 레벨의 element, 부모는 불가능
+=> 같은 레벨의 element, 해당 컴포넌트로부터의 자식 레벨의 element, 부모 모두 사용불가
+=> 다만 부모 loader는 useRouteLoader(id)를 통해 접근할 수 있다.
+=> useRouteLoader를 사용할 수 있는 컴포넌트는 router로 등록된 element 뿐만 아니라 일반 컴포넌트도 가능하다.
 
 
 1-7. loader의 위치는 라우트를 정의하는 곳이 아니라 Router 컴포넌트에서 구현하고 export를 통해 해결한다.
 => 정석
 
 
-1-8. RootRouterCompoennt => switch another RouterCom => loader 실행(다만 loader의 함수 실행이 끝나기 전까지 
+1-8. RootRouterCompoennt => loader 실행(다만 loader의 함수 실행이 끝나기 전까지 
 another Router로 가지 못하고 RootRouter에 머물러 있다고 loader가 완료되면 another로 이동) => 다른 route 컴포넌트
+=>loader가 실행되면서 이동될 라우트는 loadgin state와 idle state를 갖기 떄문에 두 번 실행된다.
+
 
 
 2. useNavigation
@@ -96,4 +100,9 @@ UI을 업그레이드 한다.
 7. loader 함수의 접근 권한은 loader를 가지고 있는 route를 기준으로 형제나 자식들에게 줄 수 있다.
 => 형제일 떄는 useRouterData를 통해서 그냥 가져오면 된다./ 가장 가까운 loader를 가져온다.
 => 자식의 경우 ueeRouteDataLoader('route-id')를 통해서 가져올 수 있다.
+
+
+8. 해당 라우터에 도달하지 않는 이상 렌더링되지 않고 loader도 실행이 되지 않는다.
+9. loader는 렌더링되기 전에 실행되고 컴포넌트는 loading, idle 상태를 갖는다.
+10. 기본적인 컴포넌트 형태를 따르기 떄문에 잘 봐야 한다. => RootLayout-MainNavigation의 관계
 
