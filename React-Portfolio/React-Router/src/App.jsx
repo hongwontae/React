@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ErrorPage from "./pages/ErrorPage";
-import FormPage from "./pages/FormPage";
+import FormPage, { formAction } from "./pages/FormPage";
 import CounterPage from "./pages/CounterPage";
 import GetBoardPage, { getBoardLoader } from "./pages/GetBoardPage";
-import GetOne from "./components/GetOne";
+import GetOne, { getOneLoader } from "./components/GetOne";
+import BoardPage from "./pages/BoardPage";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, element: <HomePage></HomePage> },
-      { path: "form", element: <FormPage></FormPage> },
+      { path: "form", element: <FormPage></FormPage>, action: formAction },
+      { path: "board", element: <BoardPage></BoardPage> },
       { path: "counter", element: <CounterPage></CounterPage> },
       {
         path: "get",
@@ -22,10 +24,10 @@ const router = createBrowserRouter([
         loader: getBoardLoader,
       },
       {
-        path : 'get/:getId',
-        element : <GetOne></GetOne>
-      }
-      
+        path: "get/:getId",
+        element: <GetOne></GetOne>,
+        loader: getOneLoader,
+      },
     ],
   },
 ]);

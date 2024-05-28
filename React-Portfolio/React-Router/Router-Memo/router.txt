@@ -1,0 +1,8 @@
+
+
+
+
+
+
+*** 삽질
+redux로 input data 관리를 하려고 했는데 ref.current.value를 하지 않고 보내서 에러가 발생해서 삽질함

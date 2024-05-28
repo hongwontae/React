@@ -25,7 +25,7 @@ function MainNavigation() {
                   return isActive ? classes.active : undefined;
                 }}
               >
-                Board
+                Book
               </NavLink>
             </li>
             <li>
@@ -36,6 +36,16 @@ function MainNavigation() {
                 }}
               >
                 Form
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="board"
+                className={({ isActive }) => {
+                  return isActive ? classes.active : undefined;
+                }}
+              >
+                Board
               </NavLink>
             </li>
             <li>

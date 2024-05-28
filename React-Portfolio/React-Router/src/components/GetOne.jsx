@@ -1,16 +1,34 @@
-import {useParams} from 'react-router-dom'
+import {useLoaderData, json} from 'react-router-dom'
+import GetOneExpression from './GetOneExpression';
 
 function GetOne(){
 
-    const param = useParams();
-    const id = param.getId
+    const data = useLoaderData();
+    console.log(data);
+    
 
     return(
         <>
             <h1>Get One!</h1>
-            <p>{id}</p>
+            <GetOneExpression event={data}></GetOneExpression>
         </>
     )
 }
 
 export default GetOne;
+
+
+export async function getOneLoader({params}){
+
+    const param = params.getId;
+
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/'+param);
+
+    if(!response.ok){
+        throw json({message : 'getOneLoader http error'}, {
+            status : 500
+        })
+    }
+    const data = response.json();
+    return data;
+}
