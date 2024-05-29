@@ -9,9 +9,8 @@ export default function NewEventsSection() {
 
   const {data, isError, error, isPending} = useQuery({
     queryKey : ['events'],
-    queryFn : ()=>{
-      console.log('this is newEventSecion')
-      return fetchEvents()
+    queryFn :  ({signal})=>{
+      return fetchEvents({signal})
     },
     staleTime : 5000
   })

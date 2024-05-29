@@ -1,0 +1,68 @@
+1. React-query cache
+1-1. 리액트 쿼리는 응답데이터를 캐시 처리한다.
+1-2. image는 리액트 쿼리에 캐시의 대상이 아니지만 브라우저에 의해 캐시될 수 있다.
+
+1-3. 로직
+1. useQuery()를 통해서 data를 가져온다.
+2. web page를 벗어나가나 다른 component을 들어갔다가 나오면 캐시된 데이터를 보여준다.
+3. 그와 동시에 http 요청을 전송하고 update가 된 데이터를 확인하고 없다면 놔두고 있으면 변경한다.
+
+1-4. staleTime
+=> 캐시에 데이터가 존재할 떄 http 요청을 자체적으로 전송하기 전에 기다릴 시간을 설정하는 props이다.
+=> default는 0이다.
+=> 불필요한 요청을 제어할 수 있다.
+
+1-5. gcTime
+=> 캐시 데이터를 저장 시간을 설정한다.
+=> 기본값은 5분
+
+
+2. 동적 쿼리 함수 및 쿼리 키
+2-1. queryKey가 동일하다면 다른 컴포넌트에서 useQuery를 사용하더라도 같은 쿼리 결과를 얻게 된다.
+
+2-2. queryFn의 인자가 동적이고 해당되는 인자를 queryKey로 했을 경우
+=> 같은 인자의 요청은 캐시에 저장되어 있기 때문에 캐시처리 - http 요청 - 업데이트 데이터 확인 이라는 방법을 동적으로
+사용할 수 있게 된 것이다.
+
+
+3. 퀴리 구성 객체 및 요청 취소
+3-1. useQuery의 queryFn은 자동적으로 기본 데이터를 전달한다.
+=> 해당 데이터를 객체이고 queryKey와 signal, meta...등이 존재한다.
+3-2. 기본데이터를 주지 않으려면 함수 안에서 인자 없는 http 요청 함수를 전달하면 된다. => event 처리에서 하던 처리
+3-3. 기본데이터 처리는 queryFn : ({signal, meta, queryKey})=>{
+    return fetchEvent({signal, meta, queryKey, searchParam})
+}
+=> eventHandler의 event 객체의 동작과 일치한다.
+
+3-3. signal
+=> 요청 전송을 취소하는 props이다.
+=> ex) 사용자가 페이지에서 벗어나면 리액트 쿼리는 전송중인 요청을 취소한다.
+=> fetch(url, {signal : signal});
+
+
+4. 쿼리 활성화 및 비활성화
+4-1. queQuery의 enabled props
+=> boolean에 따라 쿼리를 실행하거나 중단한다.
+
+4-2. isLoading
+=> 쿼리가 비활성화됐다고 true를 반환하지 않는다.
+=> 나머지는 isPending과 같다. (isPending은 쿼리 비활성화일 떄 true)
+
+
+5. findEventSection의 로직
+5-1. 처음에는 쿼리 비활성화를 통해서 p-tag의 문자열을 반환하고 검색어 키워드와 함께 버튼을 누르면 쿼리가
+활성화되어 원하는 검색결과가 보여진다. 또한 검색어 키워드를 넣지 않고 버튼을 누르면 모든 결과가 보여지게 할 것이다.
+
+5-2. useState-ref을 통해 버튼이 트리거 되었을 떄 상태가 변경되게 한다.
+=> 상태가 변할 떄마다 useQuery가 실행된다.
+
+5-3. useState의 초기값을 null로 지정하고 enabled을 searchTerm !== null
+=> 검색어 + 버튼을 트리거하지 않으면 쿼리가 비활성화된다.
+
+5-4. 검색어 + 버튼을 누르면 enabled 속성이 true가 되어서 useQuery 재실행
+=> 원하는 값을 가져온다.
+
+5-5. 이후에 null로 돌아갈 수 없고 searchTerm 빈 문자열을 보내면 완전한 get 요청이기 떄문에
+모든 결과를 가져온다.
+
+

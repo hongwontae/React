@@ -18,8 +18,10 @@
 => fetch 로직은 따로 모아서 util이라는 폴더에 export로 내보낸다.
 
 3-3. useQuery
-1. http 요청을 대신해서 보내주고, 데이터와 로딩, 에러에 대한 정보를 제공하는 함수이다.
-2. useQuery({
+1. http get 요청을 대신해서 보내주고, 데이터와 로딩, 에러에 대한 정보를 제공하는 함수이다.
+=> get을 처리하는 최적화된 쿼리/ 다른 요청은 다른 함수를 사용하는 것이 효율적이다.
+2. useQuery는 컴포넌트가 렌더링되면 바로 요청을 보낸다. => useEffect의 초기 모습
+3. useQuery({
     queryFn : (queryFn은 프로미스를 반환하는 함수를 value로 삼는다.)
 }) => 해당 형태를 갖춘다.
 
@@ -36,7 +38,8 @@
     queryFn : fetchEvents
 })
 4-1. data => http 요청이 완료된 이후에 data
-4-2. isPending => 요청이 실행중인지, 응답을 받았는지 알려주는 data
+4-2. isPending => 요청이 실행중인지, 응답을 받았는지 알려주는 boolean
+=> 응답을 받으면 false/ 쿼리가 비활성되거나 요청이 실행중이면 true
 4-4. isError => 요청 실패의 Boolean
 => ture가 되려면 요청 전송 코드(fechEvents)가 throw를 던질 떄이다.
 4-5. error => error data

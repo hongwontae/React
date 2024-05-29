@@ -1,0 +1,43 @@
+1. useMutation
+1-1. POST 요청을 전송할 떄 사용하는 함수
+1-2. useQuery와 달리 컴포넌트가 렌더링될 떄 요청이 즉시 전송되지 않게 한다.
+1-3. useMutation은 응답 데이터를 캐시처리하지 않는다.
+
+1-4. useMutation은 객체를 반환한다.
+=> const {} = useMutation({
+    mutationFn : postEvent
+});
+1-5. mutate => useMutation의 객체의 props, 해당 함수를 호출할 떄 useQuery의 요청이 전송된다.
+
+1-6. isPending  => 요청이 진행중이면 true, 그렇지 않으면 false
+
+1-7. isError => throw가 던져질 떄 ture
+
+1-8. error => throw가 던져질 떄의 데이터
+
+
+2. EventForm의 image 로직
+2-1. useQuery를 통해 images을 가져온다.
+2-2. data, isPending, isError, error를 통해 다양한 상황에 대비한다.
+
+
+3. useMutaion의 onSuccess
+3-1. onSuccess는 value로 함수를 받는다.
+3-2. mutationFn이 성공한 이후에만 해당 value를 실행한다.
+
+
+3. 쿼리 무효화
+3-1. 쿼리를 무효화시키면 데이터가 오래돼서 가져와야 한다는 것을 리액트 쿼리에게 알려줄 수 있다.
+3-2. queryClient.invalidateQueries([queryKey])를 사용하면 queryKey를 가진 모든 쿼리들이 무효화되어서 데이터가
+오래됐다고 판단해서 쿼리를 다시 실행한다.
+3-3. queryKey가 모두 일치하지 않아도 된다. [queryKey, findEvent] => queryKey를 가졌으니 해당된다.
+3-4. post 요청이나 put 요청시에 변경사항을 적용하기 위해서 사용한다.
+
+
+4. NewEvent Logic
+4-1. mutationFn이 실행이 성공되면 => onSuccess
+4-2. 요청이 성공하면 백엔드의 데이터가 수정 및 추가임으로 즉시 적용을 위해 queryClient.invalidateQueries([queryKey])
+를 실행
+4-3. navigate('/') 
+4-4. queryKey를 가진 query들이 다시 실행되어서 업데이트 data 적용
+ 

@@ -1,0 +1,12 @@
+1. viewDetail
+
+1-1. backend Data 가져오기
+=> useQuery를 사용해서 queryFn, queryKey를 설정
+=> data, isPending, error, isError를 가져와서 상황에 맞게 렌더링
+
+1-2. delete
+=> useMutation으로 mutationFn 설정
+=> mutate 함수를 버튼 onClick function과 결합
+=> mutate에 줄 떄 id props 전달
+=> onSuccess를 구현해서 무효화 쿼리 + useNavigate 구현
+
