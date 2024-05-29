@@ -22,6 +22,7 @@ export default function EventDetails() {
       return fetchEvent({ signal, id });
     },
   });
+  
 
   const { mutate } = useMutation({
     mutationFn: deleteEvent,
@@ -61,7 +62,7 @@ export default function EventDetails() {
       <ErrorBlock
         title="Failed to load Event"
         message={
-          error?.info.message ||
+          error?.info?.message ||
           "Faild to fetch event data, Please try again later"
         }
       ></ErrorBlock>
