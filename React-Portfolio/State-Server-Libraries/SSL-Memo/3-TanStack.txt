@@ -1,0 +1,7 @@
+1. 
+
+
+
+
+*** console.js:273 Warning: validateDOMNesting(...): <p> cannot appear as a descendant of <p>.
+=> <div> 요소는 <p> 태그의 자식 태그로 들어갈 수 없다.
