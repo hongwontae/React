@@ -2,14 +2,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchGetPlayers } from "../util/http";
 import PlayerOne from "../components/player/PlayerOne";
-import MainNavigation from "../components/MainNavigation";
+import MainNavigation from "../components/navigation/MainNavigation";
 
 function PlayerPage() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["player"],
     queryFn: ({ signal }) => {
+      console.log('playerPage queryFn')
       return fetchGetPlayers({ signal: signal });
     },
+    staleTime : 5000
   });
 
   let content;

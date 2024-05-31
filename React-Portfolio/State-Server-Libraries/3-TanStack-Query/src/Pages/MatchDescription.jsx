@@ -1,4 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+
 function MatchDescription(){
+
+    useQuery({
+        queryKey : ['events'],
+        queryFn : ()=>{
+            console.log('matchDesc')
+        }
+    })
 
     return(
         <>
