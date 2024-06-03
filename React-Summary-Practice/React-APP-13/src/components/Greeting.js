@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Output from './Output'
 
 function Greeting(){
 
@@ -12,8 +13,8 @@ function Greeting(){
         <>
             <div>
                 <h2>Hello World</h2>
-                {!data && <p>HHHHHH</p>}
-                {data && <p>PPPPP</p>}
+                {!data && <Output>HHHHHH</Output>}
+                {data && <Output>PPPPP</Output>}
                 <button onClick={()=>changeTest(true)}>Button</button>
             </div>
         </>

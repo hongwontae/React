@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-function HomeAdminText({ toggleAdmin }) {
+function HomeAdminText({ toggle }) {
   return (
     <>
-      {toggleAdmin && (
+      {toggle && (
         <div className="w-2/3 m-auto">
             <div className="mb-2">(1주일 간격으로 최근 소식으로 업데이트 됩니다.)</div>
-          <p>
-            <h1 className="mb-1">Topic1 - 아르네 슬롯이 누구신가요?</h1>
+          <div>
+            <p className="mb-1">Topic1 - 아르네 슬롯이 누구신가요?</p>
             <p className="mb-3">
               강한 압박과 선수들의 왕성한 움직임을 통한 공격적인 축구를 철학으로
               삼고 있으며, 풀백과 미드필더들의 포지셔닝 변화를 통한 유연하고
@@ -16,7 +16,7 @@ function HomeAdminText({ toggleAdmin }) {
               받았다고 직접 밝힌 바 있으며, 부분적으로 꽤나 유사한 스타일의
               축구를 펼친다.
             </p>
-            <h1 className="mb-1">Topic2 - 다윈 누녜스의 미래는?</h1>
+            <p className="mb-1">Topic2 - 다윈 누녜스의 미래는?</p>
             <p className="mb-3">
               현대 축구는 높은 조직성, 실리를 추구하는 방식이다. 근 10년동안
               레알마드리드을 보면 알 수 있다. 점유율을 포기하고 수비를 단단히
@@ -26,14 +26,14 @@ function HomeAdminText({ toggleAdmin }) {
                 추구하는 경기목표를 달성할 수 없다. 강팀은...
               </p>
             </p>
-            <h1>Topic3 - 다음 시즌에 누구를 영입할까?</h1>
+            <p>Topic3 - 다음 시즌에 누구를 영입할까?</p>
             <p className="mb-20">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
               deserunt enim ipsam iure. Quisquam quae animi, corporis ab cumque
               itaque veniam aliquam fugit quibusdam eveniet dolorum perferendis,
               laboriosam tempora hic.
             </p>
-          </p>
+          </div>
         </div>
       )}
     </>

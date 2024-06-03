@@ -1,6 +1,6 @@
 import Greeting from "./Greeting";
 import { render, screen } from "@testing-library/react";
-import userEvent, {useEvent} from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event'
 
 describe("Greeing Components", () => {
   test("renders Hello World", () => {
@@ -28,3 +28,4 @@ describe("Greeing Components", () => {
   })
 
 });
+

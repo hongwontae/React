@@ -1,0 +1,50 @@
+1. 타입스크립트란?
+=> 자바스크립트를 컴파일 시점에 타입검사를 실시해서 에러를 초기에 식별하는 언어
+
+2. React-TypeScrupt
+
+2-1. package.json
+1. @types/react, @types/react-dom => TS => JS
+2. typescript => 컴파일
+
+
+3. vite-React-TypeScript
+3-1. Props를 넘겨줄 떄는 자식 함수형 컴포넌트는 React.FC라는 제네릭 타입으로 바꿔준다.
+3-2. Rect.FC<{}> 설정한다. => 이게 바로 props의 타입을 설정하는 것이다.
+3-3. children을 사용할 거면 React.FC<{children : React.ReactNode}>로 구현해야 사용가능하다.
+
+3-4. props 구현
+1. class, type, 유니언으로 타입을 생성하고 이를 기반으로 한 데이터를 가져오든가, 생성한다.
+2. 부모 컴포넌트에서 자식 컴포넌트에게 데이터를 전달한다.
+3. 자식 컴포넌트는 받을 떄 React.FC<{items: type/class/union/interface[]}>으로 받는다.
+4. 커스텀 컴포넌트를 통해 동적인 items들을 나열할 떄 key를 자식 컴포넌트에서 처리하지 않아도 된다.
+=> 알아서 처리해준다.
+
+
+4. Event-TypeScript
+4-1. eventHandler에 자동으로 event가 매개변수가 할당될 것이라고 ts가 인식하지 못한다.
+4-2. (event : FormEvent)처럼 할당해주어야 한다.
+=> 어떤 event인지에 따라 할당할 타입을 다르게 지정해 주어야 한다.
+
+
+5. useRef - TypeScript
+5-1. useRef를 호출할 떄 제네릭으로 어떤 DOM과 연결될지 타입을 지정해야 한다.
+5-2. useRef<>() 초기값이 없으면 에러를 발생시킨다.
+5-3. useRef<>(null)로 초기화하면 ! 연산자를 사용해서 사용되는 시점에는 null이 아니라고 설명할 수 있다.
+
+
+6. props로 function을 줄 떄
+1. 자식 컴포넌트에서 React.FC<{onAdd : function type}>을 지정한다.
+2. props.onAdd()를 호출한다.
+
+
+7. useState-typeScript
+7-1. useState에 빈 배열을 초기값으로 할당하면 useState의 반환된 첫 번쨰 값은 never Type이 된다.
+7-2. 
+
+
+
+
+
+
+
