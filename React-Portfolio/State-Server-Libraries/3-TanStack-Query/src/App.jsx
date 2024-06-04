@@ -10,7 +10,7 @@ import PlayerPage from "./Pages/PlayerPage";
 import HistoryPage from "./Pages/HistoryPage";
 import PlayerEvaluation from "./Pages/PlayerEvaluation";
 import MatchDescription from "./Pages/MatchDescription";
-import TestPage, { loader as testLoader } from "./Pages/TestPage";
+import TestPage from "./Pages/TestPage";
 import ErrorPage from "./Pages/ErrorPage";
 
 const route = createBrowserRouter([
@@ -24,7 +24,7 @@ const route = createBrowserRouter([
       { path: "history", element: <HistoryPage></HistoryPage> },
       { path: "pEvaluation", element: <PlayerEvaluation></PlayerEvaluation> },
       { path: "match", element: <MatchDescription></MatchDescription> },
-      { path: "test", element: <TestPage></TestPage>, loader: testLoader },
+      { path: "test", element: <TestPage></TestPage> },
     ],
   },
 ]);
