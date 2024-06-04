@@ -8,7 +8,6 @@ function PlayerPage() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["player"],
     queryFn: ({ signal }) => {
-      console.log('playerPage queryFn')
       return fetchGetPlayers({ signal: signal });
     },
     staleTime : 5000

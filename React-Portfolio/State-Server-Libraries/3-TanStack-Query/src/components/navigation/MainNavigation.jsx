@@ -59,6 +59,16 @@ function MainNavigation() {
                 Match-Description
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/test"
+                className={({ isActive }) => {
+                  return isActive ? classes.active : null;
+                }}
+              >
+                test
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>
