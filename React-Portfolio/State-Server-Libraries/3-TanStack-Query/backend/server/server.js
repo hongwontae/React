@@ -5,16 +5,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const path = require('path')
 
-const playerRoutes = require('./player');
-const historyRoutes = require('./history')
+const playerRoute = require('../routes/player')
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'data')))
+app.use(express.static(path.join(__dirname, 'models')))
 
-app.use('/player',playerRoutes);
-app.use(historyRoutes);
+app.use('/player', playerRoute)
 
 
 app.listen(3000);

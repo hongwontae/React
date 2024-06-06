@@ -69,6 +69,16 @@ function MainNavigation() {
                 test
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/testGet"
+                className={({ isActive }) => {
+                  return isActive ? classes.active : null;
+                }}
+              >
+                testGet
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>

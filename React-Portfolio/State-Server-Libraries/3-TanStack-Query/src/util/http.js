@@ -18,3 +18,34 @@ export async function fetchGetPlayers({ signal }) {
   return data;
 }
 
+export async function fetchPostTest(data) {
+  console.log(data);
+  const response = await fetch("http://localhost:3000/player/resister", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error가 발생했습니다.");
+  }
+}
+
+export async function fetchGetTest({ signal }) {
+  const response = await fetch("http://localhost:3000/player/showData", {
+    signal,
+  });
+
+  console.log(response)
+
+  if (!response.ok) {
+    throw new Error("form data get not");
+  }
+
+  const data = await response.json();
+  console.log(data);
+  
+  return data;
+}
