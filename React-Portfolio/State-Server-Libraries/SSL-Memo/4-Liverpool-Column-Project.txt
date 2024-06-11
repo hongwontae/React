@@ -16,6 +16,44 @@
 } => 이처럼 추가할 수 있고 자동으로 tailwind 자동완성에 포함된다.
 
 
+3. useRef로 Form과 Modal 처리
+3-1. useRef를 두 번 호출해서 객체한 한 후에 Form 커스텀 컴포넌트에게 건제준다.
+3-2. Form 컴포넌트에서 forwardRef, ImperativeHandle를 통해 커스텀 메서드와 연결을 해준다.
+=> 부모 컴포넌트에서 ref를 객체화한 후에 보내줬기 떄문에 ref를 여러 개 연결할 수 있다.
+=> useImperativeHandle를 사용해서 2차적인 연결을 했기 때문에 상위 컴포넌트나 하위 컴포넌트에서의 함수 호출이 용이해졌다.
+
+3-3. ref을 내려주고 forwardRef로 연결할 떄 부모 컴포넌트에서 자식 컴포넌트의 ref의 값을 가져온다거나 제어하기 힘들다.
+=> state를 사용하거나 ImperativeHandle로 두 번 연결해야 가능하다.
+
+
+4. submitEvent
+4-1. onSubmit 이벤트는 element가 submit attribute를 가지고 있을 떄 트리거된다.
+4-2. form이 onSubmit일 떄 button의 submit이 존재하고 button이 눌러지면 onSubmit 이벤트가 실행된다.
+4-3. required, min-length같은 것은 onSubmit 이벤트가 실행되기 전에 검사한다.
+
+
+5. MVC 패턴 - backEnd-FrontEnd 연결
+5-1. server에서 app.use('path', route)를 연결한다.
+5-2. routes 폴더에서 const router = express.Router()를 호출하고 module.exports = router
+=> router.get/post/delete...를 사용해서 controller와 연결한다.
+5-3. controller는 model의 메서드나 객체를 사용하거나 호출하여 데이터를 저장하든가 가공한다.
+5-4. frontEnd에서는 http 파일에서 http 전송 함수를 생성한다.
+=> post일 떄 데이터구조를 어떻게 보내야 할지 잘 판단해야 한다.
+=> JSON.Stringify({}) 형식으로 전달했다. => Node에서는 req.body를 객체 구조 분해를 통해서 데이터를 얻었다.
+=> models의 객체를 호출해서 해당 구조 분해한 데이터를 넣어주고 fs를 통해 데이터를 저장한다.
+
+
+
+6. React-Slick
+6-1. => 일단 제약이 너무 많다. 기존의 CSS와 충돌이 심하다.
+
+
+7. 
+
+
+
+
+
 
 *** 삽질
 1. useQuery를 사용할 떄 인자를 컨트롤 하기 위해 화살표 함수 안에서 함수를 호출했는데 return을 사용하지 않았다.

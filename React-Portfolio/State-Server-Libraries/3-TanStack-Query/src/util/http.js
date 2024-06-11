@@ -19,7 +19,6 @@ export async function fetchGetPlayers({ signal }) {
 }
 
 export async function fetchPostTest(data) {
-  console.log(data);
   const response = await fetch("http://localhost:3000/player/resister", {
     method: "POST",
     headers: {
@@ -48,4 +47,32 @@ export async function fetchGetTest({ signal }) {
   console.log(data);
   
   return data;
+}
+
+export async function fetchGetHistory({signal}){
+  const response = await fetch('http://localhost:3000/history/showHistory', {signal});
+
+  if(!response.ok){
+    throw new Error('Error Message!')
+  }
+
+  const data = await response.json();
+  return data;
+
+}
+
+export async function fetchPostHistory(data){
+  const response = await fetch('http://localhost:3000/history/resister',{
+    method : 'POST',
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+    body : JSON.stringify(data)
+  });
+  
+
+  if(!response.ok){
+    throw new Error('??? 에러 발생 다크 이벤트 발생')
+  }
+
 }

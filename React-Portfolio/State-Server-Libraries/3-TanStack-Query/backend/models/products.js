@@ -9,7 +9,6 @@ module.exports = class Product {
     this.title = t;
     this.content = c;
     this.id = uuid.v4();
-    console.log(typeof this.id);
   }
 
   check() {

@@ -1,25 +1,11 @@
-import { useState } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
-import InputCal from "./components/InputCal";
+import SliderComponent from "./components/SliderTest";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
-  const [text, setText] = useState('Hello Everyone!');
-
-  function changeTitleHandler(inputTitle) {
-    setText(inputTitle.target.value);
-  }
-
   return (
     <>
-      <Header title={text}></Header>
-      <MainContent
-        id="Main-Content"
-        title={text}
-        change={changeTitleHandler}
-      ></MainContent>
-      <InputCal></InputCal>
+    <SliderComponent></SliderComponent>
     </>
   );
 }

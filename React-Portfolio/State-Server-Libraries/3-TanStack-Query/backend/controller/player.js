@@ -8,7 +8,6 @@ exports.postPlayer = (req, res, next)=>{
     const {title, content} = req.body;
     const product = new Product(title, content);
     product.save();
-    product.check();
 };
 
 exports.getPlayer = (req, res, next)=>{

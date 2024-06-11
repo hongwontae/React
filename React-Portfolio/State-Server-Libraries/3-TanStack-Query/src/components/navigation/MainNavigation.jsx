@@ -79,6 +79,16 @@ function MainNavigation() {
                 testGet
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/historyForm"
+                className={({ isActive }) => {
+                  return isActive ? classes.active : null;
+                }}
+              >
+                historyForm
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>

@@ -1,12 +1,18 @@
 /* eslint-disable no-unused-vars */
 
-function HistoryPage(){
+import Slider from "react-slick";
 
-    return(
-        <>
-            <h1>History</h1>
-        </>
-    )
+
+function HistoryPage() {
+
+
+  return (
+    <>
+    <Slider>
+        
+    </Slider>
+    </>
+  );
 }
 
 export default HistoryPage;

@@ -13,6 +13,7 @@ import MatchDescription from "./Pages/MatchDescription";
 import TestPage, {} from "./Pages/TestPage";
 import ErrorPage from "./Pages/ErrorPage";
 import TestGetPage from "./Pages/TestGetPage";
+import HistoryForm from "./Pages/HistoryForm";
 
 const route = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const route = createBrowserRouter([
       { path: "pEvaluation", element: <PlayerEvaluation></PlayerEvaluation> },
       { path: "match", element: <MatchDescription></MatchDescription> },
       { path: "test", element: <TestPage></TestPage> },
-      {path : 'testGet', element : <TestGetPage></TestGetPage>}
+      {path : 'testGet', element : <TestGetPage></TestGetPage>},
+      {path : 'historyForm', element : <HistoryForm></HistoryForm>}
     ],
   },
 ]);
