@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import LiverPoolPremierLeagueCup from "../../../assets/images/liverpool-hompage-tropies/Liverpool-PremierLeague-Cup.jpg";
-import LiverPoolFACup from '../../../assets/images/liverpool-hompage-tropies/LiverPool-FA-Cup.jpg';
-import LiverPoolChampionsCup from '../../../assets/images/liverpool-hompage-tropies/LiverPool-Champions-Cup.jpg';
-import LiverPoolCarabaoCup from '../../../assets/images/liverpool-hompage-tropies/LiverPool-Carabao-Cup.jpg';
+
+import React from "react";
+import { tropiesImageArr } from "../../../data/tropiesImageData";
+import HomePicture from "../home-picture-component/HomePicture";
 
 function HomeTropies({ toggle }) {
   return (
@@ -11,22 +11,19 @@ function HomeTropies({ toggle }) {
         {toggle && (
           <>
             <div className="flex justify-center gap-5 flex-wrap">
-              <img
-                src={LiverPoolChampionsCup}
-                className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
-              ></img>
-              <img
-                src={LiverPoolPremierLeagueCup}
-                className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
-              ></img>
-              <img
-                src={LiverPoolFACup}
-                className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
-              ></img>
-              <img
-                src={LiverPoolCarabaoCup}
-                className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
-              ></img>
+              {tropiesImageArr.map((ele) => {
+                return (
+                  <>
+                    <React.Fragment key={ele.id}>
+                      <HomePicture
+                        src={ele.imagePath}
+                        alt={ele.alt}
+                        className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
+                      ></HomePicture>
+                    </React.Fragment>
+                  </>
+                );
+              })}
             </div>
           </>
         )}

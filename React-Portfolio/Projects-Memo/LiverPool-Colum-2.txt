@@ -23,4 +23,9 @@ ex) export const useStore = create((set)=>({
 }))
 
 
-3. 
+3. imgae 작업
+3-1. 해당 이미지는 홈페이지에서만 보이기 떄문에 리액트 애플리케이션에 저장한다.
+3-2. 컴포넌트와 함께 이미지가 관리되기 때문에 src 폴더에 assets 폴더에 이미지를 저장한다.
+3-3. data 폴더를 생성하고 image, alt, id가 존재하는 배열 객체를 생성하고 사용할 컴포넌트에서 map를 사용해 렌더링한다.
+3-3. 이미지의의 컨테이너에 flex flex-row justify-center flex-wrap => 가로 형식, 기본축 가운데 맞춤, 넓이가 좁이지면 밑으로
+3-4. w-[] h-[]를 공통적으로 부여해서 일관된 크기/ object-contain => 사진 중앙 맞춤
