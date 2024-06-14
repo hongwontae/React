@@ -1,6 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import MainNavigation from "../navigation/MainNavigation";
+
 function Layout() {
+  const location = useLocation();
+  const { pathname } = location;
+
+  let bottomLineBoolean = pathname === "/formation";
+
   return (
     <>
       <div className="bg-slate-800 min-h-screen font-roboto text-center flex flex-col text-zinc-100">
@@ -10,7 +16,9 @@ function Layout() {
             <Outlet></Outlet>
           </div>
         </main>
-        <div className="bg-red-500 p-1">Author : HWT</div>
+        <div className={`${bottomLineBoolean ? "" : "bg-red-500 p-1"}`}>
+          {bottomLineBoolean ? "" : "Author : HWT"}
+        </div>
       </div>
     </>
   );

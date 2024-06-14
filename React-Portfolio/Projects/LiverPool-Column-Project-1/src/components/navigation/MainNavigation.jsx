@@ -20,13 +20,13 @@ function MainNavigation() {
             </li>
             <li className={classes.list}>
               <NavLink
-                to={"/test"}
+                to={"formation"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}
                 end
               >
-                TestPage
+                FormationPage
               </NavLink>
             </li>
           </ul>
