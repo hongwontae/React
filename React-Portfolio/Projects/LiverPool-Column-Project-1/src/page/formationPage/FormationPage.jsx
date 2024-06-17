@@ -1,155 +1,47 @@
+/* eslint-disable no-unused-vars */
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import FormationDrop from "../../components/formation/FormationDrop";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { formationPostQuery, formationGetOne } from "../../util/http";
+import FormationButtons from "../../components/formation/FormationButtons";
+import FormationSaveLoad from "../../components/formation/FormationSaveLoad";
+import {startingMember, subMember} from '../../data/FormationData'
 
-const startingMember = [
-  {
-    id: "sa",
-    top: 60,
-    left: 5,
-    title: "Alisson Becker",
-  },
-  {
-    id: "sb",
-    top: 60,
-    left: 65,
-    title: "Wataru Endo",
-  },
-  {
-    id: "sc",
-    top: 125,
-    left: 5,
-    title: "van Dijk",
-  },
-  {
-    id: "sd",
-    top: 125,
-    left: 65,
-    title: "Ibrahima Konaté",
-  },
-  {
-    id: "se",
-    top: 190,
-    left: 5,
-    title: "Luis Díaz",
-  },
-  {
-    id: "sf",
-    top: 190,
-    left: 65,
-    title: "Szoboszlai",
-  },
-  {
-    id: "si",
-    top: 255,
-    left: 5,
-    title: "Darwin Núñez",
-  },
-  {
-    id: "sj",
-    top: 255,
-    left: 65,
-    title: "Mac Allister",
-  },
-  {
-    id: "sk",
-    top: 320,
-    left: 5,
-    title: "Mohamed Salah",
-  },
-  {
-    id: "sl",
-    top: 320,
-    left: 65,
-    title: "Andy Robertson",
-  },
-  {
-    id: "sm",
-    top: 385,
-    left: 5,
-    title: "Alexander-Arnold",
-  },
-];
 
-const subMember = [
-  {
-    id: "13",
-    top: 60,
-    left: 5,
-    title: "Adrián San Miguel",
-  },
-  {
-    id: "17",
-    top: 60,
-    left: 65,
-    title: "Curtis Jones",
-  },
-  {
-    id: "l8",
-    top: 125,
-    left: 5,
-    title: "Cody Gakpo",
-  },
-  {
-    id: "19",
-    top: 125,
-    left: 65,
-    title: "Harvey Elliott",
-  },
-  {
-    id: "20",
-    top: 190,
-    left: 5,
-    title: "Diogo Jota",
-  },
-  {
-    id: "21",
-    top: 190,
-    left: 65,
-    title: "Kostas Tsimikas",
-  },
-  {
-    id: "38",
-    top: 255,
-    left: 5,
-    title: "Ryan Gravenberch",
-  },
-  {
-    id: "43",
-    top: 255,
-    left: 65,
-    title: "Stefan Bajčetić",
-  },
-  {
-    id: "50",
-    top: 320,
-    left: 5,
-    title: "Ben Doak",
-  },
-  {
-    id: "62",
-    top: 320,
-    left: 65,
-    title: "Caoimhin Kelleher",
-  },
-  {
-    id: "78",
-    top: 385,
-    left: 5,
-    title: "Jarell Quansah",
-  },
-  {
-    id: "84",
-    top: 385,
-    left: 65,
-    title: "Conor Bradley",
-  },
-];
 
 function FormationPage() {
   const [player, setPlayer] = useState(startingMember);
   const [subPlayer, setSubPlayer] = useState(subMember);
+  const [query, setQuery] = useState({isBoolean : false, iden : null})
+
+  const { mutate } = useMutation({
+    mutationFn: formationPostQuery,
+  });
+
+  const {data, isPending, isError, error} = useQuery({
+    queryKey : ['formation', query.iden],
+    queryFn : ({signal})=>{
+      const identi = query.iden
+      return formationGetOne({signal : signal, identi : identi})
+    },
+    enabled : query.isBoolean,
+    
+  })
+
+  function getQueryToggle(num){
+    setQuery({isBoolean : true, iden : num})
+  }
+
+  useEffect(()=>{
+    if(data){
+      const {player : getPlayer, subPlayer : getSubPlayer} = data
+      setPlayer(getPlayer)
+      setSubPlayer(getSubPlayer)
+    }
+  }, [data])
+
 
   const moveItem = useCallback(
     (id, left, top, title) => {
@@ -185,28 +77,36 @@ function FormationPage() {
     [setSubPlayer]
   );
 
-  function resetStartingMemberButton() {
+  const resetStartingMemberButton = useCallback(() => {
     setPlayer([...startingMember]);
-  }
+  }, [setPlayer]);
 
-  function resetSubMemberButton() {
+  const resetSubMemberButton = useCallback(() => {
     setSubPlayer([...subMember]);
-  }
+  }, [setSubPlayer]);
 
-  function allReset() {
+  const allReset = useCallback(() => {
     setPlayer([...startingMember]);
     setSubPlayer([...subMember]);
-  }
+  }, [setPlayer, setSubPlayer]);
+
+  const formationSave = useCallback(() => {
+    mutate({player, subPlayer});
+  }, [mutate, player, subPlayer]);
+
+
+
 
   return (
     <>
       <DndProvider backend={HTML5Backend}>
-      <div className="flex justify-end gap-4 mr-14">
-          <button className="border-[1.5px] bg-red-700 p-[0.09rem] rounded-xl" onClick={resetStartingMemberButton}>ResetStartingMember</button>
-          <button className="border-[1.5px] bg-red-700 p-[0.09rem] rounded-xl" onClick={resetSubMemberButton}>ResetSubMember</button>
-          <button className="border-[1.5px] bg-red-700 p-[0.09rem] rounded-xl" onClick={allReset}>AllReset</button>
-          <button className="border-[1.5px] bg-red-700 p-[0.09rem] rounded-xl">Save</button>
-        </div>
+        <FormationButtons
+          resetStartingMemberButton={resetStartingMemberButton}
+          resetSubMemberButton={resetSubMemberButton}
+          allReset={allReset}
+          formationSave={formationSave}
+        ></FormationButtons>
+
         <div className="flex justify-center">
           <FormationDrop
             moveItem={moveItem}
@@ -215,8 +115,8 @@ function FormationPage() {
             moveSubItem={moveSubItem}
           ></FormationDrop>
         </div>
- 
-        <div>Formation-1,2,3...</div>
+
+        <FormationSaveLoad getQueryToggle={getQueryToggle}></FormationSaveLoad>
       </DndProvider>
     </>
   );

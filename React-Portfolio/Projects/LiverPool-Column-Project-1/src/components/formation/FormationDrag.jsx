@@ -5,7 +5,7 @@
 import { useDrag } from "react-dnd";
 import { formation } from "./FormationKey";
 
-function FormationDrag({ id, left, top, children, title }) {
+function FormationDrag({ id, left, top, children, title, oneColor }) {
   const [isDragging, drag, preview] = useDrag(
     {
       type: formation.key,
@@ -17,12 +17,14 @@ function FormationDrag({ id, left, top, children, title }) {
     [id, left, top]
   );
 
+  let bgColor = oneColor ? oneColor : 'bg-red-600'
+
 
   return (
     <>
         <div
           ref={drag}
-          className="absolute w-[44%] h-[12%] bg-red-600 rounded-full text-sm flex items-center justify-center "
+          className={`absolute w-[44%] h-[12%] ${bgColor} rounded-full text-sm flex items-center justify-center z-20`}
           style={{ left, top }}
         >
           {title}

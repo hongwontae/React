@@ -4,6 +4,8 @@ import { useDrop } from "react-dnd";
 import { formation } from "./FormationKey";
 import FormationDrag from "./FormationDrag";
 import FormationImage from "../../assets/images/Formation-Image/img.png";
+import FormationStartingDrag from "./FormationStartingDrag";
+import FormationSubDrag from "./FormationSubDrag";
 
 function FormationDrop({ moveItem, player, subPlayer, moveSubItem }) {
   const [_, drop] = useDrop(
@@ -25,7 +27,6 @@ function FormationDrop({ moveItem, player, subPlayer, moveSubItem }) {
     [moveItem]
   );
 
-  console.log("FormationDrop");
 
   return (
     <>
@@ -33,42 +34,10 @@ function FormationDrop({ moveItem, player, subPlayer, moveSubItem }) {
         ref={drop}
         className="w-full h-[34rem] flex justify-around items-center relative "
       >
-        <div
-          ref={drop}
-          className="bg-neutral-400 w-[9%] h-[30rem] relative rounded-xl"
-        >
-          <div className="rounded-t-xl bg-red-500">Starting Member</div>
-          {player.map((ele) => {
-            return (
-              <FormationDrag
-                key={ele.id}
-                id={ele.id}
-                left={ele.left}
-                top={ele.top}
-                title={ele.title}
-              ></FormationDrag>
-            );
-          })}
-        </div>
+        <FormationStartingDrag ref={drop} player={player}></FormationStartingDrag>
+        <FormationSubDrag ref={drop} subPlayer={subPlayer}></FormationSubDrag>
 
-        <div
-          ref={drop}
-          className="bg-neutral-400 w-[9%] h-[30rem] relative rounded-xl"
-        >
-          <div className="rounded-t-xl bg-red-500">Candidate Member</div>
-          {subPlayer.map((ele) => {
-            return (
-              <FormationDrag
-                key={ele.id}
-                id={ele.id}
-                left={ele.left}
-                top={ele.top}
-                title={ele.title}
-              ></FormationDrag>
-            );
-          })}
-        </div>
-        <img src={FormationImage} className="w-3/4 h-[33rem]"></img>
+        <img src={FormationImage} className="w-3/4 h-[33rem] rounded-lg"></img>
       </div>
     </>
   );
