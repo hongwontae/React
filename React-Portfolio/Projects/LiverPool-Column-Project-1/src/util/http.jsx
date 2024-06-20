@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 export async function formationPostQuery(data){
+    console.log(data)
     const {player, subPlayer} = data;
     const formationPostFetch = await fetch('http://localhost:4000/for/formationPost', {
         method : 'POST',

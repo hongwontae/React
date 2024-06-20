@@ -7,41 +7,38 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { formationPostQuery, formationGetOne } from "../../util/http";
 import FormationButtons from "../../components/formation/FormationButtons";
 import FormationSaveLoad from "../../components/formation/FormationSaveLoad";
-import {startingMember, subMember} from '../../data/FormationData'
-
-
+import { startingMember, subMember } from "../../data/FormationData";
 
 function FormationPage() {
   const [player, setPlayer] = useState(startingMember);
   const [subPlayer, setSubPlayer] = useState(subMember);
-  const [query, setQuery] = useState({isBoolean : false, iden : null})
+  const [query, setQuery] = useState({ isBoolean: false, iden: null });
 
   const { mutate } = useMutation({
     mutationFn: formationPostQuery,
   });
 
-  const {data, isPending, isError, error} = useQuery({
-    queryKey : ['formation', query.iden],
-    queryFn : ({signal})=>{
-      const identi = query.iden
-      return formationGetOne({signal : signal, identi : identi})
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["formation", query.iden],
+    queryFn: ({ signal }) => {
+      const identi = query.iden;
+      return formationGetOne({ signal: signal, identi: identi });
     },
-    enabled : query.isBoolean,
-    
-  })
+    enabled: query.isBoolean,
+  });
 
-  function getQueryToggle(num){
-    setQuery({isBoolean : true, iden : num})
+
+  function getQueryToggle(num) {
+    setQuery({ isBoolean: true, iden: num });
   }
 
-  useEffect(()=>{
-    if(data){
-      const {player : getPlayer, subPlayer : getSubPlayer} = data
-      setPlayer(getPlayer)
-      setSubPlayer(getSubPlayer)
+  useEffect(() => {
+    if (data) {
+      const { player: getPlayer, subPlayer: getSubPlayer } = data;
+      setPlayer(getPlayer);
+      setSubPlayer(getSubPlayer);
     }
-  }, [data])
-
+  }, [data]);
 
   const moveItem = useCallback(
     (id, left, top, title) => {
@@ -91,11 +88,8 @@ function FormationPage() {
   }, [setPlayer, setSubPlayer]);
 
   const formationSave = useCallback(() => {
-    mutate({player, subPlayer});
+    mutate({ player, subPlayer });
   }, [mutate, player, subPlayer]);
-
-
-
 
   return (
     <>
@@ -116,7 +110,10 @@ function FormationPage() {
           ></FormationDrop>
         </div>
 
-        <FormationSaveLoad getQueryToggle={getQueryToggle}></FormationSaveLoad>
+        <FormationSaveLoad
+          
+          getQueryToggle={getQueryToggle}
+        ></FormationSaveLoad>
       </DndProvider>
     </>
   );

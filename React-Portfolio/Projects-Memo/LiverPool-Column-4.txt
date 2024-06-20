@@ -31,3 +31,7 @@ update(initialValue, {
 
 
 4. get 요청을 특정 데이터를 표현하고 싶다면 body를 사용하는 것이 아니라 쿼리 스트링을 사용해야 한다.
+
+
+5. sequelize로 sync를 사용해서 model을 기반으로 자동으로 테이블을 생성하려면 설정된 sequelize 변수에서 sync를 호출해야 한다.
+=> 그리고 model들을 server.js에서 require해야 한다.

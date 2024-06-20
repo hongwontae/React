@@ -4,7 +4,7 @@ export const startingMember = [
       top: 60,
       left: 5,
       title: "Alisson Becker",
-    },
+    },  
     {
       id: "sb",
       top: 60,
