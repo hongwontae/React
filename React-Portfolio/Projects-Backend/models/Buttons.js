@@ -1,21 +1,17 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const buttons = sequelize.define('buttons', {
+const Buttons = sequelize.define('buttons', {
     id : {
         type : Sequelize.DataTypes.INTEGER,
-        allowNull : true,
+        allowNull : false,
         primaryKey : true,
         autoIncrement : true
     },
-    countData : {
-        type : Sequelize.DataTypes.INTEGER,
-        allowNull : false,
-    },
     title : {
         type : Sequelize.DataTypes.STRING,
-        allowNull : false,
+        allowNull : true,
     }
 })
 
-module.exports = buttons;
+module.exports = Buttons;

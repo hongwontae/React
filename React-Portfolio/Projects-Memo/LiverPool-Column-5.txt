@@ -1,0 +1,2 @@
+1. original: Error: Incorrect column specifier for column 'id'
+=> autoIncrement을 사용했을 떄 int나 float 타입을 주어야 하는데 그렇게 하지 않았음

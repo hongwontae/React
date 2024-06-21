@@ -35,3 +35,27 @@ update(initialValue, {
 
 5. sequelize로 sync를 사용해서 model을 기반으로 자동으로 테이블을 생성하려면 설정된 sequelize 변수에서 sync를 호출해야 한다.
 => 그리고 model들을 server.js에서 require해야 한다.
+
+
+6. bulkCreate
+6-1. 배열 내에 여러 개의 객체 데이터를 한꺼번에 저장할 떄 매우 유용한 메서드이다.
+6-2. 테이블의 칼럼과 객체의 key가 일치하면 여러개의 객체를 간단히 DB에 INSERT한다.
+6-3. Message.bulkCreate(message).then((resulte)=>{res.status(500).json({message : 'Success!'})});
+
+
+7. Cannot set headers after they are sent to the client
+=> Node.js에서 요청에 대한 응답을 한꺼번에 두 번 보낼 떄 발생하는 에러이다.
+
+
+8. status Code
+1xx => 임시 응답
+2xx => 성공
+3xx => 리다이렉션, 완전한 처리를 위해서 추가 동작 필요
+3xx => 클라이언트 에러
+4xx => 서버 에러
+
+
+9. create
+9-1. 단일 레코드 저장 떄 사용하는 메서드
+9-2. 객체 형식을 가지는 key가 테이블의 column과 일치하면 저장된다.
+

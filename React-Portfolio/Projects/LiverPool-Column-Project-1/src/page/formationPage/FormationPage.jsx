@@ -4,7 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import FormationDrop from "../../components/formation/FormationDrop";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { formationPostQuery, formationGetOne } from "../../util/http";
+import { formationPostQuery, formationGetOne, test } from "../../util/http";
 import FormationButtons from "../../components/formation/FormationButtons";
 import FormationSaveLoad from "../../components/formation/FormationSaveLoad";
 import { startingMember, subMember } from "../../data/FormationData";
@@ -13,6 +13,7 @@ function FormationPage() {
   const [player, setPlayer] = useState(startingMember);
   const [subPlayer, setSubPlayer] = useState(subMember);
   const [query, setQuery] = useState({ isBoolean: false, iden: null });
+  const [buttons, setButtons] = useState([]);
 
   const { mutate } = useMutation({
     mutationFn: formationPostQuery,
@@ -26,7 +27,6 @@ function FormationPage() {
     },
     enabled: query.isBoolean,
   });
-
 
   function getQueryToggle(num) {
     setQuery({ isBoolean: true, iden: num });
@@ -88,8 +88,28 @@ function FormationPage() {
   }, [setPlayer, setSubPlayer]);
 
   const formationSave = useCallback(() => {
-    mutate({ player, subPlayer });
-  }, [mutate, player, subPlayer]);
+    const excludePlayer = player.map((ele) => {
+      return {
+        top: ele.top,
+        left: ele.left,
+        title: ele.title,
+      };
+    });
+    const excludeSubPlayer = subPlayer.map((ele) => {
+      return {
+        top: ele.top,
+        left: ele.left,
+        title: ele.title,
+      };
+    });
+    const excludeButtons = buttons.map((ele)=>{
+      return {
+        id : ele.id,
+        title : ele.title
+      } 
+    }) && [{id : 1 , title : 'Formation-1'}]
+    mutate({excludePlayer, excludeSubPlayer, excludeButtons });
+  }, [mutate, player, subPlayer, buttons]);
 
   return (
     <>
@@ -111,7 +131,7 @@ function FormationPage() {
         </div>
 
         <FormationSaveLoad
-          
+          buttons={buttons}
           getQueryToggle={getQueryToggle}
         ></FormationSaveLoad>
       </DndProvider>

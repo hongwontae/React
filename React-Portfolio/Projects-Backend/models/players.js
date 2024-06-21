@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const players = sequelize.define('players', {
+const Players = sequelize.define('players', {
     id : {
-        type : Sequelize.DataTypes.STRING,
+        type : Sequelize.DataTypes.INTEGER,
         primaryKey : true,
-        allowNull : false
+        allowNull : false,
+        autoIncrement : true
     },
     top : {
         type : Sequelize.DataTypes.INTEGER,
@@ -21,4 +22,4 @@ const players = sequelize.define('players', {
     }
 })
 
-module.exports = players
+module.exports = Players
