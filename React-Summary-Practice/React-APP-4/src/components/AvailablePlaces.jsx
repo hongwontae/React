@@ -5,6 +5,7 @@ import { fetchAvailablePlaces } from "../http.js";
 import { useFetch } from "../Hooks/useFetch.js";
 
 async function distanceCheckState(){
+  
   const data = await fetchAvailablePlaces();
 
   return new Promise((resolve, reject)=>{

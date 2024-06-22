@@ -7,7 +7,6 @@ exports.postFormation = (req, res, next) => {
 
   Players.bulkCreate(player)
     .then((result) => {
-      // res.json({ message: "Success Player Data!" });
     })
     .catch((err) => {
       console.log(err);
@@ -25,9 +24,8 @@ exports.postFormation = (req, res, next) => {
       })
     } else {
       const title = buttons[buttons.length-1].title;
-      console.log(title)
+    
       const num = Number(title.charAt(title.length-1))
-      console.log(num)
       Buttons.create({
         title : `Formation-${num+1}`
       })
@@ -39,4 +37,8 @@ exports.postFormation = (req, res, next) => {
 
 exports.getFormation = (req, res, next) => {};
 
-exports.getButton = () => {};
+exports.getButton = (req, res, next) => {
+  Buttons.findAll().then((data)=>{
+    return res.json(data)
+  }).then(data => console.log(data))
+};

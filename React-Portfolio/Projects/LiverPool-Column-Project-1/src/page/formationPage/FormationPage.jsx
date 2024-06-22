@@ -4,7 +4,11 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import FormationDrop from "../../components/formation/FormationDrop";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { formationPostQuery, formationGetOne, test } from "../../util/http";
+import {
+  formationPostQuery,
+  formationGetOne,
+  buttonAllGet,
+} from "../../util/http";
 import FormationButtons from "../../components/formation/FormationButtons";
 import FormationSaveLoad from "../../components/formation/FormationSaveLoad";
 import { startingMember, subMember } from "../../data/FormationData";
@@ -28,6 +32,13 @@ function FormationPage() {
     enabled: query.isBoolean,
   });
 
+  const {data : buttonData, isPending : buttonPending} = useQuery({
+    queryKey : ['buttons', buttons],
+    queryFn : ({signal})=>{
+      return buttonAllGet({signal});
+    }
+  })
+
   function getQueryToggle(num) {
     setQuery({ isBoolean: true, iden: num });
   }
@@ -38,7 +49,10 @@ function FormationPage() {
       setPlayer(getPlayer);
       setSubPlayer(getSubPlayer);
     }
-  }, [data]);
+    if(buttonData){
+      setButtons(buttonData)
+    }
+  }, [data, buttonData]);
 
   const moveItem = useCallback(
     (id, left, top, title) => {
@@ -102,13 +116,13 @@ function FormationPage() {
         title: ele.title,
       };
     });
-    const excludeButtons = buttons.map((ele)=>{
+    const excludeButtons = buttons.map((ele) => {
       return {
-        id : ele.id,
-        title : ele.title
-      } 
-    }) && [{id : 1 , title : 'Formation-1'}]
-    mutate({excludePlayer, excludeSubPlayer, excludeButtons });
+        id: ele.id,
+        title: ele.title,
+      };
+    }) && [{ id: 1, title: "Formation-1" }];
+    mutate({ excludePlayer, excludeSubPlayer, excludeButtons });
   }, [mutate, player, subPlayer, buttons]);
 
   return (
