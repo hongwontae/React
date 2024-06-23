@@ -3,6 +3,8 @@ import { forwardRef } from "react";
 import FormationDrag from "./FormationDrag";
 
 const FormationSubDrag = forwardRef(function FormationSubDrag({subPlayer}, drop) {
+
+
   return (
     <>
       <div
@@ -18,6 +20,7 @@ const FormationSubDrag = forwardRef(function FormationSubDrag({subPlayer}, drop)
               left={ele.left}
               top={ele.top}
               title={ele.title}
+              sub={ele.sub}
               oneColor={'bg-indigo-500'}
             ></FormationDrag>
           );

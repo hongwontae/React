@@ -5,11 +5,9 @@ const path = require("path");
 
 const sequelize = require("../util/database");
 
-const playersModel = require("../models/players");
-const subPlayerModel = require("../models/subPlayers");
-const buttonssModel = require("../models/buttons");
 
 const formationRoute = require("../router/FormationRoute");
+const buttonRoute = require('../router/ButtonRoute')
 
 const app = express();
 app.use(cors());
@@ -17,6 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "models")));
 
 app.use("/for", formationRoute);
+app.use('/but',buttonRoute )
 
 
 sequelize.sync().then(()=>{

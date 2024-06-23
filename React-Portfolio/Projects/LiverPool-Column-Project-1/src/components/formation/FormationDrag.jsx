@@ -5,11 +5,11 @@
 import { useDrag } from "react-dnd";
 import { formation } from "./FormationKey";
 
-function FormationDrag({ id, left, top, children, title, oneColor }) {
+function FormationDrag({ id, left, top, children, title, oneColor, sub }) {
   const [isDragging, drag, preview] = useDrag(
     {
       type: formation.key,
-      item: { id, left, top, title },
+      item: { id, left, top, title, sub },
       collect: (monitor) => {
         isDragging: monitor.isDragging();
       },

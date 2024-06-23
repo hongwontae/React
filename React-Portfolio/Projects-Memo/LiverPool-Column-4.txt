@@ -59,3 +59,8 @@ update(initialValue, {
 9-1. 단일 레코드 저장 떄 사용하는 메서드
 9-2. 객체 형식을 가지는 key가 테이블의 column과 일치하면 저장된다.
 
+
+10. queryClient.invalidateQueries
+=> 인자에 해당하는 키를 무효화하여 다시 가져오도록 하는 메서드
+=> stale 상태가 된다.
+

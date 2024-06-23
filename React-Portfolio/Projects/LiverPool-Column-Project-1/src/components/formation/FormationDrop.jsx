@@ -15,11 +15,11 @@ function FormationDrop({ moveItem, player, subPlayer, moveSubItem }) {
         const distance = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + distance.x);
         const top = Math.round(item.top + distance.y);
-        const firstStringId = item.id[0];
-        if (firstStringId === "s") {
-          moveItem(item.id, left, top, item.title);
+        const firstStringId = item.sub === 'y';
+        if (firstStringId) {
+          moveSubItem(item.id, left, top, item.title, item.sub);
         } else {
-          moveSubItem(item.id, left, top, item.title);
+          moveItem(item.id, left, top, item.title);
         }
         return undefined;
       },
@@ -27,7 +27,7 @@ function FormationDrop({ moveItem, player, subPlayer, moveSubItem }) {
     [moveItem]
   );
 
-
+  
   return (
     <>
       <div
