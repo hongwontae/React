@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-function FormationTopButton({ resetPlayer, resetSubPlayer, allReset, save }) {
+function FormationTopButton({ resetPlayer, resetSubPlayer, allReset, deleteData, saveOpenHandler }) {
   const CssButton = "border-[1px] p-[0.1rem] bg-red-600 rounded-sm";
 
   return (
@@ -14,7 +15,11 @@ function FormationTopButton({ resetPlayer, resetSubPlayer, allReset, save }) {
         <button className={CssButton} onClick={allReset}>
           All-Reset
         </button>
-        <button className={CssButton} onClick={save}>Save</button>
+        <button className={CssButton} onClick={saveOpenHandler}>Save</button>
+
+
+        <button className={CssButton} onClick={deleteData}>delete</button>
+
       </div>
     </>
   );

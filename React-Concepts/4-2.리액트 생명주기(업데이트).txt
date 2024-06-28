@@ -1,0 +1,4 @@
+업데이트
+
+1. static getDerivedStateFromProps(nextProps, prevState)
+1-1. 

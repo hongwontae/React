@@ -1,0 +1,15 @@
+1. 리액트 엘리먼트
+1-1. React 애플리케이션에서 UI를 구성하는 가상의 요소를 의미한다.
+
+1-2. 특징
+1. 가상 DOM에 대응하는 객체 : 실제 DOM 노드가 아닌, React가 관리하는 가상 DOM에 대응하는 JS 객체이다.
+2. JSX로 생성 : JSX 문법으로 생성된다./ JSX는 React.createElement('div', null 'Hello, World!')같이 변환된다.
+3. 트리 구조로 구성된다. => 하나의 엘리먼트는 자식 엘리먼트를 가질 수 있다.
+4. 불변성 : 리액트 엘리먼트는 한 번 생성되면 수정할 수 없는 불변 객체이다. 엘리먼트가 변경되면 새로운 엘리먼트가 생성된다.
+
+
+3. React.createElement();
+3-1. JSX의 각 태그마다 React.createElement()를 호출해서 리액트 엘리먼트로 변환한다.
+3-2. JSX가 변경되면 React.createElement()를 호출한다. => 새롭게 만들어진 JSX와 함께 새로운 Virtual DOM이 생성된다.
+3-3. 기존의 Virtual dom과 새롭게 만들어진 virtual dom을 비교하여 필요한 변경사항을 파악하고 최적의 업데이트 전략을 결정한다.
+=> 변경이 필요한 부분만 실제 DOM에 반영된다.

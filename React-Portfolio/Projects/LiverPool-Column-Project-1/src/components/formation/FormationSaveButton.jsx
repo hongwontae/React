@@ -1,7 +1,7 @@
 import React from "react";
 
 /* eslint-disable react/prop-types */
-function FormationSaveButton({ buttons, pending }) {
+function FormationSaveButton({ buttons, pending, setForQuery }) {
   let content;
 
   if (pending) {
@@ -24,9 +24,14 @@ function FormationSaveButton({ buttons, pending }) {
     content = (
       <>
         {buttons.map((ele) => {
+          if(ele.title === 'delete'){
+            return;
+          }
           return (
             <React.Fragment key={ele.id}>
-              <button className="bg-rose-800 border-[1px] p-[0.14rem] rounded-lg">
+              <button onClick={()=>{
+                return setForQuery({queryBol : true, identi : ele.id})
+              }} className="bg-rose-800 border-[1px] p-[0.14rem] rounded-lg">
                 {ele.title}
               </button>
             </React.Fragment>

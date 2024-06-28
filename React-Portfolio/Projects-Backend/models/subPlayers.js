@@ -19,6 +19,10 @@ const subplayers = sequelize.define('subplayers', {
     title : {
         type : Sequelize.DataTypes.STRING,
         allowNull : false
+    },
+    sub : {
+        type : Sequelize.DataTypes.STRING,
+        allowNull : false
     }
 })
 

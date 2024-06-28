@@ -16,7 +16,7 @@ export async function formationPostQuery(data) {
   }
 
   const resData = await formationPostFetch.json();
-  console.log(resData);
+  return resData
 }
 
 export async function buttonPostQuery(data){
@@ -52,6 +52,7 @@ export async function formationGetOne({ signal, identi }) {
 }
 
 export async function buttonAllGet({ signal }) {
+  console.log('buttonAll get')
   const response = await fetch("http://localhost:4000/but/getAll", {
     signal,
   });
@@ -59,6 +60,21 @@ export async function buttonAllGet({ signal }) {
     throw new Error("Error 발생");
   }
   const resData = await response.json();
+  return resData
+}
+
+export async function dataDelete(num){
+  const url = `http://localhost:4000/for/dele?data=${num}`
+  const response = await fetch(url, {
+    method : 'DELETE'
+  });
+  if(!response.ok){
+    throw new Error('Error 발생 했습니다.')
+  }
+
+  const resData = await response.json();
   console.log(resData)
   return resData
+
+
 }

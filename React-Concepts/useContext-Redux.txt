@@ -1,3 +1,0 @@
-1. context는 props.drilling을 해결하기 위해 존재한다.
-
-2. context와 Redux의 상태를 받은 컴포넌트들은 모두 같은 상태값을 가진다.
