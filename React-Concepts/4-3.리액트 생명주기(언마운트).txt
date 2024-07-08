@@ -1,0 +1,5 @@
+UnMount
+
+1. componentWillUnmount()
+=> 컴포넌트가 DOM에서 제거되기 직전에 호출된다.
+=> useEffect(()=>{return ()=>{...}}, []);의 clean-up 함수와 비슷하다.

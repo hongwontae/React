@@ -1,4 +1,28 @@
 업데이트
 
-1. static getDerivedStateFromProps(nextProps, prevState)
-1-1. 
+1. static getDerivedStateFromProps(nextProps, prevState) (업데이트 될 떄 props가 변경될 떄 호출된다.)
+=> 새로운 props 값이 되었을 떄 호출되어서 새로운 props를 return 한다.
+
+(setState로 내려준 props가 변경된게 아니라면 1을 생략하고 2부터 간다.)
+
+2. shouldComponentUpdate(nextProps, nextState) {...}
+=> render가 호출되기 전에 업데이트될지 여부를 결정하는 메서드이다.
+=> nextProps는 컴포넌트가 다음 업데이트에서 받게 될 새로운 props
+=> nextState는 컴포넌트가 다음 업데이트 주기에서 가지게 될 새로운 state
+
+
+3. render
+
+
+4. getSnapshotBeforeUpdate(prevProps, prevState)
+4-1. 가상 DOM 업데이트 직전에 호출된다.
+4-2. 이전 props와 이전 state을 인자로 받는다.
+4-3. 해당 메서드의 호출 값은 componentDidUpdate()에서만 접근가능하다.
+4-4. return 값은 SnapShot을 반환하고 이를 componentDidUpdate의 3번 쨰 인자에서 받을 수 있다.
+
+
+5. componentDidUpdate(prevProps, prevState, snapshot)
+5-1. 업데이트가 완료된 다음에 호출된다.
+
+
+
