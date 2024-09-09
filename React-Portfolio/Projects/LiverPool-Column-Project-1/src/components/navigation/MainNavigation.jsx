@@ -20,13 +20,35 @@ function MainNavigation() {
             </li>
             <li className={classes.list}>
               <NavLink
-                to={"formation"}
+                to={"/play-result"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}
                 end
               >
-                FormationPage
+                Play-Result
+              </NavLink>
+            </li>
+            <li className={classes.list}>
+              <NavLink
+                to={"/play-result-form"}
+                className={({ isActive }) => {
+                  return isActive ? classes.active : null;
+                }}
+                end
+              >
+                Play-Result-Form
+              </NavLink>
+            </li>
+            <li className={classes.list}>
+              <NavLink
+                to={"/player-rating"}
+                className={({ isActive }) => {
+                  return isActive ? classes.active : null;
+                }}
+                end
+              >
+                Player-Rating
               </NavLink>
             </li>
           </ul>

@@ -22,7 +22,7 @@
 4. Navigation Component
 4-1. TailWind와 css module를 사용
 4-2. NavLink의 className은 함수를 받아서 사용해야 하기 떄문에 module를 이용해서 li의 자식 a를 target 하여 적용
-4-3. max-width, m-auto => 최대 길이를 설정 + margin-auto를 통해 부모 container  가운데 위치
+4-3. max-width, m-auto => 최대 길이를 설정 + margin-auto를 통해 부모 container 가운데 위치
 4-4. flex, justify-center을 통해 부모 직접적 자식 중앙 배치 + fontSize 적용
 4-5. ul => flex + gap-6를 통해 row배치 gap으로 동일한 간격 배치
 

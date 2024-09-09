@@ -1,6 +1,16 @@
 *** 제일 중요한 것은 createContext 객체, provider의 객체의 key의 이름이 모두 동일해야 한다. ***
 *** useContext를 사용하는 이유는 props drilling(props를 전달하기 번거롭기) 때문이다. ***
-*** useContext를 가져올 떄는 모든 상태값이 동일하다. ***
+*** Context-API는 상태값을 공유한다. ***
+
+*** Context API는 Provider의 상위 컴포넌트(ContextProvider는 Context.Provider를 return)
+가 덮여진 컴포넌트들은 구독해서 상태를 가져올 수 있다. ***
+*** Context API에서 구독이란? => useContext를 사용해서 값을 가져왔을 떄 구독된다. ***
+
+*** 구독한 컴포넌트들 중 하나의 상태라도 변경되면 관련이 없는 컴포넌트라도 전체 구독 컴포넌트가 리렌더링된다. ***
+*** 이를 피하기 위해서 ContextProvider를 여러 개 생성해서 저장소를 여러 개 만들고 쓸데없는 리렌더링을 피할 수 있게 한다. ***1
+
+*** provider를 return하는 함수는 애플리케이션이 최초로 렌더링될 떄 실행된다. ***
+=> 그렇기 떄문에 useEffect를 사용할 수 있다.
 
 
 1. createContext 생성 후 variable export

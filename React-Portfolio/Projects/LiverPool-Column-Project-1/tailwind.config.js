@@ -7,7 +7,8 @@ export default {
         customFontSize : '1.1rem' 
       },
       fontFamily : {
-        roboto : ['Roboto', 'sans-serif']
+        roboto : ['Roboto', 'sans-serif'],
+        'Bebas Neue' : ['Bebas Neue', 'sans-serif']
       },
     },
   },

@@ -13,7 +13,7 @@ function HomePage() {
         <h1 className="text-6xl font-bold text-red-500 m-0">
           LiverPool Column
         </h1>
-        <img className="w-[70px] h-[70px] object-cover" src={LiverPoolIcon}></img>
+        <img className="w-[80px] h-[80px] object-cover" src={LiverPoolIcon}></img>
       </div>
 
       <div className="mt-5">
