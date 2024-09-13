@@ -1,8 +1,27 @@
 const playResult = require("../model/play-result");
 
 exports.getAllResult = async (req, res, next) => {
-  const allData = await playResult.findAll();
-  return res.json(allData);
+
+  const page = +req.query.page
+
+  const limit = 4;
+  const offset = (page-1)*4;
+
+
+  try {
+    const {count, rows} = await playResult.findAndCountAll({
+      limit,
+      offset
+    })
+    return res.json({
+      items : rows,
+      currentPage: page,
+      totalPages : Math.ceil(count/limit),
+      totalItemsCount : count
+    })
+  } catch (error) {
+    console.log('pagination Error');
+  }
 };
 
 exports.getOneResult = async (req, res, next) => {

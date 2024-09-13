@@ -8,7 +8,7 @@ const playResult = sequelize.define('play_result', {
         allowNull : false,
         autoIncrement : true
     },
-    title : {
+    title : {   
         type : Sequelize.DataTypes.STRING,
         allowNull : false
     },

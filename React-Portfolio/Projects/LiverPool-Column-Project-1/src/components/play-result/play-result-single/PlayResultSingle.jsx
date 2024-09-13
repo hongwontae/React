@@ -16,12 +16,12 @@ function PlayResultSingle(props) {
 
   return (
     <>
-      <div className="w-11/12 border-[1px] rounded-lg">
+      <div className="w-10/12 border-[1px] rounded-lg">
         <Link
           to={`/play-result/${props.id}`}
           className="flex flex-col items-center"
         >
-          <li className=" p-4 flex items-center  gap-4 w-full h-[12rem]">
+          <li className=" p-4 flex items-center  gap-4 w-full h-[10rem]">
             <img
               src={`http://localhost:5000/${props.imagePath}`}
               alt={props.imagePath}

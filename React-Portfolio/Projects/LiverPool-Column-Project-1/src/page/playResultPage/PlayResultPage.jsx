@@ -2,6 +2,7 @@
 import { useLoaderData } from "react-router";
 import PlayResultContainer from "../../components/play-result/play-result-container/PlayResultContainer";
 import { useEffect } from "react";
+import Pagination from "../../components/play-result/Pagination";
 
 function PlayResultPage(){
 
@@ -13,7 +14,9 @@ function PlayResultPage(){
 
     return(
         <>
-            <PlayResultContainer allData={data}></PlayResultContainer>
+            <PlayResultContainer allData={data.items}></PlayResultContainer>
+            <Pagination totalPage={data.totalPages}></Pagination>
+            
         </>
     )
 }
@@ -21,7 +24,11 @@ function PlayResultPage(){
 export default PlayResultPage;
 
 export async function prLoader({request, params}) {
-    const response = await fetch('http://localhost:5000/get/prall');
+
+    const url = new URL(request.url);
+    const page = url.searchParams.get('page') || 1;
+
+    const response = await fetch(`http://localhost:5000/get/prall?page=${page}`);
 
     if(!response.ok){
         throw new Error('Failed Data');

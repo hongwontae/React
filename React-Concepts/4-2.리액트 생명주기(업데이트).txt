@@ -1,4 +1,4 @@
-업데이트
+ㅂ업데이트
 
 1. static getDerivedStateFromProps(nextProps, prevState) (업데이트 될 떄 props가 변경될 떄 호출된다.)
 => 새로운 props 값이 되었을 떄 호출되어서 새로운 props를 return 한다.

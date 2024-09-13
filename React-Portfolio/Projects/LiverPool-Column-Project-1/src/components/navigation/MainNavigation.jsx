@@ -1,10 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
+import { useContext } from "react";
+import { PageCtx } from "../../context/PageContext";
+
 function MainNavigation() {
+  const { isAuth } = useContext(PageCtx);
+
   return (
     <>
-      <header className="max-w-5xl m-auto p-8 flex justify-center text-customFontSize ">
+      <header className="w-3/4 m-auto p-8 flex justify-center text-customFontSize">
         <nav>
           <ul className={`flex gap-7 `}>
             <li className={classes.list}>
@@ -20,7 +26,7 @@ function MainNavigation() {
             </li>
             <li className={classes.list}>
               <NavLink
-                to={"/play-result"}
+                to={"/play-result?page=1"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}
@@ -51,6 +57,19 @@ function MainNavigation() {
                 Player-Rating
               </NavLink>
             </li>
+            {isAuth ? null : (
+              <li className={classes.list}>
+                <NavLink
+                  to={"/login"}
+                  className={({ isActive }) => {
+                    return isActive ? classes.active : null;
+                  }}
+                  end
+                >
+                  Admin-Login
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
       </header>
