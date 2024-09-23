@@ -1,14 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
-import { useLoaderData, useLocation } from "react-router";
+import { useContext, useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router";
+import { PageCtx } from "../../../context/PageContext";
 
 function PlayResult() {
   const data = useLoaderData();
 
+  const navigate = useNavigate();
+
+  const { isAuth } = useContext(PageCtx);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
 
   const propsDate = new Date(data.date);
 
@@ -21,6 +25,18 @@ function PlayResult() {
 
   const newFormattedDate = formattedDate.format(propsDate);
 
+  function modifierHandler(){
+    const modiData = {
+      title : data.title,
+      date : newFormattedDate,
+      matchTeam : data.matchTeam,
+      result : data.playResult,
+      description : data.description
+      
+    }
+    navigate('/modifier', {state : {data : modiData}})
+  }
+
   return (
     <>
       <div className="flex justify-center mb-4">
@@ -32,17 +48,29 @@ function PlayResult() {
               src={`http://localhost:5000/${data.imagePath}`}
               alt={data.imagePath}
             ></img>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 ">
               <div className="text-red-700 font-bold text-2xl">Summary</div>
               <div className="flex flex-col gap-4 border-[1px] p-6 rounded-lg text-red-500">
                 <div>{newFormattedDate}</div>
                 <div>리버풀 vs {data.matchTeam}</div>
                 <div>{data.playResult}</div>
               </div>
+              {isAuth ? (
+                <div className="flex justify-center gap-4 mt-8">
+                  <button className="border-[1px] p-1 rounded-md" onClick={modifierHandler}>
+                    Modify
+                  </button>
+                  <button className="border-[1px] p-1 rounded-md">
+                    Delete
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
 
-          <p className="max-w-2xl text-left whitespace-pre-wrap">{data.description}</p>
+          <p className="max-w-2xl text-left whitespace-pre-wrap">
+            {data.description}
+          </p>
         </div>
       </div>
     </>

@@ -5,22 +5,22 @@ import LiverPooolGoalKeeper from "../assets/images/liverpool-homepage-pirctures/
 import LiverPoolWinPicture from "../assets/images/liverpool-homepage-pirctures/LiverPool-WinPicture.jpg";
 export const liverpoolArr  = [
     {
-        id : 1,
+        id : 'd1',
         imagePath : LiverPoolLogo,
         alt : 'LiverPool Logo'
     },
     {
-        id : 2,
+        id : 'd2',
         imagePath : LiverPoolAudience,
         alt : '리버풀 관중들'
     },
     {
-        id : 1,
+        id : 'd3',
         imagePath : LiverPooolGoalKeeper,
         alt : '리버풀 골키퍼들'
     },
     {
-        id : 1,
+        id : 'd4',
         imagePath : LiverPoolWinPicture,
         alt : '리버풀 승리의 순간'
     },

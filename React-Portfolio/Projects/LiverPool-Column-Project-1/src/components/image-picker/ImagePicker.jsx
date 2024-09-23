@@ -3,7 +3,12 @@
 import { useRef } from "react";
 import classes from "./ImagePicker.module.css";
 
-function ImagePicker({ previewImage, setPreviewImage, setPickImage }) {
+function ImagePicker({
+  previewImage,
+  setPreviewImage,
+  setPickImage,
+  notification,
+}) {
   const imageInputRef = useRef(null);
 
   function imageHandler() {
@@ -31,13 +36,22 @@ function ImagePicker({ previewImage, setPreviewImage, setPickImage }) {
     setPickImage(e.target.files[0]);
   }
 
+  //notification
+
   return (
     <>
       <div className={classes.picker}>
         <label>Image Picker</label>
         <div className={classes.control}>
           <div className={classes.preview}>
-            {!previewImage && <p>No Image picked yet</p>}
+            {!previewImage && (
+              <>
+                <div className="flex flex-col gap-4 justify-center items-center">
+                  <div>No Image picked yet</div>
+                  <div>{notification || null}</div>
+                </div>
+              </>
+            )}
             {previewImage && (
               <img
                 src={previewImage}

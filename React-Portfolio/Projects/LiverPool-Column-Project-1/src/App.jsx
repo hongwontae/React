@@ -14,6 +14,7 @@ import { prAction } from "./components/play-result-form/PlayResultForm";
 import LoginPage from "./page/LoginPage/LoginPage";
 import { loginAction } from "./components/login/LoginForm";
 import PageContextProvider from "./context/PageContext";
+import ModifierPage from "./page/modifierPage/ModifierPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +23,7 @@ function App() {
       element: <Layout></Layout>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [
-        { index: true, element: <HomePage></HomePage> },
+        { index: true, element: <HomePage></HomePage>},
         {
           path: "/play-result",
           element: <PlayResultPage></PlayResultPage>,
@@ -47,6 +48,10 @@ function App() {
           element: <LoginPage></LoginPage>,
           action: loginAction,
         },
+        {
+          path : '/modifier',
+          element : <ModifierPage></ModifierPage>
+        }
       ],
     },
   ]);

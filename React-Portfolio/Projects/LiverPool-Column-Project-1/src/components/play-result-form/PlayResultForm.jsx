@@ -18,6 +18,8 @@ function PlayResultFormPage() {
 
   const submit = useSubmit();
 
+  console.log(previewImage)
+
   function submitHandler(e) {
     e.preventDefault();
     const formData = new FormData(e.target);

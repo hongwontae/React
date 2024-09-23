@@ -6,22 +6,22 @@ import LiverPoolCarabaoCup from '../assets/images/liverpool-hompage-tropies/Live
 
 export const tropiesImageArr = [
     {
-        id : 1,
+        id : 'e1',
         alt : '리버풀 챔스 우승 사진',
         imagePath : LiverPoolChampionsCup
     },
     {
-        id : 2,
+        id : 'e2',
         alt : '리버풀 리그 우승 사진',
         imagePath : LiverPoolPremierLeagueCup
     },
     {
-        id : 3,
+        id : 'e3',
         alt : '리버풀 FA-Cup 우승 사진',
         imagePath : LiverPoolFACup
     },
     {
-        id : 4,
+        id : 'e4',
         alt : '리버풀 카라바오 컵 우승 사진',
         imagePath : LiverPoolCarabaoCup
     },

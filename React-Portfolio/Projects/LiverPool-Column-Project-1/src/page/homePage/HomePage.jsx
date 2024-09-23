@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import HomeAllButton from "../../components/home/home-section/HomeAllButton";
 import HomeSubButton from "../../components/home/home-section/HomeSubButton";
 import LiverPoolIcon from "../../assets/images/liverpool-homepage-pirctures/LiverPool-Icon.png";
-
 function HomePage() {
   return (
     <>

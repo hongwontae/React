@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import Logout from "../login/Logout";
 import { PageCtx } from "../../context/PageContext";
 
 function MainNavigation() {
-  const { isAuth } = useContext(PageCtx);
+
+  const {isAuth} = useContext(PageCtx)
+
 
   return (
     <>
@@ -70,6 +73,7 @@ function MainNavigation() {
                 </NavLink>
               </li>
             )}
+            {isAuth ? <Logout></Logout> : null}
           </ul>
         </nav>
       </header>

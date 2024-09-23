@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 const SelectSegment = function SelectSegment({ setSelectedData, selectedData }) {
   return (

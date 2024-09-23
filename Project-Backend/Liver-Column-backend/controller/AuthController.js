@@ -29,14 +29,15 @@ exports.authentication = async (req, res, next) => {
     }
 
     const token = JWT.sign(
-      { email: matchUser.email, password: matchUser.password },
+      { email: matchUser.email, password: matchUser.password},
       SK
     );
 
     res.cookie('token', token,{
         httpOnly : true,
         secure : true,
-        // sameSite : 'None'
+        // sameSite : 'None',
+        maxAge : 3600000
     })
 
     return res
@@ -50,3 +51,13 @@ exports.authentication = async (req, res, next) => {
     return next(error);
   }
 };
+
+exports.authLogout = (req, res, next)=>{
+  console.log('authLogioutController')
+
+  res.clearCookie('token', {
+    httpOnly : true,
+    sucure : true,
+  })
+  return res.json({message : 'Cookie Clear'})
+}

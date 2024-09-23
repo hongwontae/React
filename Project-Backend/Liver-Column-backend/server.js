@@ -45,6 +45,7 @@ app.use("/admin", AdmintRouter);
 app.use("/auth", AuthRouter);
 
 app.use('/auth/single/check', isAuth);
+app.use('/auth/single', AuthRouter )
 
 app.use((errors, req, res, next) => {
   console.log(errors);

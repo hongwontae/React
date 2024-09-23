@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useId, useRef } from "react";
+import { useContext, useEffect, useId, useRef } from "react";
 import { Form, redirect, useActionData, useSubmit } from "react-router-dom";
+import { PageCtx } from "../../context/PageContext";
 
 function LoginForm() {
   const id1 = useId();
@@ -9,6 +10,9 @@ function LoginForm() {
   const passwordRef = useRef(null);
 
   const submit = useSubmit();
+
+  const {loginHandler} = useContext(PageCtx);
+
 
 
 
@@ -21,6 +25,8 @@ function LoginForm() {
     const formData = new FormData(e.target);
 
     submit(formData, { method: "POST", action: "/login" });
+    loginHandler()
+    
   }
 
   function cancelHandler() {
@@ -99,7 +105,6 @@ export async function loginAction({ request, params }) {
   if(resData?.message === 'Login Success'){
     return redirect('/')
   } else {
-    console.log(resData)
     return { message: "action trigger", data: resData };
   }
 
