@@ -31,6 +31,14 @@ const playResult = sequelize.define('play_result', {
     playResult : {
         type : Sequelize.DataTypes.STRING,
         allowNull : false
+    },
+    myResult : {
+        type : Sequelize.DataTypes.STRING,
+        allowNull : false
+    },
+    opResult : {
+        type : Sequelize.DataTypes.STRING,
+        allowNull : false
     }
 });
 

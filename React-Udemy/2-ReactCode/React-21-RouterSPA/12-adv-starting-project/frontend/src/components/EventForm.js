@@ -11,7 +11,6 @@ import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
   const data = useActionData();
-  console.log(data)
   const navigate = useNavigate();
   const navigation = useNavigation();
 

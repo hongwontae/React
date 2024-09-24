@@ -5,7 +5,6 @@ import { PageCtx } from "../../../context/PageContext";
 
 function PlayResult() {
   const data = useLoaderData();
-
   const navigate = useNavigate();
 
   const { isAuth } = useContext(PageCtx);
@@ -26,15 +25,7 @@ function PlayResult() {
   const newFormattedDate = formattedDate.format(propsDate);
 
   function modifierHandler(){
-    const modiData = {
-      title : data.title,
-      date : newFormattedDate,
-      matchTeam : data.matchTeam,
-      result : data.playResult,
-      description : data.description
-      
-    }
-    navigate('/modifier', {state : {data : modiData}})
+    navigate(`/modifier/${data.id}`)
   }
 
   return (

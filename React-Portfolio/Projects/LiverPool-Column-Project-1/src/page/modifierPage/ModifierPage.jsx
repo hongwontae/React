@@ -1,66 +1,51 @@
-import { Form, useLocation } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { Form, redirect, useLoaderData, useSubmit } from "react-router-dom";
 import ImagePicker from "../../components/image-picker/ImagePicker";
-import { useState } from "react";
-import SelectSegment from "../../components/play-result-form/SelectSegment";
-import {
-  dateDataFormatted,
-  matchResultDivide,
-} from "../../util/modifier-function";
+import { useEffect, useRef, useState } from "react";
+import ModifierSelectSegment from "../../components/play-result-form/ModifierSelectSegment";
 
 function ModifierPage() {
-  const { state } = useLocation();
-
   const [previewImage, setPreviewImage] = useState(null);
   const [pickImage, setPickImage] = useState(null);
 
-  const dateData = dateDataFormatted(state.data.date);
+  const submit = useSubmit();
+  const previousData = useLoaderData();
 
-  const resultData = matchResultDivide(state.data.result);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const matchTeamRef = useRef(null);
+  const matchDayRef = useRef(null);
+  const myResultRef = useRef(null);
+  const opResultRef = useRef(null);
 
-  const [prevData, setPrevData] = useState({
-    title: state.data.title,
-    description: state.data.description,
-    matchday: dateData,
-    matchTeam: state.data.matchTeam,
-    myResult: resultData[0],
-    opResult: resultData[1],
-  });
-
-  function matchmodiHandler(e) {
-    setPrevData((prev) => {
-      return {
-        ...prev,
-        matchTeam: e,
-      };
-    });
+  function resetHandler() {
+    titleRef.current.value = "";
+    matchTeamRef.current.value = "";
+    matchDayRef.current.value = null;
+    myResultRef.current.value = null;
+    opResultRef.current.value = null;
   }
 
-  function onChangeUtil(e, iden, setFunc) {
-    setFunc((prev) => {
-      return {
-        ...prev,
-        [iden]: e.target.value,
-      };
-    });
-  }
+  function actionHandler(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    formData.append("image", pickImage);
 
-  function resetHander(){
-    setPrevData({
-        title : '',
-        description : '',
-        matchday : '',
-        matchTeam : '',
-        myResult : '',
-        opResult : ''
-    })
-    setPickImage(null)
-    setPreviewImage(null)
+    submit(formData, {
+      action: `/modifier/${previousData.data.id}`,
+      encType: "multipart/form-data",
+      method: "POST",
+    });
   }
 
   return (
     <>
       <h1 className="text-2xl font-extralight mb-4">Modifier Page</h1>
-      <Form className="border-[1px] p-4 w-8/12 rounded-lg bg-red-20 m-auto mb-8">
+      <Form
+        onSubmit={actionHandler}
+        method="POST"
+        className="border-[1px] p-4 w-8/12 rounded-lg bg-red-20 m-auto mb-8"
+      >
         <div className="flex flex-col items-center gap-6">
           <div className="flex gap-2 w-full justify-center">
             <label htmlFor="title">Title</label>
@@ -68,12 +53,10 @@ function ModifierPage() {
               type="text"
               id="title"
               name="title"
-              value={prevData.title}
-              onChange={(e) => {
-                onChangeUtil(e, "title", setPrevData);
-              }}
               className="text-black text-center rounded-sm w-2/4 p-1"
               required
+              defaultValue={previousData && previousData.data.title}
+              ref={titleRef}
             ></input>
           </div>
           <div className="flex flex-col gap-2 w-full items-center">
@@ -84,16 +67,14 @@ function ModifierPage() {
               name="description"
               className="w-11/12 h-[20rem] text-black text-center rounded-lg p-2 bg-slate-400"
               required
-              value={prevData.description}
-              onChange={(e) => {
-                onChangeUtil(e, "description", setPrevData);
-              }}
+              ref={descriptionRef}
+              defaultValue={previousData && previousData.data.description}
             ></textarea>
           </div>
-          <SelectSegment
-            selectedData={prevData.matchTeam}
-            setSelectedData={matchmodiHandler}
-          ></SelectSegment>
+          <ModifierSelectSegment
+            defaultValue={previousData && previousData.data.matchTeam}
+            ref={matchTeamRef}
+          ></ModifierSelectSegment>
 
           <div className="flex gap-2">
             <label htmlFor="matchDay">Match Day</label>
@@ -102,42 +83,40 @@ function ModifierPage() {
               id="matchDay"
               name="matchDay"
               className="text-black rounded-sm"
+              defaultValue={previousData && previousData.realDate}
               required
-              value={prevData.matchday}
-              onChange={(e) => {
-                onChangeUtil(e, "matchday", setPrevData);
-              }}
+              ref={matchDayRef}
             ></input>
           </div>
           <div className="flex flex-col">
             <label htmlFor="playResult">Score</label>
             <div className="flex gap-4">
-              <div className="flex gap-2">
+              <div className="flex gap-2 h-10">
                 <label>My Team Score</label>
                 <input
                   type="number"
                   id="playResult"
-                  name="playResult"
+                  name="myResult"
                   required
                   className="text-black text-center rounded-sm"
-                  value={prevData.myResult}
-                  onChange={(e) => {
-                    onChangeUtil(e, "myResult", setPrevData);
-                  }}
+                  defaultValue={
+                    previousData && Number(previousData.data.myResult)
+                  }
+                  ref={myResultRef}
                 ></input>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 h-10">
                 <label htmlFor="op">Opposing Team Score</label>
                 <input
                   type="number"
                   className="text-black text-center rounded-sm"
                   id="op"
-                  name="op"
+                  name="opResult"
                   required
-                  value={prevData.opResult}
-                  onChange={(e) => {
-                    onChangeUtil(e, "opResult", setPrevData);
-                  }}
+                  defaultValue={
+                    previousData && Number(previousData.data.opResult)
+                  }
+                  ref={opResultRef}
                 ></input>
               </div>
             </div>
@@ -154,8 +133,16 @@ function ModifierPage() {
             ></ImagePicker>
           </div>
           <div className="flex justify-center gap-6">
-            <button className="border-[1px] p-1 rounded-lg" onClick={resetHander}>Reset</button>
-            <button className="border-[1px] p-1 rounded-lg">Save</button>
+            <button
+              onClick={resetHandler}
+              type="button"
+              className="border-[1px] p-1 rounded-lg"
+            >
+              Reset
+            </button>
+            <button type="submit" className="border-[1px] p-1 rounded-lg">
+              Save
+            </button>
           </div>
         </div>
       </Form>
@@ -165,6 +152,34 @@ function ModifierPage() {
 
 export default ModifierPage;
 
-async function action({params, request}) {
-    
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  console.log(params.id)
+
+  const response = await fetch(`http://localhost:5000/act/modi/ud/${params.id}`,{
+    method : 'POST',
+    body : formData
+  })
+
+  if(!response.ok){
+    throw new Error('요청 실패')
+  }
+
+  const resData = await response.json();
+
+  console.log(resData)
+  
+  return redirect('/play-result')
+
+}
+
+export async function loader({ request, params }) {
+  const response = await fetch(`http://localhost:5000/modify/md/${params.id}`);
+
+  if (!response.ok) {
+    throw new Error("요청 중 에러");
+  }
+
+  const resData = await response.json();
+  return resData;
 }

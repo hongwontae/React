@@ -20,9 +20,9 @@ module.exports = (req, res, next) => {
       return res.json({ status: false, message: "토큰 유효성 검사 실패" });
     }
 
-    if(req.body.iden === 'logout'){
-      console.log('here?')
-      next()
+    if(req.body.iden === 'logout' || req.body.iden === 'modify'){
+      console.log(req.body.iden)
+      next();
     }
 
     console.log('???')

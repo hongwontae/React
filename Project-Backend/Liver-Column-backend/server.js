@@ -41,6 +41,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/get", PlayResultRouter);
 app.use("/post", upload.single("image"), PlayResultRouter);
 
+app.use('/modify', PlayResultRouter)
+app.use('/act/modi', upload.single('image'), PlayResultRouter)
+
 app.use("/admin", AdmintRouter);
 app.use("/auth", AuthRouter);
 

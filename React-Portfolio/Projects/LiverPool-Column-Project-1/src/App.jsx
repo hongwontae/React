@@ -14,7 +14,7 @@ import { prAction } from "./components/play-result-form/PlayResultForm";
 import LoginPage from "./page/LoginPage/LoginPage";
 import { loginAction } from "./components/login/LoginForm";
 import PageContextProvider from "./context/PageContext";
-import ModifierPage from "./page/modifierPage/ModifierPage";
+import ModifierPage, {action as modiAction, loader as modiLoader} from "./page/modifierPage/ModifierPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,14 +43,16 @@ function App() {
           element: <PlayResultFormPage></PlayResultFormPage>,
           action: prAction,
         },
-        {
+        { 
           path: "/login",
           element: <LoginPage></LoginPage>,
           action: loginAction,
         },
         {
-          path : '/modifier',
-          element : <ModifierPage></ModifierPage>
+          path : '/modifier/:id',
+          element : <ModifierPage></ModifierPage>,
+          action : modiAction,
+          loader : modiLoader
         }
       ],
     },
