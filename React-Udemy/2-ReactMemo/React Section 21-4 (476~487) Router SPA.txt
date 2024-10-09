@@ -70,7 +70,7 @@ data 로딩 연기 => data가 오지 않아도 layout 처리를 하고 싶을 �
 7-3. 기존 로더는 이제 Promise와 정제된 데이터를 가져와야한다.
 7-4. useLoaderData()를 통해 defer 데이터를 가져온다. const {events} = useLoaderData()
 7-5. <Await> import <Susense> import
-7-6 <Suspnese fallback={<p><p>}><Await resolve={events}>{(data)=>{return <com props={data}}></com>}}</Await> </Suspense>
+7-6 <Suspnese fallback={<p><p>}><Await resolve={events}>{(data)=>{return <com props={data}}></com>}</Await> </Suspense>
 => Suspense가 데이터가 오기 전까지 기다리고 데이터가 도착하면 Com이 렌더링된다.
 
 

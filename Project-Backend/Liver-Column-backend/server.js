@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser')
 const PlayResultRouter = require("./router/PlayResultRouter");
 const AdmintRouter = require("./router/AdminRouter");
 const AuthRouter = require("./router/AuthRouter");
+const DeleteRouter = require('./router/DeleteRouter')
 const isAuth = require("./util/isAuth");
 
 const storage = multer.diskStorage({
@@ -41,7 +42,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/get", PlayResultRouter);
 app.use("/post", upload.single("image"), PlayResultRouter);
 
-app.use('/modify', PlayResultRouter)
+app.use('/modify',  PlayResultRouter)
 app.use('/act/modi', upload.single('image'), PlayResultRouter)
 
 app.use("/admin", AdmintRouter);
@@ -50,8 +51,10 @@ app.use("/auth", AuthRouter);
 app.use('/auth/single/check', isAuth);
 app.use('/auth/single', AuthRouter )
 
+app.use('/delete', DeleteRouter);
+
 app.use((errors, req, res, next) => {
-  console.log(errors);
+  console.log('next error 핸들러');
   return res.json({ message: "Error 발생", errorData: errors });
 });
 

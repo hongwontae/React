@@ -27,7 +27,8 @@ useRef()의 값은 재평가할 떄마다 데이터가 유실되지 않는다. =
 
 
 6. useRef의 값은 일반적인 방식으로 컴포넌트에 전달할 수 없다.
-ref의 값을 다른 컴포넌트로 이동시키려면 forwardRef를 사용해야 한다. props를 통해 ref를 받는 컴포넌트가 forwardRef Hook를 import해서 함수 본문을 감싸야 한다. 그리고 두 번쨰 매개변수에서 ref를 받고 ref를 매칭할 태그에 ref={props.ref}를 사용하면 된다.
+ref의 값을 다른 컴포넌트로 이동시키려면 forwardRef를 사용해야 한다. props를 통해 ref를 받는 컴포넌트가 forwardRef Hook를 
+import해서 함수 본문을 감싸야 한다. 그리고 두 번쨰 매개변수에서 ref를 받고 ref를 매칭할 태그에 ref={props.ref}를 사용하면 된다.
 
 dialog 태그는 기본적으로는 보이지 않는다. => 속성 open를 통해 보이게 할 수 있다.
 또한 DOM dialog의 showModal()를 통해 보이게 할 수 있다.

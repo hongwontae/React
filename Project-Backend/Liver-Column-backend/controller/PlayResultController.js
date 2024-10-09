@@ -30,7 +30,6 @@ exports.getOneResult = async (req, res, next) => {
 };
 
 exports.getOneModiData = async (req, res, next) => {
-  console.log('what??')
   const id = req.params.id;
   const oneResultData = await PlayResult.findByPk(id)
 
