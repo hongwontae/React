@@ -118,7 +118,6 @@ exports.updateResult = async (req, res, next)=>{
       title,
       description,
       matchTeam,
-      imagePath: "not image",
       date : matchDay,
       playResult: formattedPr,
       myResult,

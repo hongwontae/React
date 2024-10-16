@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-const SelectSegment = function SelectSegment({ setSelectedData, selectedData }) {
+const SelectSegment = function SelectSegment({
+  setSelectedData,
+  selectedData,
+}) {
   return (
     <>
-      <div className="flex gap-2">
-        <label htmlFor="match_team">Match Team</label>
+      <div className="flex gap-2 w-full">
+        <label htmlFor="match_team" className="w-2/4">Match Team</label>
         <select
-            value={selectedData}
-          className="text-black p-1 rounded-sm text-center"
+          value={selectedData}
+          className="text-black p-1 rounded-sm text-center h-8 w-full"
           id="match_team"
           onChange={(e) => {
             return setSelectedData(e.target.value);

@@ -1,0 +1,22 @@
+1. createBrowserRouter
+1-1. react router에서 권장되는 라우터이고 dom history API를 사용하여 URL을 업데이트하고 히스토리 스택을 관리합니다.
+
+
+2. RouterProvider
+2-1. createBrowserRouter의 반환값을 받아들여 앱을 렌더링하고 데이터 API를 활성화합니다.
+2-2. fallbackElement :  경로를 로드하는 동안 사용자에게 보여주는 UI입니다.
+ex) <RouterProvider router={router} fallbackElement={<LoadingSpinner/>}>
+</RouterProvider>
+
+
+3. StaticRouterProvider
+3-1. 서버 측에서 정적인 라우팅을 처리하기 위해 사용되는 컴포넌트입니다.
+3-2. createStaticRouter를 통해 path와 element를 처리하고 반환값을 전달합니다.
+
+
+4. React Router의 클라이언트 측 라우팅이란?
+4-1. 웹 애플리케이션에서 사용자가 URL을 변경할 때 전체 페이지를 새로 고치지 않고, 
+필요한 컴포넌트만 동적으로 로드하고 표시하는 방식을 의미합니다.
+
+4-2. 동작 방식 : 초기에는 애플리케이션 첫 페이지만 로드하여 렌더링합니다. 이후 Link를 통해 다른 경로로 이동할 떄
+경로 맞는 컴포넌트만 로드하고 렌더링합니다./ 이전 페이지로 돌아가거나 다시 방문할 떄 페이지 상태가 유지됩니다.

@@ -1,0 +1,43 @@
+1. loader
+1-1. 페이지가 로드될 때 데이터를 비동기로 가져오기 위한 함수입니다.
+1-2. 페이지가 렌더링되기 전에 실행되며, 반환된 데이터는 컴포넌트에서 사용할 수 있습니다.
+
+1-3. loader 트리거 시점
+1. 라우트가 처음 로드될 때
+2. URL 매개변수가 변경될 떄 : /post/:postId에서 postId가 변경되면 데이터를 다시 가져옵니다.
+3. 계층 구조 라우트일 떄 하위 경로로 이동시 하위 loader만 실행됩니다.
+4. action이 실행되고 나서 loader가 실행됩니다.
+
+1-4. loader 트리거 x
+1. 상태변경이나 컴포넌트 리렌더링 때는 loader를 실행하지 않습니다.
+
+1-5. loader를 정의한 함수에서 throw를 던지면 에러 컴포넌트로 바로 이동합니다.
+
+
+2. shouldRevalidate
+2-1. 라우트의 loader가 다시 실행될지 여부를 제어하는 props입니다.
+2-2. false나 true를 반환하여 loader 재실행 여부를 설정합니다.
+2-3. shouldRevalidate : ({
+    currentUrl : 현재 url,
+    nextUrl : 폼 제출 이후, 내비게이션으로 이동할 URL,
+    formAction : 폼 제출이 발생한 URL,
+    formMethod : 폼이 제출된 http 메서드
+})=>{
+    if(formAction === '/post/path' && formMethod === 'post'){
+        return false 
+    }
+    true
+} => 이렇게 조건부로 loader 실행 여부를 결정할 수 있습니다.
+
+
+3. action
+3-1. 서버에 데이터를 전송할 때 사용되는 함수입니다.
+3-2. action을 라우트에 등록하면 Form 컴포넌트의 onSubmit 이벤트가 발생하거나 useSubmit의 submit이 호출되면 해당 라우트
+의 action이 호출됩니다.
+3-4. Form 컴포넌트의 action props에 다른 라우트 경로 추가하거나 submit('', {action : 'another path'})를 추가하여
+다른 라우트 action을 트리거할 수 있습니다.
+3-5. action 함수에서 return redirect나 return data가 없으면 에러가 발생합니다. 반환할 데이터가 없으면 return null 
+3-6. action에서 return된 data를 useActionData를 통해 불러올 수 있습니다.
+
+
+

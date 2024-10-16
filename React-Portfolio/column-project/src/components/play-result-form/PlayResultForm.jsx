@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Form, useSubmit } from "react-router-dom";
+import { Form, redirect, useSubmit } from "react-router-dom";
 import ImagePicker from "../image-picker/ImagePicker";
 import { useRef, useState } from "react";
 import SelectSegment from "./SelectSegment";
@@ -81,36 +81,36 @@ function PlayResultFormPage() {
             ></textarea>
           </div>
           <SelectSegment selectedData={selectedData} setSelectedData={setSelectedData}></SelectSegment>
-          <div className="flex gap-2">
-            <label htmlFor="matchDay">Match Day</label>
+          <div className="flex gap-4">
+            <label htmlFor="matchDay" className="w-full">Match Day</label>
             <input
               type="date"
               id="matchDay"
               name="matchDay"
               ref={matchDayRef}
-              className="text-black rounded-sm w-1/4 h-8"
+              className="text-black rounded-sm w-full h-8"
               required
             ></input>
           </div>
           <div className="flex flex-col">
             <label htmlFor="playResult" className="mb-2">Score</label>
-            <div className="flex gap-4">
-              <div className="flex gap-2">
-                <label>My Team Score</label>
+            <div className="flex gap-4 justify-center">
+              <div className="">
+                <label className="mr-4">My Team Score</label>
                 <input
                   type="number"
                   id="playResult"
                   name="playResult"
                   ref={myTeamScoreRef}
                   required
-                  className="text-black text-center rounded-sm h-8 w-1/2"
+                  className="text-black text-center rounded-sm h-8 w-1/4"
                 ></input>
               </div>
-              <div className="flex gap-2">
-                <label htmlFor="op">Opposing Team Score</label>
+              <div className="">
+                <label htmlFor="op" className="mr-4">Opposing Team Score</label>
                 <input
                   type="number"
-                  className="text-black text-center rounded-sm h-8 w-1/2" 
+                  className="text-black text-center rounded-sm h-8 w-1/4" 
                   id="op"
                   name="op"
                   ref={opTeamRef}
@@ -152,5 +152,5 @@ export async function prAction({ request, params }) {
 
   console.log(resData);
 
-  return { prData: "Success?" };
+  return redirect('/play-result')
 }

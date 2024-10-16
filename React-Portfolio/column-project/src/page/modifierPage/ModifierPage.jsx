@@ -1,32 +1,35 @@
 /* eslint-disable no-unused-vars */
-import { Form, redirect, useLoaderData, useNavigate, useSubmit } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  useLoaderData,
+  useNavigate,
+  useSubmit,
+} from "react-router-dom";
 import ImagePicker from "../../components/image-picker/ImagePicker";
 import { useContext, useEffect, useRef, useState } from "react";
 import ModifierSelectSegment from "../../components/play-result-form/ModifierSelectSegment";
 import { PageCtx } from "../../context/PageContext";
 
 function ModifierPage() {
-
-  const {isAuth} = useContext(PageCtx)
+  const { isAuth } = useContext(PageCtx);
 
   const [previewImage, setPreviewImage] = useState(null);
   const [pickImage, setPickImage] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const submit = useSubmit();
   const previousData = useLoaderData();
 
-  useEffect(()=>{
-    if(previousData.status == false){
-      navigate('/')
+  useEffect(() => {
+    if (previousData.status == false) {
+      navigate("/");
     }
-    if(isAuth == false){
-      navigate('/')
+    if (isAuth == false) {
+      navigate("/");
     }
-    
-  }, [navigate, previousData, isAuth])
-
+  }, [navigate, previousData, isAuth]);
 
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -46,7 +49,8 @@ function ModifierPage() {
   function actionHandler(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append("image", pickImage);
+
+      formData.append("image", pickImage);
 
     submit(formData, {
       action: `/modifier/${previousData.data.id}`,
@@ -171,33 +175,35 @@ export default ModifierPage;
 
 export async function action({ request, params }) {
   const formData = await request.formData();
-  console.log(params.id)
+  console.log(params.id);
 
-  const response = await fetch(`http://localhost:5000/act/modi/ud/${params.id}`,{
-    method : 'POST',
-    body : formData
-  })
+  const response = await fetch(
+    `http://localhost:5000/act/modi/ud/${params.id}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
-  if(!response.ok){
-    throw new Error('요청 실패')
+  if (!response.ok) {
+    throw new Error("요청 실패");
   }
 
   const resData = await response.json();
 
-  console.log(resData)
-  
-  return redirect('/play-result')
+  console.log(resData);
 
+  return redirect("/play-result");
 }
 
 export async function loader({ request, params }) {
   const response = await fetch(`http://localhost:5000/modify/md/${params.id}`, {
-    method : 'POST',
-    body : JSON.stringify({iden : 'get-modi'}),
-    credentials : 'include',
-    headers : {
-      'Content-Type'  : 'application/json'
-    }
+    method: "POST",
+    body: JSON.stringify({ iden: "get-modi" }),
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (!response.ok) {

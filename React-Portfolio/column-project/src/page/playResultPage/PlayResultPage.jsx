@@ -15,7 +15,7 @@ function PlayResultPage(){
     return(
         <>
             <PlayResultContainer allData={data.items}></PlayResultContainer>
-            <Pagination totalPage={data.totalPages}></Pagination>
+            <Pagination totalPage={data.totalPages} url={'/play-result?page='}></Pagination>
             
         </>
     )

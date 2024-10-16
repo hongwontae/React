@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 
 exports.createUser = async (req, res, next)=>{
 
-    console.log('Controller')
 
     const validatorError = validationResult(req);
 

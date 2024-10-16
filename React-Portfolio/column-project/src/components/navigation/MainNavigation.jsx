@@ -85,6 +85,20 @@ function MainNavigation() {
                 Player-Rating
               </NavLink>
             </li>
+
+            {isAuth ? (
+              <li className={classes.list}>
+                <NavLink
+                  to={"/player-rating/form"}
+                  className={({ isActive }) => {
+                    return isActive ? classes.active : null;
+                  }}
+                  end
+                >
+                  Play-Rating-Form
+                </NavLink>
+              </li>
+            ) : null}
             {isAuth ? null : (
               <li className={classes.list}>
                 <NavLink

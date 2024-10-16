@@ -2,13 +2,14 @@
 import HomeAllButton from "../../components/home/home-section/HomeAllButton";
 import HomeSubButton from "../../components/home/home-section/HomeSubButton";
 import LiverPoolIcon from "../../assets/images/liverpool-homepage-pirctures/LiverPool-Icon.png";
-import { useLoaderData } from "react-router";
-import { useContext, useEffect } from "react";
+import { useLoaderData, useLocation } from "react-router";
+import { useContext, useEffect, useState } from "react";
 import { PageCtx } from "../../context/PageContext";
 function HomePage() {
   const { setIsAuth, isAuth } = useContext(PageCtx);
 
   const loaderData = useLoaderData();
+
 
   useEffect(() => {
     if (loaderData.status === false) {
@@ -30,7 +31,6 @@ function HomePage() {
           src={LiverPoolIcon}
         ></img>
       </div>
-
       <div className="mt-5">
         <HomeAllButton></HomeAllButton>
         <HomeSubButton></HomeSubButton>
@@ -52,7 +52,7 @@ export async function loader({ request, params }) {
   }
 
   const resData = await response.json();
-  console.log(resData)
+  console.log(resData);
 
   return resData;
 }

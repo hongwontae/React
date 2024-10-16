@@ -21,7 +21,7 @@ function PlayResultSingle(props) {
           to={`/play-result/${props.id}`}
           className="flex flex-col items-center"
         >
-          <li className=" p-4 flex items-center  gap-4 w-full h-[10rem]">
+          <li className=" p-1 flex justify-center items-center w-full h-[10rem]">
             <img
               src={`http://localhost:5000/${props.imagePath}`}
               alt={props.imagePath}

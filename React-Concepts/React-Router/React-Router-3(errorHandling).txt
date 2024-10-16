@@ -1,0 +1,17 @@
+1. throw new Error()
+=> JS 기본 에러 처리 매커니즘입니다.
+=> 상태 코드나 응답 본문 제어 불가, 단순한 객체나 error.message를 전송합니다.
+=> HTTP 응답을 다루는 것이 아닌 클라이언트 로직 상 에러를 다루는 방식입니다.
+=> useRouteError를 통해 데이터를 받을 수 있습니다.
+
+2. throw new Response(JSON.stringify('data'), {status, statusText, headers});
+=> http 응답 객체를 생성하는 생성자 함수입니다.
+=> JSON.stringify로 직렬화와 headers를 수동으로 추가하여 응답 구조를 생성합니다.
+=> status 숫자를 통해 브라우저에게 정보를 전달할 수 있습니다.
+=> useRouteError를 통해 데이터를 받을 수 있습니다.
+
+3. throw json({message : 'data', {status, headers, statusText}});
+=> 간단한 http 응답 객체를 생성하는 react-router 함수입니다.
+=> JSON.stringify 직렬화를 할 필요가 없고, headers를 정의하지 않으면 'Content-Type' : 'application/json'이 설정됩니다.
+=> status 숫자를 통해 브라우저에게 정보를 전달합니다.
+=> useRouteError를 통해 데이터를 받을 수 있습니다.

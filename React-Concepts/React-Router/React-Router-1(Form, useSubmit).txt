@@ -1,0 +1,30 @@
+1. Form 컴포넌트
+1-1. 비동기 데이터 제출을 처리하기 위한 고수준 API입니다.
+1-2. action과 method 속성을 통해 특정 경로로 데이터를 전송하고, 페이지를 새로고침하지 않고도 해당 경로에서 요청을 처리합니다.
+1-3. 이 떄 e.preventDefault를 사용하지 않아도 새로고침을 하지 않습니다.
+
+1-3. props
+1. method : 사용할 http 메서드를 규정합니다. default는 get입니다.
+2. action : 사용할 action uri를 정의합니다. react-router에서 정의된 action을 트리거합니다.
+3. encType : 인코딩 타입을 지정할 수 있습니다. multipart/form-data와 같이 파일 업로드 떄 주로 사용합니다.
+
+1-4. useActionData
+=> Form 제출 후 서버로부터 받은 데이터를 처리할 수 있는 방법을 제공합니다.
+=> 주로 에러 처리에 사용됩니다.
+
+1-5. Form과 useNavigation
+=> 네트워크 요청의 상태를 추적할 수 있습니다.
+
+1-6. 등록된 action 함수에서 값을 가져오는 방법
+=> const formData = await request.formData();
+=> const name = formData.get('name');
+=> get 인자에 들어갈 문자열은 Form 컴포넌트 input의 name props 입니다.
+
+1-7. useSubmit
+1. Form을 제출할 수 있는 훅이며, 더 유연하게 제어할 수 있습니다.
+2. const submit = useSubmit();
+3. submit(target, options)
+=> target은 만들어낸 formData, URLSearchParams, HTMLFormElement를 사용할 수 있습니다.
+(스스로 formData를 만들 떄는 이름과 데이터를 개발자 본인이 설정해야 합니다.)
+=> options는 제출 방식을 설정하는 객체이고 method, action(path), enctype를 설정할 수 있습니다.
+4. 데이터를 자유롭게 가공하여 전달할 떄 유용한 훅입니다. 

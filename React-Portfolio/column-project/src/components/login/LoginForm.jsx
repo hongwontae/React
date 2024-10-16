@@ -1,10 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useId, useRef } from "react";
+import { useContext, useEffect, useId, useRef, useState } from "react";
 import { Form, redirect, useActionData, useSubmit } from "react-router-dom";
-import { PageCtx } from "../../context/PageContext";
 
 function LoginForm() {
+  const actionData = useActionData();
+  console.log(actionData);
 
+  const [acData, setAcData] = useState(null);
+
+  useEffect(() => {
+    setAcData(actionData?.data?.message);
+  }, [actionData]);
 
   const id1 = useId();
   const id2 = useId();
@@ -12,7 +18,6 @@ function LoginForm() {
   const passwordRef = useRef(null);
 
   const submit = useSubmit();
-
 
   function actionHandler(e) {
     if (emailRef.current.value === "" || passwordRef.current.value === "") {
@@ -23,15 +28,13 @@ function LoginForm() {
     const formData = new FormData(e.target);
 
     submit(formData, { method: "POST", action: "/login" });
-    
   }
 
   function cancelHandler() {
     emailRef.current.value = "";
     passwordRef.current.value = "";
+    setAcData(null);
   }
-  
-
 
   return (
     <>
@@ -61,6 +64,9 @@ function LoginForm() {
             className="rounded-sm text-black text-center p-[0.1rem]"
           ></input>
         </div>
+        {actionData && (
+          <div className="text-red-600 font-bold text-[1.2rem]">{acData}</div>
+        )}
         <div className="flex justify-end gap-4 mt-2 w-full">
           <button type="submit" className="border-[1px] p-1 rounded-lg">
             Login
@@ -92,7 +98,7 @@ export async function loginAction({ request, params }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-    credentials : 'include'
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -101,12 +107,9 @@ export async function loginAction({ request, params }) {
 
   const resData = await response.json();
 
-
-  if(resData?.message === 'Login Success'){
-    return redirect('/?state=true')
+  if (resData?.message === "Login Success") {
+    return redirect("/?state=true");
   } else {
     return { message: "action trigger", data: resData };
   }
-
-
 }
