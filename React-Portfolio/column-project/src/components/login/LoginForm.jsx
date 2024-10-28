@@ -4,7 +4,6 @@ import { Form, redirect, useActionData, useSubmit } from "react-router-dom";
 
 function LoginForm() {
   const actionData = useActionData();
-  console.log(actionData);
 
   const [acData, setAcData] = useState(null);
 
@@ -92,7 +91,7 @@ export async function loginAction({ request, params }) {
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const response = await fetch("http://localhost:5000/auth/authentication", {
+  const response = await fetch("http://localhost:8080/admin/check", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -107,8 +106,8 @@ export async function loginAction({ request, params }) {
 
   const resData = await response.json();
 
-  if (resData?.message === "Login Success") {
-    return redirect("/?state=true");
+  if (resData?.status === true) {
+    return redirect("/");
   } else {
     return { message: "action trigger", data: resData };
   }

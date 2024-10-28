@@ -1,6 +1,10 @@
+import { useRouteError } from "react-router";
 import MainNavigation from "../../components/navigation/MainNavigation";
 
 function ErrorPage(){
+
+    const errorData = useRouteError();
+    console.log(errorData);
 
     return(
         <div className="bg-red-700 min-h-screen font-roboto text-center text-gray-100">

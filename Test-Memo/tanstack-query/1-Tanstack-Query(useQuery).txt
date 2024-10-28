@@ -1,0 +1,67 @@
+1. tanstack-query의 기초 개념
+1-1. tanstack-query는 서버 상태 관리 라이브러리입니다.
+1-2. 캐시 : 쿼리 결과를 메모리에 캐시하여 성능을 최적화합니다.
+1-3. 쿼리 자동 갱신 : 일정 시간마다, 특정 이벤트 발생 시 쿼리를 재요청할 수 있습니다.
+1-4. 데이터 동기화 : 여러 컴포넌트에서 동일한 쿼리 사용, 그 상태는 자동으로 동기화됩니다.
+(한 컴포넌트에서 데이터 변경 => 다른 컴포넌트에도 반영)
+
+
+2. useQuery
+2-1. cosnt {data, error, isLoading, isPending, isError, isSuccess, refetch, isldle} = useQuery({
+    queryKey : ..,
+    queryFn : ...,
+})
+
+2-2. return 값
+=> data : http 요청을 통해 가져온 데이터를 의미합니다.
+=> error : http 요청 실패로 인한 error 객체를 의미합니다.
+=> isError : error 발생 여부 bolean
+=> isLoading : 쿼리가 처음 시작할 떄 상태를 의미합니다. 즉, 컴포넌트가 마운트되었을 떄 데이터 요청 시작되는 loading 상태
+=> isPending : 쿼리가 재요청되거나 갱신되는 경우에 loading 상태
+=> isSuccess : 쿼리가 성공 여부 boolean
+=> refetch : 쿼리를 수동으로 재요청할 수 있는 함수입니다.
+=> isldle : 쿼리 활성화 여부 boolean
+
+2-2. 설정 객체
+=> enabled : 쿼리의 활성화를 제어합니다. boolean으로 제어합니다.
+=> staleTime : 데이터 신선하다고 간주되는 시간입니다. 해당 밀리초 시간동안 같은 쿼리를 요청하면 캐시된 데이터를 사용합니다.
+=> gcTime(=== cacheTime) : 데이터가 캐시에 유지되는 시간입니다. 이 시간 이후에는 데이터가 삭제됩니다.
+=> refetchOnWindowFocus (default : true) : 브라우저가 포커스될 떄 쿼리를 재요청 boolean
+=> refetchOnReconnect : 인터넷 연결이 복구될 떄 쿼리 재요청 boolean
+=> retry : 실패한 요청을 재시도할 횟수
+
+
+3. staleTime, cacheTime
+3-1. staleTime : 데이터가 신선하다는 것을 의미합니다. 그렇기에 정해진 시간만큼 캐시된 데이터를 사용합니다.
+3-2. cacheTime : 캐시에 데이터를 저장하는 시간을 의미합니다. cacheTime이 지나고 staleTime이 지나면 네트워크
+재요청을 통해 데이터를 가져옵니다.
+
+
+4. useQuery 재요청 시점
+4-1. staleTime이 지났을 떄
+4-2. refetch 함수를 호출했을 떄
+4-3. enabled 옵션이 변경될 떄 (false가 true가 된 시점에 네트워크 요청이 바로 실행됩니다.)
+4-4. refetchOnMount을 true로 설정했을 떄
+(refetchOnMount는 컴포넌트가 다시 마운트 됐을 떄 쿼리 재요청 여부입니다.)
+4-5. refetchOnWindowFocus가 true일 떄
+(브라우저 창이 다시 포커스될 때 데이터를 자동으로 쿼리를 재요청합니다.)
+
+4-6. refetchOnReconnect
+(사용자가 인터넷 연결을 잃었다가 다시 복구할 떄)
+
+4-7. 쿼리 키, 쿼리 함수가 변경되면 네트워크 요청이 다시 발생합니다.
+
+4-8. 쿼리 데이터가 수동으로 무효화될 떄
+=> queryClient.invalidateQueries(['queryKey']);
+=> 이를 통해 해당 쿼리를 무효화할 수 있습니다. 무효화된 쿼리는 다시 요청이 발생합니다.
+=> 이를 통해 업데이트, delete한 뒤 useQuery를 무효화한 뒤 데이터를 재요청할 수 있습니다.
+
+
+5. staleTime이 5초이고 gcTime이 10초
+=> staleTime이 지나면 데이터의 신선도가 하락한 것으로 판단하고 useQuery 재요청 시점에 네트워크 요청을 진행합니다.
+=> 그러나 해당 데이터를 사용하는 컴포넌트가 리렌더링이나 트리거가 되지 않으면 캐시 데이터를 유지할 수 도 있습니다.
+
+
+6. 밀리초
+=> 1000 = 1초
+=> 10000 = 10초

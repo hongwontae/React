@@ -6,10 +6,11 @@ import PlayerSingle from "./PlayerSingle";
 function PlayerRatingContainer({ data }) {
   return (
     <>
-      <div className="flex flex-col gap-4 items-center">
-        {data.map((single, idx) => {
+      <div className="flex flex-col gap-4 items-center mb-4">
+        {data.map((single) => {
+          console.log(single)
           return (
-              <PlayerSingle key={idx} {...single}></PlayerSingle>
+              <PlayerSingle key={single.rrId} {...single}></PlayerSingle>
           );
         })}
       </div>

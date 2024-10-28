@@ -7,62 +7,103 @@ import { useSubmit } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { RatingCtx } from "../../context/RatingContext";
 
-function PlayerRatingForm({ selectedData, SetSelectedData, actionData }) {
-  const { rating } = useContext(RatingCtx);
+function PlayerRatingForm({ selectedData, SetSelectedData, actionData, setActionData }) {
+  const { ratings, setRatings } = useContext(RatingCtx);
 
   const submit = useSubmit();
   const matchDayRef = useRef(null);
   const rtDescriptionRef = useRef(null);
+  const titleRef = useRef(null);
 
   function submitHandler() {
     const matchDayCheck =
       matchDayRef.current.value !== "" &&
       matchDayRef.current.value.trim() !== 0;
+
     const ratingDescriptionCheck =
       rtDescriptionRef.current.value !== "" &&
       rtDescriptionRef.current.value.trim() !== 0;
-    const matchTemaCheck =
-        selectedData !== '' && selectedData.trim() !== 0
-    const ratingCheck = rating.length !== 0 && rating.length >= 11
 
-    if(!(matchDayCheck && ratingDescriptionCheck && matchTemaCheck && ratingCheck)){
-        console.log('유효한 문자열이 아닙니다.')
-        return;
+    const matchTemaCheck = selectedData !== "" && selectedData.trim() !== 0;
+    const ratingCheck = ratings.length !== 0 && ratings.length >= 24;
+    const titleCheck =
+      titleRef.current.value !== "" && titleRef.current.value.trim() !== 0;
+
+    if (
+      !(
+        matchDayCheck &&
+        ratingDescriptionCheck &&
+        matchTemaCheck &&
+        ratingCheck &&
+        titleCheck
+      )
+    ) {
+      console.log("유효한 문자열이 아닙니다.");
+      return;
     }
-    console.log('유효한 문자열입니다.')
+    console.log("유효한 문자열입니다.");
 
     const formData = new FormData();
     formData.append("matchDay", matchDayRef.current.value);
     formData.append("ratingDescription", rtDescriptionRef.current.value);
     formData.append("matchTeam", selectedData);
-    formData.append("ratings", JSON.stringify(rating));
+    formData.append("title", titleRef.current.value);
+
+    // 배열 데이터이기 떄문에 JSON화 하여 formData로 변환한다.
+    // => 데이터를 잃지 않는다.
+    formData.append("ratings", JSON.stringify(ratings));
 
     submit(formData, {
-        method : 'POST',
-        action : ''
-    })
+      method: "POST",
+    });
+  }
+
+  async function resetHandler() {
+    matchDayRef.current.value = null;
+    rtDescriptionRef.current.value = null;
+    titleRef.current.value = null;
+    SetSelectedData("맨체스터 시티");
+    const ratings = await (
+      await fetch("http://localhost:8080/player/all")
+    ).json();
+    setRatings([...ratings.start, ...ratings.sub]);
+    setActionData([]);
   }
 
   return (
     <>
       <Form className="border-[1px] p-8 w-8/12 rounded-lg bg-red-20 m-auto mb-8">
         <div className="flex flex-col items-center gap-6">
-          <div className="flex gap-8 justify-center">
-            <div className="flex gap-2 w-full">
-              <label htmlFor="matchDay" className="w-3/4">
+          <div className="flex flex-col gap-4 justify-center">
+            <div className="flex flex-col gap-2 items-center">
+              <label className="text-red-400 font-bold" htmlFor="title">
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                className="text-black rounded-sm text-center w-full m-atuo"
+                ref={titleRef}
+                required
+              ></input>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="matchDay" className="text-red-400 font-bold">
                 Match Day
               </label>
               <input
                 type="date"
                 id="matchDay"
                 name="matchDay"
-                className="text-black rounded-sm w-4/6 h-8 text-center"
+                className="text-black rounded-sm text-center w-1/2 m-auto"
                 required
                 ref={matchDayRef}
               ></input>
             </div>
             <div className="w-full">
               <SelectSegment
+                playr={"playr"}
                 selectedData={selectedData}
                 setSelectedData={SetSelectedData}
               ></SelectSegment>
@@ -73,10 +114,10 @@ function PlayerRatingForm({ selectedData, SetSelectedData, actionData }) {
             <RatingContainer></RatingContainer>
           </div>
 
-          {actionData && <div>{actionData}</div>}
-
           <div className="flex flex-col gap-2 w-full items-center">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="text-red-400 font-bold">
+              Description
+            </label>
             <textarea
               type="text"
               id="description"
@@ -87,8 +128,20 @@ function PlayerRatingForm({ selectedData, SetSelectedData, actionData }) {
             ></textarea>
           </div>
         </div>
+        <div className="mb-2 mt-4 flex flex-col gap-2 text-red-500 font-bold">
+          {actionData &&
+            actionData.map((ele) => {
+              console.log(ele);
+              return <div key={ele.path}>{ele.msg}</div>;
+            })}
+        </div>
+
         <div className="flex justify-end mt-6 gap-4">
-          <button className="border-[1px] rounded-md p-2" type="button">
+          <button
+            className="border-[1px] rounded-md p-2"
+            type="button"
+            onClick={resetHandler}
+          >
             Reset
           </button>
           <button

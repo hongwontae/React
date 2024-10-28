@@ -41,7 +41,7 @@ function ImagePicker({
   return (
     <>
       <div className={classes.picker}>
-        <label>Image Picker</label>
+        <label className="text-red-400 font-bold">Image Picker</label>
         <div className={classes.control}>
           <div className={classes.preview}>
             {!previewImage && (

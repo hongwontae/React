@@ -1,24 +1,20 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-function PlayerSingle(props) {
-  const propsArr = Object.values(props);
-  console.log(propsArr);
-
-  const formattedDate = propsArr[0].ratingDate.slice(0, 10);
-
+function PlayerSingle({ rrId, title, reportDate, oppenent, reportDescription }) {
   return (
     <>
-      <section className="border-[1px] w-3/5 p-8 rounded-md">
-        <Link to={`/player-rating/result/${formattedDate}`}>
+      <section className="border-[1px] w-3/5 pl-8 pr-8 pb-8 pt-4 rounded-md">
+        <Link to={`/player-rating/result/${rrId}`}>
+          <div className="font-bold text-red-600 text-2xl mb-4">{title}</div>
           <div className="flex justify-center gap-8 items-center w-full">
             <div className="w-1/2">
-              <div className="text-red-500">{formattedDate} - Rating</div>
-              <div>{propsArr[0].ratingOppenent}</div>
+              <div className="text-red-500">{reportDate} - Rating</div>
+              <div>{oppenent}</div>
             </div>
             <div className="overflow-hidden w-1/2">
               <div className="text-red-400">Description</div>
-              <div className="whitespace-normal">{propsArr[0].ratingDescription}</div>
+              <div className="whitespace-normal">{reportDescription}</div>
             </div>
           </div>
         </Link>

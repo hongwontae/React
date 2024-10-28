@@ -11,9 +11,10 @@
   
   .picker .button {
     padding: 0.5rem 1.5rem;
-    background: #a4abb9;
-    border-radius: 2px;
+    background: #123123;
+    border-radius: 4px;
     cursor: pointer;
+    border: 1px solid black;
   }
   
   .picker .button:hover,

@@ -2,6 +2,7 @@
 import {
   Form,
   redirect,
+  useActionData,
   useLoaderData,
   useNavigate,
   useSubmit,
@@ -12,24 +13,38 @@ import ModifierSelectSegment from "../../components/play-result-form/ModifierSel
 import { PageCtx } from "../../context/PageContext";
 
 function ModifierPage() {
-  const { isAuth } = useContext(PageCtx);
+  const { isAuth, setIsAuth } = useContext(PageCtx);
 
   const [previewImage, setPreviewImage] = useState(null);
   const [pickImage, setPickImage] = useState(null);
+  const [acError, setAcError] = useState([]);
 
   const navigate = useNavigate();
 
   const submit = useSubmit();
-  const previousData = useLoaderData();
+
+  const { resData, authData } = useLoaderData();
+  const acData = useActionData();
 
   useEffect(() => {
-    if (previousData.status == false) {
+    if (authData.jStatus == false) {
+      setIsAuth(false);
       navigate("/");
     }
-    if (isAuth == false) {
+    if (authData.jStatus === true) {
+      setIsAuth(true);
+    }
+  }, [navigate, authData.jStatus, isAuth, setIsAuth]);
+
+  useEffect(() => {
+    if (acData) {
+      setAcError(acData?.validatorResult);
+    }
+    if (acData?.jStatus === false) {
+      setIsAuth(false);
       navigate("/");
     }
-  }, [navigate, previousData, isAuth]);
+  }, [acData, setIsAuth, navigate]);
 
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -50,10 +65,10 @@ function ModifierPage() {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-      formData.append("image", pickImage);
+    formData.append("image", pickImage);
 
     submit(formData, {
-      action: `/modifier/${previousData.data.id}`,
+      action: `/modifier/${resData.data.playId}`,
       encType: "multipart/form-data",
       method: "POST",
     });
@@ -61,82 +76,90 @@ function ModifierPage() {
 
   return (
     <>
-      <h1 className="text-2xl font-extralight mb-4">Modifier Page</h1>
+      <h1 className="text-3xl font-bold text-red-600 mb-4">Modifier Page</h1>
       <Form
         onSubmit={actionHandler}
         method="POST"
-        className="border-[1px] p-4 w-8/12 rounded-lg bg-red-20 m-auto mb-8"
+        className="border-[1px] p-4 w-8/12 rounded-lg m-auto mb-8"
       >
         <div className="flex flex-col items-center gap-6">
-          <div className="flex gap-2 w-full justify-center">
-            <label htmlFor="title">Title</label>
+          <div className="flex flex-col items-center gap-2 w-full justify-center">
+            <label htmlFor="title" className="text-red-400 font-bold">
+              Title
+            </label>
             <input
               type="text"
               id="title"
               name="title"
               className="text-black text-center rounded-sm w-2/4 p-1"
-              required
-              defaultValue={previousData && previousData?.data?.title}
+              defaultValue={resData && resData?.data?.title}
               ref={titleRef}
             ></input>
           </div>
           <div className="flex flex-col gap-2 w-full items-center">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="text-red-400 font-bold">
+              Description
+            </label>
             <textarea
               type="text"
               id="description"
               name="description"
               className="w-11/12 h-[20rem] text-black text-center rounded-lg p-2 bg-slate-400"
-              required
               ref={descriptionRef}
-              defaultValue={previousData && previousData?.data?.description}
+              defaultValue={resData && resData?.data?.playDescription}
             ></textarea>
           </div>
           <ModifierSelectSegment
-            defaultValue={previousData && previousData?.data?.matchTeam}
+            defaultValue={resData && resData?.data?.matchTeam}
             ref={matchTeamRef}
           ></ModifierSelectSegment>
 
-          <div className="flex gap-2">
-            <label htmlFor="matchDay">Match Day</label>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <label htmlFor="day" className="text-red-400 font-bold">
+              Match Day
+            </label>
             <input
               type="date"
-              id="matchDay"
-              name="matchDay"
-              className="text-black rounded-sm"
-              defaultValue={previousData && previousData?.realDate}
-              required
+              id="day"
+              name="day"
+              className="text-black rounded-sm text-center w-2/5"
+              defaultValue={resData && resData?.data?.date}
               ref={matchDayRef}
             ></input>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="playResult">Score</label>
-            <div className="flex gap-4">
-              <div className="flex gap-2 h-10">
-                <label>My Team Score</label>
+            <label htmlFor="myScore" className="text-red-400 font-bold mb-4">
+              Score
+            </label>
+            <div className="flex gap-4 w-full">
+              <div className="flex w-1/2">
+                <label
+                  className="text-red-600 font-bold w-full"
+                  htmlFor="myScore"
+                >
+                  My Score
+                </label>
                 <input
                   type="number"
-                  id="playResult"
-                  name="myResult"
-                  required
-                  className="text-black text-center rounded-sm"
-                  defaultValue={
-                    previousData && Number(previousData?.data?.myResult)
-                  }
+                  id="myScore"
+                  name="myScore"
+                  min={0}
+                  className="text-black text-center rounded-sm w-full bg-red-400 p-1"
+                  defaultValue={resData && resData?.data?.myScore}
                   ref={myResultRef}
                 ></input>
               </div>
-              <div className="flex gap-2 h-10">
-                <label htmlFor="op">Opposing Team Score</label>
+              <div className="flex gap-6 w-1/2">
+                <label className="font-bold w-full" htmlFor="opScore">
+                  Opposing Score
+                </label>
                 <input
                   type="number"
-                  className="text-black text-center rounded-sm"
-                  id="op"
-                  name="opResult"
-                  required
-                  defaultValue={
-                    previousData && Number(previousData?.data?.opResult)
-                  }
+                  className="text-black text-center rounded-sm w-full p-1"
+                  id="opScore"
+                  name="opScore"
+                  min={0}
+                  defaultValue={resData && resData?.data?.opponentScore}
                   ref={opResultRef}
                 ></input>
               </div>
@@ -153,6 +176,13 @@ function ModifierPage() {
               }
             ></ImagePicker>
           </div>
+          {acError && (
+            <div className="flex flex-col gap-2 text-red-500 font-bol">
+              {acError.map((ele) => {
+                return <div key={ele.path}>{ele.msg}</div>;
+              })}
+            </div>
+          )}
           <div className="flex justify-center gap-6">
             <button
               onClick={resetHandler}
@@ -178,10 +208,11 @@ export async function action({ request, params }) {
   console.log(params.id);
 
   const response = await fetch(
-    `http://localhost:5000/act/modi/ud/${params.id}`,
+    `http://localhost:8080/play-result/modi/${params.id}`,
     {
       method: "POST",
       body: formData,
+      credentials : 'include'
     }
   );
 
@@ -191,25 +222,41 @@ export async function action({ request, params }) {
 
   const resData = await response.json();
 
-  console.log(resData);
+  if(resData.status === false){
+    return resData
+  } else if (resData.status === true){
+    return redirect("/play-result");
+  } else if(resData.jStatus === false){
+    return resData
+  }
 
-  return redirect("/play-result");
+  return null;
+
 }
 
 export async function loader({ request, params }) {
-  const response = await fetch(`http://localhost:5000/modify/md/${params.id}`, {
-    method: "POST",
-    body: JSON.stringify({ iden: "get-modi" }),
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const id = params.id;
 
-  if (!response.ok) {
-    throw new Error("요청 중 에러");
+  const [authResponse, response] = await Promise.all([
+    fetch("http://localhost:8080/admin/credential", {
+      method: "POST",
+      credentials: "include",
+    }),
+    fetch(`http://localhost:8080/play-result/one?id=${id}`),
+  ]);
+
+  if (!response.ok || !authResponse.ok) {
+    throw new Response(JSON.stringify({ message: "Modifier page HTTP fail" }), {
+      status: 404,
+      statusText: "fail",
+    });
   }
 
   const resData = await response.json();
-  return resData;
+  const authData = await authResponse.json();
+
+  return {
+    resData,
+    authData,
+  };
 }

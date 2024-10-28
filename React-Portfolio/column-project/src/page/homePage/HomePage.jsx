@@ -1,24 +1,26 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import HomeAllButton from "../../components/home/home-section/HomeAllButton";
 import HomeSubButton from "../../components/home/home-section/HomeSubButton";
 import LiverPoolIcon from "../../assets/images/liverpool-homepage-pirctures/LiverPool-Icon.png";
-import { useLoaderData, useLocation } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import { useLoaderData } from "react-router";
+import { useContext, useEffect } from "react";
 import { PageCtx } from "../../context/PageContext";
 function HomePage() {
-  const { setIsAuth, isAuth } = useContext(PageCtx);
+  const { setIsAuth } = useContext(PageCtx);
 
   const loaderData = useLoaderData();
 
 
   useEffect(() => {
-    if (loaderData.status === false) {
+    if (loaderData?.jStatus === false) {
       setIsAuth(false);
     }
-    if (loaderData.status === true) {
+    if (loaderData?.jStatus === true) {
       setIsAuth(true);
     }
   }, [setIsAuth, loaderData]);
+
 
   return (
     <>
@@ -41,8 +43,8 @@ function HomePage() {
 
 export default HomePage;
 
-export async function loader({ request, params }) {
-  const response = await fetch("http://localhost:5000/auth/single/check", {
+export async function loader() {
+  const response = await fetch("http://localhost:8080/admin/credential", {
     method: "POST",
     credentials: "include",
   });

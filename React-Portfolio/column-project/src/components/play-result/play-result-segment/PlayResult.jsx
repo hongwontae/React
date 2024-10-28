@@ -2,60 +2,68 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { PageCtx } from "../../../context/PageContext";
-import CustomModal from '../../../components/modal/CustomModal'
+import CustomModal from "../../../components/modal/CustomModal";
+import { dateTransformat } from "../../../util/date-formatted";
 
 function PlayResult() {
-  const data = useLoaderData();
+  const loaderData = useLoaderData();
   const navigate = useNavigate();
   const modalRef = useRef(null);
 
-  const { isAuth } = useContext(PageCtx);
+  const dateData = dateTransformat(loaderData.getOneResData.data.date);
 
+  const { isAuth, setIsAuth } = useContext(PageCtx);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const propsDate = new Date(data.date);
-
-  const formattedDate = new Intl.DateTimeFormat("ko-kr", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  });
-
-  const newFormattedDate = formattedDate.format(propsDate);
+    if (loaderData.au.jStatus === false) {
+      setIsAuth(false);
+    }
+    if (loaderData.au.jStatus === true) {
+      setIsAuth(true);
+    }
+  }, [loaderData?.au?.jStatus, setIsAuth]);
 
   function modifierHandler() {
-    navigate(`/modifier/${data.id}`);
+    navigate(`/modifier/${loaderData.getOneResData.data.playId}`);
   }
 
-  function ModalOpenHandler(){
+  function ModalOpenHandler() {
     modalRef.current.showModal();
   }
-  function ModalCloseHandler(){
+  function ModalCloseHandler() {
     modalRef.current.close();
   }
 
   return (
     <>
-      <CustomModal ref={modalRef} close={ModalCloseHandler} title={data.title} id={data.id}></CustomModal>
+      <CustomModal
+        ref={modalRef}
+        close={ModalCloseHandler}
+        title={loaderData.getOneResData.data.title}
+        id={loaderData.getOneResData.data.playId}
+        url={'play-result'}
+        path={'play-result'}
+      ></CustomModal>
       <div className="flex justify-center mb-4">
-        <div className="flex flex-col items-center border-[1px] rounded-md pr-12 pl-12 pb-12 pt-6 gap-5">
-          <h1 className="text-red-800 text-4xl font-bold">{data.title}</h1>
-          <div className="flex gap-4 items-center">
+        <div className="flex flex-col items-center border-[1px] rounded-md pt-4 pr-8 pl-8 pb-10 gap-5 w-3/5">
+          <h1 className="text-red-500 text-4xl font-bold">
+            {loaderData.getOneResData.data.title}
+          </h1>
+          <div className="flex gap-4 items-center justify-center w-full">
             <img
-              className="w-[35rem] h-[25rem] rounded-lg"
-              src={`http://localhost:5000/${data.imagePath}`}
-              alt={data.imagePath}
+              className="w-2/3 h-[25rem] rounded-lg"
+              src={`http://localhost:8080/uploads/${loaderData.getOneResData.data.imagePath}`}
+              alt={loaderData.getOneResData.data.imagePath}
             ></img>
-            <div className="flex flex-col gap-2 ">
-              <div className="text-red-700 font-bold text-2xl">Summary</div>
-              <div className="flex flex-col gap-4 border-[1px] p-6 rounded-lg text-red-500">
-                <div>{newFormattedDate}</div>
-                <div>리버풀 vs {data.matchTeam}</div>
-                <div>{data.playResult}</div>
+            <div className="flex flex-col gap-2 w-1/3 ">
+              <div className="text-red-500 font-bold text-2xl">Summary</div>
+              <div className="flex flex-col gap-4 border-[1px] p-6 rounded-lg">
+                <div>{dateData}</div>
+                <div>리버풀 vs {loaderData.getOneResData.data.matchTeam}</div>
+                <div>
+                  {loaderData.getOneResData.data.myScore} :{" "}
+                  {loaderData.getOneResData.data.opponentScore}
+                </div>
               </div>
               {isAuth ? (
                 <div className="flex justify-center gap-4 mt-8">
@@ -66,17 +74,22 @@ function PlayResult() {
                   >
                     Modify
                   </button>
-                  <button type="button" className="border-[1px] p-1 rounded-md" onClick={ModalOpenHandler}>
+                  <button
+                    type="button"
+                    className="border-[1px] p-1 rounded-md"
+                    onClick={ModalOpenHandler}
+                  >
                     Delete
                   </button>
                 </div>
               ) : null}
             </div>
           </div>
-
-          <p className="max-w-2xl text-left whitespace-pre-wrap">
-            {data.description}
-          </p>
+          <div className="w-full">
+            <p className="text-base break-words">
+              {loaderData.getOneResData.data.playDescription}
+            </p>
+          </div>
         </div>
       </div>
     </>
@@ -87,13 +100,27 @@ export default PlayResult;
 
 export async function resultOneLoader({ request, params }) {
   const id = params.id;
-  const response = await fetch(`http://localhost:5000/get/prone/${id}`);
 
-  if (!response.ok) {
-    throw new Error("Failed one fetching data");
+  const [getOneResponse, authData] = await Promise.all([
+    fetch(`http://localhost:8080/play-result/one?id=${id}`),
+    fetch("http://localhost:8080/admin/credential", {
+      method: "POST",
+      credentials: "include",
+    }),
+  ]);
+
+  if (!getOneResponse.ok || !authData.ok) {
+    throw new Response(JSON.stringify({ message: "play-result http fail" }), {
+      status: 404,
+      statusText: "filed",
+    });
   }
 
-  const resData = await response.json();
+  const getOneResData = await getOneResponse.json();
+  const au = await authData.json();
 
-  return resData;
+  return {
+    getOneResData,
+    au,
+  };
 }

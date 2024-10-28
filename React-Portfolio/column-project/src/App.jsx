@@ -28,6 +28,7 @@ import PlayerRatingFormPage, {
   action as prfAction,
 } from "./page/player-rating-form/PlayerRatingFormPage";
 import PlayerRatingResult, {loader as prrLoader} from "./components/player-rating/PlayerRatingResult";
+import RatingUpdatePage, {loader as ratingUpdateLoader, action as ratingUpdateAction} from "./page/modifierPage/RatingUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -65,7 +66,7 @@ function App() {
           loader: pRatLoader,
         },
         {
-          path : '/player-rating/result/:date',
+          path : '/player-rating/result/:id',
           element : <PlayerRatingResult></PlayerRatingResult>,
           loader : prrLoader
         },
@@ -82,7 +83,13 @@ function App() {
             }
           },
         },
-
+        {
+          path : '/player-rating/update/:id',
+          element : <RatingUpdatePage></RatingUpdatePage>,
+          loader : ratingUpdateLoader,
+          action : ratingUpdateAction
+          
+        },
         {
           path: "/login",
           element: <LoginPage></LoginPage>,

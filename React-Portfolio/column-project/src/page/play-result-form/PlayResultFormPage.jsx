@@ -8,15 +8,17 @@ function PlayResultFormPage() {
   const { setIsAuth, isAuth } = useContext(PageCtx);
 
   const loaderData = useLoaderData();
+  console.log(loaderData);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loaderData.status === false) {
+    if (loaderData.jStatus === false) {
+      setIsAuth(false)
       navigate('/')
     }
-    if(isAuth === false){
-      navigate('/')
+    if(loaderData.jStatus === true){
+      setIsAuth(true);
     }
   }, [setIsAuth, loaderData, navigate, isAuth]);
 
@@ -32,7 +34,7 @@ function PlayResultFormPage() {
 export default PlayResultFormPage;
 
 export async function loader() {
-  const response = await fetch("http://localhost:5000/auth/single/check", {
+  const response = await fetch("http://localhost:8080/admin/credential", {
     method: "POST",
     credentials: "include",
   });
@@ -42,7 +44,6 @@ export async function loader() {
   }
 
   const resData = await response.json();
-  console.log(resData)
 
   return resData;
 }

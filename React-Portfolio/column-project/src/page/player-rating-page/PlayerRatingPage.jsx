@@ -1,18 +1,36 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import PlayerRatingContainer from "../../components/player-rating/PlayerRatingContainer.jsx";
+import Pagination from "../../components/play-result/Pagination.jsx";
+import { PageCtx } from "../../context/PageContext.jsx";
 
 function PlayerRatingPage() {
-  const data = useLoaderData();
+  const {resData : data, authData} = useLoaderData();
+  console.log({data, authData});
+  const { setIsAuth } = useContext(PageCtx);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(()=>{
+    if(authData.jStatus === false){
+      setIsAuth(false);
+    }
+    if(authData.jStatus === true){
+      setIsAuth(true)
+    }
+  }, [authData.jStatus, setIsAuth])
+
   return (
     <>
-    <PlayerRatingContainer data={data.items}></PlayerRatingContainer>
+      <PlayerRatingContainer data={data.items}></PlayerRatingContainer>
+      <Pagination
+        currentPage={data.currentPage}
+        totalPage={data.totalPages}
+        url="/player-rating?page="
+      ></Pagination>
     </>
   );
 }
@@ -23,15 +41,22 @@ export async function pRatLoader({ request, params }) {
   const url = new URL(request.url);
   const page = url.searchParams.get("page") || 1;
 
-  const response = await fetch(
-    `http://localhost:5000/rating/prat?page=${page}`
-  );
+  const [response, authResponse] = await Promise.all([
+    fetch(`http://localhost:8080/rating/all?page=${page}`),
+    fetch("http://localhost:8080/admin/credential", {
+      method: "POST",
+      credentials: "include",
+    }),
+  ]);
 
-  if (!response.ok) {
+  if (!response.ok || ! authResponse.ok) {
     throw new Error("Failed Data");
   }
 
   const resData = await response.json();
-
-  return resData;
+  const authData = await authResponse.json();
+  return {
+    resData,
+    authData
+  };
 }

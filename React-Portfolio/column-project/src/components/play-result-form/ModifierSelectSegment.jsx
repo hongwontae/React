@@ -7,8 +7,8 @@ const ModifierSelectSegment = forwardRef(function ModifierSelectSegment(
 ) {
   return (
     <>
-      <div className="flex gap-2">
-        <label htmlFor="match_team">Match Team</label>
+      <div className="flex flex-col gap-2 w-full">
+        <label htmlFor="match_team" className="text-red-400 font-bold">Match Team</label>
         <select
           className="text-black p-1 rounded-sm text-center"
           id="match_team"

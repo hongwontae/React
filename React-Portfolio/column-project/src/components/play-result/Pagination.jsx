@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 function Pagination({ totalPage, url, currentPage }) {
 
-
   const [startPage, setStartPage] = useState(1); 
 
   const endPage = Math.min(startPage + 9, totalPage); 

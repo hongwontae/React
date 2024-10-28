@@ -5,6 +5,7 @@ const play_result_db = require("./model/play-result");
 const admin_user = require("./model/admin-user");
 const Player = require('./model/player');
 const Rating = require('./model/rating')
+const RatingReport = require('./model/rating-report') 
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
@@ -42,35 +43,40 @@ app.use(cookieParser());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+
+// 경기 결과 http
 app.use("/get", PlayResultRouter);
 app.use("/post", upload.single("image"), PlayResultRouter);
 
 app.use('/modify',  PlayResultRouter)
 app.use('/act/modi', upload.single('image'), PlayResultRouter)
 
+app.use('/delete', DeleteRouter);
+
+
+// 경기 평점 http
 app.use('/rating', PlayRatingRouter);
 app.use('/rating/post', PlayRatingRouter);
 
 app.use('/player', PlayRatingRouter);
 app.use('/player/get', PlayRatingRouter);
 
+
+// 로그인 및 관리자 생성 및 route 보호 http
 app.use("/admin", AdmintRouter);
 app.use("/auth", AuthRouter);
 
 app.use('/auth/single/check', isAuth);
 app.use('/auth/single', AuthRouter )
 
-app.use('/delete', DeleteRouter);
 
-app.use('/test',  async (req, res, next)=>{
-  await sequelize.query('DROP TABLE IF EXISTS `ratings`')
-})
-
+// 총합 에러 관리 핸들러
 app.use((errors, req, res, next) => {
   console.log(errors);
   return res.json({ message: errors.message, errorData: errors });
 });
 
+// sequelize + server 가동
 sequelize
   .sync()
   .then(() => {

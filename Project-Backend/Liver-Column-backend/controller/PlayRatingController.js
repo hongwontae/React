@@ -5,86 +5,9 @@ const {col, fn} = require('sequelize');
 
 exports.getAllRating = async (req, res, next) => {
 
-  const results = await Rating.findAll({
-    attributes : [
-        'ratingId',
-        'ratingOppenent',
-        'ratingDescription',
-        'rating',
-        'ratingDate',
-        [col('playerName'), 'playerName'],
-        [col('backNumber'), 'backNumber']
-    ],
-    include : [
-        {
-            model : Player,
-            attributes : [],
-            required : true
-        }
-    ],
-    order : [fn('DATE', col('ratingDate'))]
-  })
-
-  const groupedResults = results.reduce((groups, item) => {
-    const dateKey = item.ratingDate.toISOString().split('T')[0];
-    if (!groups[dateKey]) {
-      groups[dateKey] = [];
-    }
-    groups[dateKey].push(item);
-    return groups;
-  }, {});
-
-  
-
-  const groupedArray = Object.values(groupedResults);
-
-  const page = +req.body.page || 1;
-  const limit = 4;
-
-  const totalGroups = groupedArray.length
-  const totalPages = Math.ceil(totalGroups/limit);
-
-  const paginationGroups = groupedArray.slice((page-1) * limit, page*limit);
-
-  return res.json({
-    currentPage : page,
-    totalPages : totalPages,
-    totalGroups : totalGroups,
-    items : paginationGroups,
-  });
-
 };
 
 exports.getOneRating = async (req, res, next)=>{
-    const date = req.query.date;
-    console.log(date);
-    try {
-        const ratings = await Rating.findAll({
-          include: [
-            {
-              model: Player,
-              attributes: ['playerName', 'backNumber'],
-            },
-          ],
-          where: sequelize.where( // 조건 추가
-            sequelize.fn('DATE', sequelize.col('ratingDate')),
-            date // 전달된 날짜와 비교
-          ),
-          attributes: [
-            'ratingId', 
-            'ratingOppenent', 
-            'ratingDescription', 
-            'rating', 
-            'ratingDate'
-          ],
-        });
-    
-        return res.json({data : ratings}); // 결과를 JSON 형태로 응답
-      } catch (error) {
-        console.error('Error fetching ratings:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-    
 
 }
 
@@ -180,3 +103,10 @@ exports.playerAllGet = async (req, res, next) => {
     return next(error);
   }
 };
+
+exports.modifyRating = async (req, res, next)=>{
+
+
+    
+
+}

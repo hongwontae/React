@@ -9,47 +9,58 @@ import {
   useLoaderData,
   useNavigate,
 } from "react-router";
-import { PageCtx } from "../../context/PageContext";
 import PlayerRatingForm from "../../components/player-rating-form/playerRatingForm";
 import { RatingCtx } from "../../context/RatingContext";
+import { PageCtx } from "../../context/PageContext";
 
 function PlayerRatingFormPage() {
   const navigate = useNavigate();
+  const { setIsAuth } = useContext(PageCtx);
+
 
   const acData = useActionData();
 
   const [selectedData, setSelectedData] = useState("맨체스터 시티");
-  const [actionData, setActionData] = useState(null);
+  const [actionData, setActionData] = useState([]);
 
-  const { setStartingMember, setSubstanceMember } = useContext(RatingCtx);
+  const { setRatings } = useContext(RatingCtx);
 
   const loaderData = useLoaderData();
-  const startMember = loaderData.playerData.startMember;
-  const subMember = loaderData.playerData.substanceMember;
+  const startMember = loaderData.playerData.start;
+  const subMember = loaderData.playerData.sub;
+
 
   useEffect(() => {
-    setStartingMember(startMember);
-    setSubstanceMember(subMember);
-  }, [loaderData, setStartingMember, setSubstanceMember]);
+    setRatings([...startMember, ...subMember])
+  }, [loaderData]);
 
   useEffect(() => {
-    if (loaderData.authData.status === false) {
+    if (loaderData.authData.jStatus === false) {
+      setIsAuth(false);
       navigate("/");
     }
-  }, [loaderData, navigate]);
+    if (loaderData.authData.jStatus === true) {
+      setIsAuth(true);
+    }
+    if(actionData?.status === false){
+      setIsAuth(false);
+      navigate('/')
+    }
+  }, [loaderData, navigate, actionData]);
 
   useEffect(() => {
-    setActionData(actionData?.message);
+    setActionData(acData?.validatorResult);
   }, [acData]);
 
   return (
     <>
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-extralight">Player Rating Form</h1>
+        <h1 className="text-3xl font-bold text-red-700">Player Rating Form</h1>
         <PlayerRatingForm
           selectedData={selectedData}
           SetSelectedData={setSelectedData}
           actionData={actionData}
+          setActionData={setActionData}
         ></PlayerRatingForm>
       </div>
     </>
@@ -60,11 +71,11 @@ export default PlayerRatingFormPage;
 
 export async function loader() {
   const [authResponse, playerResponse] = await Promise.all([
-    fetch("http://localhost:5000/auth/single/check", {
+    fetch("http://localhost:8080/admin/credential", {
       method: "POST",
       credentials: "include",
     }),
-    fetch("http://localhost:5000/player/get/playerAll"),
+    fetch("http://localhost:8080/player/all"),
   ]);
 
   const authData = await authResponse.json();
@@ -73,15 +84,22 @@ export async function loader() {
   if (!authResponse.ok || !playerResponse.ok) {
     throw new Response(JSON.stringify({ message: "http 전송 중 에러" }), {
       status: 404,
-      statusText: "Hello-world",
+      statusText: "new Response로 만든 에러",
       headers: {
         "Content-Type": "application/json",
       },
     });
   }
-
-  console.log(authData);
-  console.log(playerData);
+  if (playerData.status === false) {
+    throw json(
+      {
+        message: "응답 데이터가 fasle임으로 try-cathc 블록에 막혀 에러 발생",
+        p: playerData.message,
+        a: authData.message,
+      },
+      { status: 404, statusText: "false" }
+    );
+  }
 
   return {
     authData,
@@ -92,34 +110,45 @@ export async function loader() {
 export async function action({ request, params }) {
   const formData = await request.formData();
   const day = formData.get("matchDay");
-  const team = formData.get("matchTeam");
-  const desc = formData.get("ratingDescription");
-  const ratings = formData.get("ratings");
+  const matchTeam = formData.get("matchTeam");
+  const matchDesc = formData.get("ratingDescription");
+  const title = formData.get('title')
+  const ratings = JSON.parse(formData.get("ratings"));
   const postData = {
+    title,
     day,
-    team,
-    desc,
+    matchTeam,
+    matchDesc,
     ratings,
   };
 
-  const response = await fetch("http://localhost:5000/rating/post/register", {
+  const response = await fetch("http://localhost:8080/rating/register", {
     method: "POST",
-    body: JSON.stringify(postData),
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(postData),
   });
 
   if (!response.ok) {
-    throw json({ message: "HTTP request Failed" }, { status: 404,  });
+    throw new Response(
+      JSON.stringify({
+        message: "rating 정보를 전달하는 중에 에러가 발생했습니다.",
+      }),
+      {
+        status: 404,
+        statusText: "rating frontend err",
+      }
+    );
   }
 
   const resData = await response.json();
-  console.log(resData);
 
-  if (resData?.errorData?.statusCode === 404) {
-    return resData;
+  if(resData.status === false){
+    return resData
+  } else if(resData.status === true){
+    return redirect('/player-rating?page=1')
   }
 
-  return resData;
 }

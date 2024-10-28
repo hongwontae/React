@@ -3,11 +3,10 @@ import { PageCtx } from "../../context/PageContext";
 
 function Logout(){
 
-    const ctx = useContext(PageCtx)
+    const {logoutHandler : logout}= useContext(PageCtx)
 
-    
     function logoutHandler(){
-        ctx.logoutHandler()
+        logout();
     }
 
     return(
