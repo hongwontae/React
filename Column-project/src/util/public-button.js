@@ -1,0 +1,2 @@
+export const buttonTailwindCss = `px-5 py-2.5 bg-gray-800 text-white font-medium rounded-md 
+  hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150`
