@@ -27,7 +27,7 @@
 
 
 3. Redux 작동방식
-리덕스는 central Data(state) Stroe이다. 하나의 저장소를 갖는다. 하나의 저장소에 모든 state 관리를 한다.
+리덕스는 central Data(state) Store이다. 하나의 저장소를 갖는다. 하나의 저장소에 모든 state 관리를 한다.
 => 저장소를 직접 구현하지 않는다.
 
 컴포넌트는 저장소의 데이터를 직접 변경하지 않는다. ReducerFunc은 일반함수이고 이를 통해 데이터를 조작한다.

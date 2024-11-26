@@ -1,5 +1,0 @@
-1. CSS 모듈
-1-1. css Module은 클래스 이름을 인위적으로 바꿔줘서 scope을 준다.
-1-2. CSSName.module.css로 파일이름을 설정하고 사용할 컴포넌트에서 import modules from 'path';
-=> export default를 가져오는 것과 비슷하게 import name은 자기 마음대로
-=> className이 독자적으로 변경되어 scoping된다.
