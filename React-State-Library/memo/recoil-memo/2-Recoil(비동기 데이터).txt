@@ -1,0 +1,17 @@
+1. useRecoilValueLoadable
+1-1. 비동기 데이터를 처리할 떄 사용하는 훅입니다.
+1-2. 로딩, 성공, 실패 상태를 표현할 수 있습니다. (loadable.state === 'loading' or 'hasValue' or 'hasError')
+
+
+2. useRecoilValue를 통해 비동기 데이터를 처리할 떄
+=> 비동기 작업이 완료되지 않았을 떄에도 그 즉시 값을 반환하려고 합니다.
+=> 즉, 기본값이나 Promise 객체를 반환해 버릴 수 도 있습니다.
+
+
+3. 동적인 비동기 데이터 처리
+3-1. atom과 selector를 정의합니다. 이 떄 atom은 default 값을 정의하고 selector는 atom의 값을 get을 받아서
+비동기 로직을 정의합니다.
+3-2. 사용할 컴포넌트에서 useRecoilState()를 통해 atom을 불러옵니다.
+3-3. 마찬가지로, useRecoilValueLoadable()를 통해 selector를 불러옵니다.
+3-4. setState의 변경이 트리거 되면 selector에 영향을 미칩니다. 이를 통해서 동적인 비동기 데이터를 받아 올 수
+있습니다.

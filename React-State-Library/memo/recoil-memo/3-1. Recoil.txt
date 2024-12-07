@@ -1,0 +1,18 @@
+1. DefaultValue
+1-1. new DefaultValue()를 setState에서 호출하면 atom의 기본값으로 변경됩니다.
+1-2. useResetRecoilState(atom)의 반환값을 호출한 것과 동일한 효과입니다.
+
+
+2. MutableSnapshot
+2-1. 상태를 초기화할 떄 사용하는 ts 문법입니다.
+2-2. function initialRecoil({set} : MutableSnapshot){
+    set(atom, {원하는 초기값 설정})
+    set(atom, {원하는 초기값 설정})
+    ...
+}
+2-3. 애플리케이션이 로드될 떄 초기값을 설정하거나 테스트 환경에서 상태를 설정할 떄 유용합니다.
+
+
+3. RecoilBridge는 현재 지원하지 않는 컴포넌트입니다.
+
+

@@ -1,0 +1,21 @@
+1. useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState:
+=> Recoil에서 상태를 가져오거나 설정하는 데 사용되는 훅입니다.
+useRecoilState: 상태 읽기/쓰기
+useRecoilValue: 상태 읽기 전용
+useSetRecoilState: 상태 쓰기 전용
+useResetRecoilState: 상태 초기화
+=> 상태를 초기화하지만 객체 형태의 상태일 경우 일부만 초기화가 불가능합니다.
+=> 일부만 초기화할 경우 이전 상태를 사용해서 하나의 값만 초기화하는 로직을 구현하면 됩니다.
+
+
+2. Recoil의 장점
+2-1. Context API보다 상태를 설정하고 공유하는 과정이 훨씬 간단합니다.
+2-2. Selector를 사용하면 상태를 기반으로 하는 계산이나 변환이 간단합니다.
+2-3. Recoil은 비동기 상태를 네이티브로 지원합니다.Selector에서 비동기 함수를 작성해
+ 비동기 데이터를 관리할 수 있습니다.
+2-4. 구독된 컴포넌트만 리렌더링되기 떄문에 성능상 이점이 있습니다.
+2-5. React 훅과 비슷하게 사용할 수 있습니다.
+
+
+3. Recoil의 단점
+3-1. 오래된 라이브러리에 비해 생태계나 커뮤니티의 정보가 부족합니다.
