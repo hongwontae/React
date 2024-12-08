@@ -1,0 +1,7 @@
+1. Context-API + 비동기 처리
+1-1. createContext + 해당 반환값으로 함수 생성 + return Provier + value ctx 처리합니다.
+1-2. 함수 내부에서 사용할 state 생성합니다. => data, error, loading
+1-3. useEffect() + async 함수를 통해 비동기 로직을 처리합니다.
+1-4. 사용할 컴포넌트에서 useContext를 통해 data, loading, error 상태를 가져와서 사용합니다.
+
+
