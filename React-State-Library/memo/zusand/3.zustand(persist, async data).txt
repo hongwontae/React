@@ -1,0 +1,24 @@
+1. persist
+=> 로컬 스토리지에 저장할 수 있는 기능입니다.
+=> persist와 create 함수를 결합하면 상태가 정의될 때, 상태가 업데이트 될 떄 로컬 스토리지에 저장됩니다.
+=> persist 첫 번쨰 인자에 객체를 정의하고, 두 번쨰 인자에 로컬 스토리지에 저장될 이름을 정의합니다.
+** persist에 값이 저장되면 로컬 스토리지에 값이 저장됩니다. persist의 기능으로 새로고침하거나 페이지를 벗어나도
+데이터가 유지되는 기능이 있습니다. **
+
+ex) create(persist(
+    (set)=>({
+        count : 0,
+        increment : ()=>set(state=>({count : prev.count+1})),
+        ...
+    }),
+    {
+        name : 'count-data'
+    }
+))
+
+
+2. 비동기 상태 관리
+2-1. create에서 loading, error, data 상태를 정의합니다.
+2-2. fetchData : async ()=>{}를 통해 비동기 함수 로직을 정의합니다.
+2-3. 원하는 컴포넌트에서 사용합니다.
+=> Zustand로 비동기 로직을 구성하는 것이 제일 간단합니다.
