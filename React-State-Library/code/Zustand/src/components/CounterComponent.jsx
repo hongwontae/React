@@ -10,6 +10,7 @@ function CounterComponent() {
       <div>{count}</div>
       <button onClick={increment}>Up</button>
       <button onClick={decrement}>Down</button>
+      <div>Hello</div>
     </>
   );
 }
