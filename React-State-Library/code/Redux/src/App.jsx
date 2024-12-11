@@ -1,5 +1,6 @@
 import "./App.css";
 import CounterComponent from "./components/CounterComponent";
+import RequestComponent from "./components/RequestComponent";
 import UserComponent from "./components/UserComponent";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <CounterComponent></CounterComponent>
       <UserComponent></UserComponent>
+      <RequestComponent></RequestComponent>
     </>
   );
 }

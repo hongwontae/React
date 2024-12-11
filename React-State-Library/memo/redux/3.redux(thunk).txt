@@ -23,5 +23,20 @@ Action Creator : 특정 액션 객체를 반환하는 함수입니다.
 2-3. createStore(rootReducers, applyMiddleware(thunk))
 => 동기 상태와 비동기 상태를 사용하기 위한 store 설정입니다.
 
+2-4. 비동기 액션 생성자를 정의합니다.
+=> react-thunk store 처리를 했기 때문에 액션 생성자가 함수를 return 하면 dispatch와 getState를 받아서
+흐름에 맞게 비동기 처리를 할 수 있습니다.
+
+2-5. reducer를 생성합니다.
+=> loading, error, data 상태를 initialState로 정의하고 그에 따른 action type를 구분하여 각자의 상태 변화
+return을 정의합니다.
+
+2-6. useSelector를 사용해서 컴포넌트와 store 구독관계를 형성합니다.
+2-7. useEffect나 event를 사용하여 비동기 데이터를 가져옵니다.
+
+2-8. loading이 true일 때 data는 없기 때문에 이에 대한 처리를 해줘야 에러가 발생하지 않습니다.
+=> 옵셔널 체이닝이나 if문으로 null이나 undefined 처리를 합니다.
+
+
 
 
