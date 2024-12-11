@@ -43,7 +43,7 @@ Redux 저장소는 컴포넌트를 바라보고 있다. 이 방향을 역으로 
 
 
 4. Redux Concepts
-저장소-리듀서 함수 - 액션 - 컴포넌트(저장소를 구독하기 위한 설정 코드) 4가지가 필요하다. => Node에서 구현
+저장소 - 리듀서 함수 - 액션 - 컴포넌트(저장소를 구독하기 위한 설정 코드) 4가지가 필요하다.
 
 const store = redux.createStore() => 리덕스 저장소를 생성한다.
 저장소의 데이터를 액션이 보내지고 리듀서 함수에 의해 조작된다.
@@ -77,7 +77,7 @@ npm install redux + React와 저장소를 쉽게 구독하기 위해 react-redux
 앱 전반에 데이터를 전달하려면 최상단 index.js(app.js가 render)된 곳에서 바인딩처리를 한다.
 
 7-1. import {Provider} from 'react-redux'
-7-2. import store from 'stor path'
+7-2. import store from 'store path'
 7-3. root.render(<Provider store={store}><App /><Provider>);
 =>이제 모든 컴포넌트들이 구독할 수 있고 액션을 보낼 수 있게된다.
 
