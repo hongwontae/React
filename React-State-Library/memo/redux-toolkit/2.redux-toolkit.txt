@@ -1,0 +1,44 @@
+1. redux-toolkit 사용방법
+1-1. createSlice를 통해 reducer 함수, action을 정의합니다.
+=> reducer와 action을 export합니다.
+=> createReducer의 reducer는 immer 라이브러리를 기반으로 동작합니다.
+=> 상태를 직접 변경해야 합니다. => 직접 변경 대신 값을 반환하면 immer 예상 구조와 달라져 에러가 발생합니다.
+=> 즉, return state.value+1 error/ return {value : state.value+=1} or state.value+=1 success
+
+1-2. configureStore를 통해 reducer를 설정합니다.
+
+1-3. 사용할 컴포넌트에서 useSelector와 useDispatch를 통해 상태와 상태변경 함수를 사용합니다.
+
+
+2. createSlice 예시
+const CounterSlice = createSlice({
+    name : 'counter',
+    initialState : {value : 0},
+    reducers : {
+        increment : (state)=>{
+            state.value = state.value+1
+        },
+        decrement : (state)=>{
+            state.value = state.value-1
+        },
+        incrementByAmount : (state, action)=>{
+            state.value += action.payload
+        }
+    }
+})
+export const {incremnet, decrement, incrementByAmount} = CounterSlice.actions;
+export default counterSlice.reducer;
+=> createSlice를 통해 reducers를 정의하면 하나의 reducer가 상태 변경 역할 + 액션 생성자 역할도 합니다.
+=> 즉, increment를 호출하면 내부에서 {type : 'INCREMENT'} 처럼 반환되어 reducers의 increment 함수를 target합니다.
+
+
+3. configureStore 예시
+=> configureStore의 reducer가 여러개라면 reducer 키에 객체의 키-값으로 여러개를 넣으면 됩니다.
+const store = configureStore({
+    reducer : {
+        counter : counterSlice.reducer,
+        user : userSlice.reducer
+    }
+})
+=> 이 떄 useSelector는 useSelector(state=>stte.counter.value)로 값에 접근합니다.
+

@@ -1,0 +1,56 @@
+1. createAsyncThunk()
+1-1. 첫 번쨰 인자는 액션을 유일하게 식별하기 위해 액션 타입 문자열을 사용합니다.
+1-2. pending, fulfilled, rejected 세 단계의 액션 타입을 자동으로 생성합니다.
+1-3. 첫 번쨰 인자가 'post/fetchPost'라면
+=> post/fetchPost/pending, post/fetchPost/fulfilled, post/fetchPost/rejected
+
+1-4. 두 번째 인자는 비동기 로직을 정의하는 함수입니다.
+1-5. 해당 함수의 인자는 payload와 thunkAPI를 받습니다.
+1-6. thunkAPI createAsyncThunk에 의해 제공되는 객체
+=> dispatch: 다른 액션을 디스패치할 때 사용.
+=> getState: 현재 Redux 상태를 가져옴.
+=> rejectWithValue: 에러 메시지를 리턴하기 위한 메서드.
+=> extra: configureStore에서 정의한 추가 인자를 전달받음.
+
+1-7. 기본동작
+=> createAsyncThunk가 호출되면 자동으로 loading 상태인 pending 상태를 dispatch 합니다.
+=> 비동기 로직으로 데이터를 받아오면 자동으로 fulfilled 상태를 dispatch 합니다.
+=> 만약 에러가 발생했다면 자동으로 rejected 상태를 dispatch 합니다.
+(rejectWithValue는 rejected reducer에 error message를 전달하기 위한 옵션입니다.)
+
+
+2. extraReducers
+=> createAsyncThunk로 생성된 액션(즉, pending, fulfilled, rejected)에 반응하여 
+상태를 업데이트하는 로직을 정의하는 곳입니다.
+=> 외부에서 생성된 액션에 대해 현재 slice에서 상태를 변경하고 싶을 떄에도 사용합니다.
+
+2-1. reducers는 slice의 동기 액션만 처리합니다.
+2-2. 비동기 액션은 Slice 바깥에서 생성 => extraReducer에 반응하게 합니다.
+
+2-3. extraReducers : (buildre)=>{
+    => builder란 redux-toolkit이 제공한 Fluent API
+    => 여러 액션에 대한 상태 업데이트 로직을 체계적으로 작성할 수 있도록 도와줍니다.
+    => 주요 메서드
+    1. addCase(type, reducer): 특정 액션 타입에 대해 상태를 업데이트.
+    2. addMatcher(matcher, reducer): 여러 액션 타입을 조건에 따라 처리.
+    3. addDefaultCase(reducer): 정의되지 않은 액션 타입에 대한 기본 처리.
+}
+
+
+
+
+
+
+
+
+
+
+
+** redux thunk의 기본원리**
+=> 원래는 한 번의 dispatch를 통해 상태를 변경합니다.
+=> 그러나 비동기 처리는 loading, error, data, 기타.. 상태가 한 번의 흐름으로 이어지기 떄문에
+=> action 객체를 한 번만 반환하는 기존의 방식으로 정의하기 어렵습니다.
+=> 그래서 action 생성자라는 함수를 반환하는 개념으로 action을 한 흐름에 여러 번 날려서 loading, error, data 상태
+를 효율적으로 사용할 수 있게 만들었습니다.
+
+
