@@ -1,0 +1,13 @@
+1. import {render, screen} from '@testing-library/react';
+
+1-1. render
+=> 컴포넌트를 DOM에 삽입하여 테스트 환경을 설정합니다.
+=> 컴포넌트를 테스트 가능한 상태로 만들어줍니다.
+=> cleanup(테스트가 끝난 후 DOM 정리)을 자동으로 처리합니다.
+
+1-2. screen
+=> 사용자 관점에서 DOM 요소를 찾는 데 사용됩니다.
+=> 접근성 중심의 쿼리(getByText, getByRole, getByLabelText, 등)를 통해 테스트합니다.
+
+** 즉, render는 컴포넌트를 DOM에 렌더링하고 screen은 렌더링된 DOM에서 요소를 검색할 떄 사용합니다.
+
