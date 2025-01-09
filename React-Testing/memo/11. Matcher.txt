@@ -37,3 +37,10 @@
 => expect(element).toBeChecked();
 => toUnbeChecked()가 없기 때문에 not()를 사용하여 비체크를 확인합니다.
 
+
+5. toBeInTheDocument()
+=> DOM 요소가 **현재 문서(DOM)**에 존재하는지 확인합니다.
+
+5-1. 사용법
+=> expect(element).toBeInTheDocument();
+=> element: 테스트하려는 DOM 요소입니다.

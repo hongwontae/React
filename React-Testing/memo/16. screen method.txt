@@ -1,0 +1,40 @@
+1. screen method
+
+1-1. command
+1. get : 요소가 DOM에 있을 것이라고 예상
+=> 일치하는게 없을 떄 throw
+
+2. query : 요소가 DOM에 없을 것이라고 예상
+=> 일치하는게 없을 떄 null이나 빈 배열을 반환합니다.
+
+3. find : 요소가 비동기적으로 나타날 경우를 예상
+=> 일치하는게 없을 떄 throw
+
+
+1-2. All
+=> 하나 이상의 요소를 배열로 가져옵니다.
+
+1-3. QueryType
+1. Role : 역할를 찾습니다. (대중적)
+2. AltText : 이미지
+3. Text : 특정 역할이 없는 요소를 찾을 떄 사용
+4. Form Elemenent : PlaceHolderText. LabelText, DisplayValue..
+
+
+2. screen method
+
+1. screen.queryByText()
+=> 요소가 DOM에 존재하지 않는지 확인하거나, 조건부 렌더링을 테스트할 때 주로 사용됩니다.
+=> 요소를 하나만 찾습니다. / 여러 요소가 동일한 텍스트를 포함하면 에러가 발생합니다.
+=> 요소가 없으면 null 반환합니다.
+
+1-1. const element = screen.queryByText("텍스트 내용");
+=> "텍스트 내용": 찾고자 하는 텍스트.
+=> 반환값: 요소를 찾으면 해당 요소를 반환하고, 찾지 못하면 null을 반환.
+
+
+2. getByText
+=> 1과 같지만 요소가 없을 떄 throw를 던집니다.
+=> 요소가 반드시 존재해야 할 떄 주로 사용합니다.
+
+

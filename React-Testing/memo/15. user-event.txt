@@ -1,0 +1,11 @@
+1. user-event
+=> npm install @testing-library/user-event
+=> fireEvent보다 완전하고 현실적으로 시뮬레이트할 수 있는 객체입니다.
+=> fireEvent의 시뮬레이션은 컴퓨터 이벤트/ user-event의 시뮬레이션은 사용자 이벤트입니다.
+=> user-event는 항상 프로미스를 반환합니다.
+
+
+2. 사용법
+2-1. const user = userEvent.setUp()
+=> user 객체가 여러 메서드를 제공합니다.
+=> user 객체를 통해 여러 이벤트를 시뮬레이션 합니다.
