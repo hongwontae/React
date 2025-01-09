@@ -1,0 +1,39 @@
+1. toHaveClass()
+=> Jest의 DOM Testing Library에서 제공하는 매처로, 특정 DOM 요소에 
+지정된 클래스가 존재하는지 테스트하는 데 사용됩니다.
+
+1-1. 사용법
+=> expect(element).toHaveClass(className);
+=> className: 확인하려는 클래스 이름(문자열).
+=> 클래스가 여러 개 있는 경우, 공백으로 구분된 클래스 이름 중 하나만 일치해도 테스트가 통과됩니다.
+
+
+2. toHaveTextContent()
+=>  Jest DOM Testing Library에서 제공하는 매처로, 특정 DOM 요소가
+ 특정 텍스트 콘텐츠를 포함하고 있는지 검증하는 데 사용됩니다.
+
+2-1. 사용법
+=> expect(element).toHaveTextContent(text);
+=> text: 확인하고자 하는 텍스트 문자열. 부분 문자열도 검증 가능하며, 정규표현식도 사용 가능합니다.
+=> 공백은 자동으로 제거되고 비교됩니다.
+=> 텍스트는 DOM 요소와 그 자식 요소에서 병합된 전체 텍스트를 기준으로 비교합니다.
+
+
+3. toBeEnabled
+=>  Jest DOM Testing Library에서 제공하는 매처로, DOM 요소가 활성화된 상태인지(사용 가능한 상태인지)를
+확인합니다.
+
+3-1. 사용법
+=> expect(element).toBeEnabled();
+=> disabled 속성이 없는 경우 요소는 활성화된 것으로 간주됩니다.
+=> 반대의 경우 toBeDisabled()를 사용합니다.
+
+
+4. toBeChecked
+=> Jest Dom Testing Library에서 제공하는 매처로, DOM 요소(특히 <input type="checkbox"> 
+또는 <input type="radio">)가 체크된 상태인지 확인합니다.
+
+4-1. 사용법
+=> expect(element).toBeChecked();
+=> toUnbeChecked()가 없기 때문에 not()를 사용하여 비체크를 확인합니다.
+

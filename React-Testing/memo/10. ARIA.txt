@@ -1,0 +1,17 @@
+1. ARIA (Accessible Rich Internet Applications)
+=> 접근성을 향상시키기 위해 HTML에 추가 정보를 제공하는 표준입니다.
+=> 역할(role)을 통해 요소의 목적과 사용법을 명확히 정의합니다.
+
+
+2. ARIA의 주요 개념
+2-1. Role (역할)
+=> 요소가 어떤 역할을 하는지 나타냅니다.
+예: button, heading, textbox 등.
+
+2-2. State (상태):
+=> 요소의 현재 상태를 나타냅니다.
+예: aria-checked="true" (체크박스가 체크됨), aria-disabled="true" (비활성화 상태).
+
+Property (속성)
+=> 요소에 대한 추가 정보를 제공합니다.
+예: aria-label="Submit" (레이블 설정), aria-labelledby="id" (다른 요소를 통해 레이블 연결).
