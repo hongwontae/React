@@ -76,3 +76,7 @@
 10. toBeNaN()
 => 값이 NaN인지를 확인합니다.
 
+11. toHaveValue()
+=> input, textarea, select의 현재 값을 검사하는데 사용됩니다.
+
+

@@ -1,0 +1,27 @@
+1. 테스트 컴포넌트는 App Component와 독립적으로 실행되고 존재하기 떄문에
+리액트 라우터, tanstack-query, redux, context-API처럼 덮는 컴포넌트가 필요한 경우
+render(<RRender/>{wrapper : <덮는 컴포넌트/>}) 이렇게 사용해야 합니다.
+
+
+2. 범용적으로 Wrapper 사용하는 방법
+2-1. 별도의 파일(test-utils.js)을 하나 생성하고 render 함수를 확장하여 Wrapper를 적용합니다.
+=> const CustomeRender = (ui, options)=>{
+    return render(
+        ui,
+        {
+            wrapper : ({children})=>{
+                // children은 테스트할 ui을 의미합니다.
+                return <Provider>{children}<Provider/>
+            }
+        },
+        ...options
+    )
+}
+2-2. export * from '@testing-library/react';
+=> 기존의 render 함수와 matcher들을 export합니다.
+=>  @testing-library/react 모듈의 모든 기능을 현재 모듈에서 다시 내보내기 때문에, 
+ 다른 파일에서 import할 때 손쉽게 여러 기능을 한 번에 가져올 수 있습니다.
+
+2-3. export { customRender as render };
+=> customeRender를 render라는 이름으로 test 파일에서 사용할 수 있게 합니다.
+=> 이제 render는 Wrapper가 작동된 CustomeRender가 범용적으로 사용됩니다.

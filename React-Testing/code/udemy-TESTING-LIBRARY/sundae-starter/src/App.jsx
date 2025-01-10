@@ -1,8 +1,11 @@
+import PriceContextProvider from "./context/PriceContextProvider";
+import TestComponent from "./components/TestComponent";
+
 function App() {
   return (
-    <div>
-      <h1>Sundaes on Demand</h1>
-    </div>
+    <PriceContextProvider>
+      <TestComponent></TestComponent>
+    </PriceContextProvider>
   );
 }
 
