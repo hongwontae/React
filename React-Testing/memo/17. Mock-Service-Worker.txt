@@ -1,0 +1,80 @@
+1. Mock Service Worker
+=> npm install msw
+=> 네트워크 요청을 가로채고 테스트 환경에서 모의 응답을 제공하는 라이브러리입니다.
+=> Node.js 환경에서 setupServer를 호출하면 요청을 가로챕니다. => 서버를 따로 키지 않아도 됩니다.
+
+
+2. server.js
+2-1. import { setupServer } from 'msw/node';
+=> setupServer: Node.js 환경에서 동작하는 서버를 생성하는 함수입니다.
+=> MSW 서버(server)는 Node.js 환경에서 네트워크 요청을 가로채는 가상의 HTTP 서버 역할을 합니다.
+
+2-2. handlers
+=> 요청이 들어왔을 때 어떻게 응답할지를 정의한 핸들러 배열입니다.
+=> 요청 URL과 메서드에 대한 가짜 응답을 정의합니다.
+
+2-3. setupServer(...handlers): 핸들러들을 등록하고 가상 서버를 설정.
+
+2-4. server.resetHandlers()
+=> 테스트 중에 해당 메서드를 호출하면 해당 테스트가 끝나기 전까지 인자에 추가된 핸들러가 동작합니다.
+
+
+3. handlers.js
+3-1. http.post(url, resolver)
+=> 특정 URL로 POST 요청이 들어오면 어떤 응답을 줄지를 정의.
+
+3-2. HttpResponse.json(data)
+=> JSON 형식의 응답을 반환하는 유틸 함수.
+
+3-3. http://localhost:3030/scoops로 POST 요청할 떄 응답 데이터
+=> [
+  {
+    "name": "Chocolate",
+    "imagePath": "/images/chocolate.png"
+  },
+  {
+    "name": "Vanilla",
+    "imagePath": "/images/vanilla.png"
+  }
+]
+
+
+4. setUpTest.js
+4-1. beforeAll(() => server.listen());
+=> 모든 테스트 전에 실행하여 가상 서버를 시작하고 요청을 가로챌 준비를 합니다.
+
+4-2. afterEach(() => server.resetHandlers());
+=> 각 테스트가 끝난 후 실행하고 특정 테스트에서 임시로 등록된 핸들러를 초기화합니다.
+=> 충돌을 방지합니다.
+
+4-3. afterAll(() => server.close());
+=> 모든 테스트가 끝난 후 실행하고 가상 서버를 종료합니다.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Mocking Handler
+=> Request를 가로채는 함수를 의미합니다.
+
+2-1. Information
+1. 배열 안에 핸들러 함수를 정의합니다.
+2. Rest API를 사용하면 http 핸들러를 사용합니다.
+=> http.get/ http.post...을 사용하여 정의합니다. 이를 목업 메서드라고 합니다.
+3. 목업 메서드의 첫 번쨰 인자는 Request URL입니다.
+4. 두 번쨰 인자로는 함수를 받고 응답을 return 합니다.
+=> RestAPI이기 떄문에 msw의 HttpResponse를 import하여 응답 객체를 만듭니다.
+
+
+3. 비동기 데이터 찾는 방법
+=> 비동기적으로 UI가 나타나는 경우 await findBy를 사용해야 합니다.

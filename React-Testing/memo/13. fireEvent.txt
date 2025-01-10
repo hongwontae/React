@@ -1,5 +1,8 @@
 1. fireEvent
 => 테스트에서 요소와 상호작용할할 수 있게 해주는 객체입니다.
-=> import {fireEvent } from "@testing-library/react";
-=> fireEvent.click(element) : 요소를 클릭합니다.
+=> 사용자가 요소와 상호작용할 때 발생하는 특정 이벤트를 명시적으로 발생시킵니다.
+=> 기본 이벤트만 지원합니다. (click, change...)
 
+2. 사용법
+=> import { render, fireEvent } from "@testing-library/react";
+=> fireEvent.click(element), fireEvent.change(element)...

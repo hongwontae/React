@@ -1,3 +1,6 @@
+** 매처란 테스트의 기대 결과를 확인하고 검증하는데 사용하는 Jest or Vitest의 메서드를 의미합니다.
+** expect()와 함께 사용되고 통과 여부를 결정합니다.
+
 1. toHaveClass()
 => Jest의 DOM Testing Library에서 제공하는 매처로, 특정 DOM 요소에 
 지정된 클래스가 존재하는지 테스트하는 데 사용됩니다.
@@ -44,3 +47,32 @@
 5-1. 사용법
 => expect(element).toBeInTheDocument();
 => element: 테스트하려는 DOM 요소입니다.
+
+
+6. toHaveAttribute()
+=> 요소가 특정 속성을 가지고 있는지 확인합니다.
+
+6-1. 사용법
+=> expect(element).toHaveAttribute('attr')
+
+
+7. toBe()
+=> 엄격한 동등성 비교 (Strict Equality, ===)입니다.
+=> 값과 자료형(Type)까지 동일해야 테스트가 통과됩니다.
+=> 객체나 배열 같은 참조 타입(reference type)을 비교할 때는 참조 주소가 동일해야 통과됩니다.
+
+
+8. toEqual
+=> 객체나 배열 같은 참조 타입의 구조와 내용이 동일하면 통과됩니다.
+=> 기본 자료형 비교도 가능합니다.
+=> 배열 내에 비어 있음과 undefined을 동일시합니다.
+
+9. toStrictEqual
+=> 객체, 배열의 내용뿐 아니라 구조, 프로토타입, 숨겨진 속성, 스파스 배열 등을 모두 검증합니다.
+=> 클래스 인스턴스와 일반 객체를 구분합니다.
+=> 배열 내에 비어 있음과 undefined을 구분합니다.
+
+
+10. toBeNaN()
+=> 값이 NaN인지를 확인합니다.
+
