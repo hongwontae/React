@@ -29,4 +29,23 @@ export const handlers = [
       },
     ]);
   }),
+  http.get('http://localhost:3030/not/player', ()=>{
+    return HttpResponse.json([
+      {
+        id : 1,
+        name : 'Nunez',
+        position : 'FW'
+      },
+      {
+        id : 2,
+        name : 'Jota',
+        position : 'FW'
+      },
+      {
+        id : 3,
+        name : 'Robertson',
+        position : 'DF'
+      }
+    ])
+  })
 ];

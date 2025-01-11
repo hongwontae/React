@@ -1,4 +1,5 @@
 import {render, screen} from '../../test-utils/test-util';
+import NotPlayer from '../NotPlyaer';
 import TestComponent from '../TestComponent';
 import {userEvent} from '@testing-library/user-event';
 test('tt', async ()=>{
@@ -21,5 +22,13 @@ test('tt', async ()=>{
 
 
 
+    
+})
+
+test('player not test', async ()=>{
+    render(<NotPlayer></NotPlayer>)
+    const players = await screen.findAllByRole('document');
+
+ 
     
 })
