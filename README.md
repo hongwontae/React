@@ -12,5 +12,6 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 
 
 ## Skill
-- **State** : Context-API, Redux![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white), Redux-Toolkit, 
+- **State**
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
