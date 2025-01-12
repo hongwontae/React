@@ -21,7 +21,9 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 ![Badge](https://img.shields.io/badge/Redux-764ABC.svg?&logo=Redux&logoColor=fff)
 
 
-- **CSS-Animation**
+- **CSS And Animation**
+
+&nbsp;&nbsp;&nbsp; ![Badge](https://img.shields.io/badge/Tawilwind-06B6D4.svg?&logo=Tailwind%20CSS&logoColor=fff)
 
 
   
