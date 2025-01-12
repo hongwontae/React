@@ -14,7 +14,7 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 ## Skill
 - **State**
 - 
-![Badge](https://img.shields.io/badge/Context%20API-61DAFB.svg?&logo=React&logoColor=61DAFB)
+![Badge](https://img.shields.io/badge/Context%20API-61DAFB.svg?&logo=React&logoColor=fff)
 ![Badge](https://img.shields.io/badge/Recoil-3578E5.svg?&logo=Recoil&logoColor=fff)
 ![Badge](https://img.shields.io/badge/Redux-764ABC.svg?&logo=Redux&logoColor=fff)
 
