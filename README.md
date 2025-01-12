@@ -25,7 +25,7 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 
 &nbsp;&nbsp;&nbsp;![Badge](https://img.shields.io/badge/CSS%20Modules-000000.svg?&logo=CSS%20Modules&logoColor=fff)
 ![Badge](https://img.shields.io/badge/Tawilwind-06B6D4.svg?&logo=Tailwind%20CSS&logoColor=fff) 
-![Badge](https://img.shields.io/badge/styled-components-DB7093.svg?&logo=styled-components%20CSS&logoColor=fff)
+![Badge](https://img.shields.io/badge/styled-components-DB7093.svg?&logo=styled-components&logoColor=fff)
 
 
 
