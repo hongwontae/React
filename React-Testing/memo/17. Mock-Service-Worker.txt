@@ -38,6 +38,12 @@
   }
 ]
 
+3-4. http.post('url', async ()=>{
+  await delay(밀리초)
+  => MSW 서버는 빠르기 떄문에 응답이 즉시 전달됩니다.
+  => 로딩 상태를 확인하기 위해 지연 메서드를 사용할 수 있습니다.
+})
+
 
 4. setUpTest.js
 4-1. beforeAll(() => server.listen());
