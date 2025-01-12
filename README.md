@@ -1,30 +1,11 @@
 # React Mastery Repository
+React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하기 위한 종합 자료 모음입니다.
 
-A comprehensive collection of React concepts, state management libraries, and hands-on exercises to master React development.
-
----
 
 ## Project Structure
-
-- **React-Concepts**: Summaries and notes on fundamental React concepts.
-- **React-State-Library**: Detailed explanations and code examples for state management libraries like Context API, Recoil, Redux, Redux-Toolkit, jotai, and Zustand.
-- **React-Summary-Practice**: Hands-on exercises to practice React skills.
-- **React-Testing**: Examples and notes on React testing strategies and tools.
-- **React-Udemy**: Notes and codes from Udemy React courses.
-
----
-
-## Technologies and Tools
-
-- **React**: A JavaScript library for building user interfaces.
-- **State Management Libraries**: Context API, Redux, Redux-Toolkit, Zustand, jotai, Recoil.
-- **Testing Tools**: Jest, React Testing Library.
-- **Documentation**: Markdown.
-
----
-
-## Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/react-mastery.git
+- **React-Concepts** : React에 대한 기본 개념과 심화 개념에 대한 설명
+- **React-State-Library** : React 상태 관리 라이브러리에 대한 코드와 설명 (Context, Redux-Toolkit, Zustand...)
+- **React-Summary-Pratice** : 배운 React 기술을 사용하고 연습한 코드와 설명
+- **React-Testing** : Vitest와 @Testing-React를 통한 테스트 코드와 설명
+- **React-Udemy** : Udemy에서 학습한 내용에 대한 코드와 설명
+- 
