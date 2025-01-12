@@ -13,5 +13,11 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 
 ## Skill
 - **State**
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Context-API](https://img.shields.io/badge/Context--Api-000000?style=for-the-badge&logo=react)
+
+![Context-API](https://img.shields.io/badge/Context--Api-000000?style=for-the-badge&logo=react) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Flat Square](https://img.shields.io/badge/style-flat--square-blue)
+
+- **CSS-Animation**
+
+
+  
 
