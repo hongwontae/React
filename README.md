@@ -15,6 +15,7 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 - **State**
 
 ![Badge](https://img.shields.io/badge/Sass-CC6699.svg?&logo=Sass&logoColor=fff)
+![Badge](https://img.shields.io/badge/React-61DAFB.svg?&logo=React&logoColor=fff)
 
 
 - **CSS-Animation**
