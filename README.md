@@ -45,6 +45,7 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 
 - **State Preview(Recoil)**
 ```javascript
+// main.jsx
 import { createRoot } from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import "./index.css";
@@ -60,3 +61,109 @@ createRoot(document.getElementById("root")).render(
 
   </>
 );
+
+// inputState.jsx
+import {atom, selector} from 'recoil'
+
+export const inputState = atom({
+    key : 'name-state',
+    default : {
+        name : null,
+        age : null
+    }
+})
+
+export const inputSelector = selector({
+    key : 'name-length',
+    get : ({get})=>{
+        const text = get(inputState);
+        return text.name.length
+    }
+})
+
+export function initialRecoil({set}){
+    set(inputState, {name : 'HWT', age : 20})
+}
+
+// Form.jsx
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { inputState, inputSelector } from "../recoil-state/InputState";
+import { styled } from "styled-components";
+import { ModalState } from "../recoil-state/modalState";
+
+const FormComponent = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+function Form() {
+  const [inputSt, setInputSt] = useRecoilState(inputState);
+  const setModal = useSetRecoilState(ModalState)
+  const resetHandler = useResetRecoilState(inputState)
+  const nameCount = useRecoilValue(inputSelector)
+
+
+  function nameResetHandler(){
+    setInputSt(prev => {
+      return {
+        ...prev,
+        name : ''
+      }
+    })
+  }
+
+  function ageResetHandler(){
+    setInputSt(prev=>{
+      return {
+        ...prev,
+        age : ''
+      }
+    })
+  }
+
+  return (
+    <>
+      <FormComponent >
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            value={inputSt.name}
+            onChange={(e) =>
+              setInputSt((prev) => {
+                return {
+                  ...prev,
+                  name: e.target.value,
+                };
+              })
+            }
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="age">Age</label>
+          <input
+            id="age"
+            type="number"
+            value={inputSt.age}
+            onChange={(e) =>
+              setInputSt((prev) => ({ ...prev, age: e.target.value }))
+            }
+          ></input>
+        </div>
+            <button type="button" onClick={resetHandler}>Reset</button>
+            <button type="button" onClick={nameResetHandler}>NameReset</button>
+            <button type="button" onClick={ageResetHandler}>AgeReset</button>
+            <button type="button" onClick={()=>setModal(true)}>Modal!</button>
+
+            <div>Name Length is {nameCount}</div>
+      </FormComponent>
+    </>
+  );
+}
+
+export default Form;
+
