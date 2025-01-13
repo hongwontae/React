@@ -105,4 +105,96 @@ export default function Header() {
     </header>
   );
 }
+```
+
+---
+
+- **React Library(React Router & React Query)**
+```javascript
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+
+import { QueryClientProvider} from "@tanstack/react-query";
+
+import Events from "./components/Events/Events.jsx";
+import EventDetails from "./components/Events/EventDetails.jsx";
+import NewEvent from "./components/Events/NewEvent.jsx";
+import EditEvent from "./components/Events/EditEvent.jsx";
+
+import {queryClient} from './components/util/http.js'
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/events" />,
+  },
+  {
+    path: "/events",
+    element: <Events />,
+
+    children: [
+      {
+        path: "/events/new",
+        element: <NewEvent />,
+      },
+    ],
+  },
+  {
+    path: "/events/:id",
+    element: <EventDetails />,
+    children: [
+      {
+        path: "/events/:id/edit",
+        element: <EditEvent />,
+      },
+    ],
+  },
+]);
+
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+---
+
+- **Test Preview(@Testing-library & Vitest)**
+```javascript
+import {render, screen} from '../../test-utils/test-util';
+import NotPlayer from '../NotPlyaer';
+import TestComponent from '../TestComponent';
+import {userEvent} from '@testing-library/user-event';
+test('tt', async ()=>{
+    const user = userEvent.setup();
+    render(<TestComponent/>);
+
+    const onePriceElement = screen.getByRole('spinbutton', {name : 'oneP'})
+    await user.clear(onePriceElement);
+    await user.type(onePriceElement, '1')
+    expect(onePriceElement).toHaveValue(1)
+
+    const twoPriceElement = screen.getByRole('spinbutton', {name : 'twoP'});
+    const totalPriceElement = screen.getByRole('term', {name : 'totalPrice'});
+    await user.clear(twoPriceElement);
+    await user.clear(onePriceElement);
+    await user.type(twoPriceElement, '200');
+    await user.type(onePriceElement, '100');
+
+    expect(totalPriceElement).toHaveTextContent('300')
+})
+
+test('player not test', async ()=>{
+    render(<NotPlayer></NotPlayer>)
+    const players = await screen.findAllByRole('document');
+})
 
