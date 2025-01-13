@@ -41,22 +41,22 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 ![Badge](https://img.shields.io/badge/Vitest-6E9F18.svg?&logo=Vitest&logoColor=fff)
 
 
-- **Preview**
+## Preview
 
-1. State Preview
+- **State Preview(Recoil)**
 ```javascript
-function add(a,b){
-   return a+b
-}
-console.log(add(1,2))
+import { createRoot } from "react-dom/client";
+import { RecoilRoot } from "recoil";
+import "./index.css";
+import App from "./App.jsx";
 
+import { initialRecoil } from "./recoil-state/InputState.jsx";
 
+createRoot(document.getElementById("root")).render(
+  <>
+    <RecoilRoot initializeState={initialRecoil}>
+      <App />
+    </RecoilRoot>
 
-
-
-
-
-
-
-  
-
+  </>
+);
