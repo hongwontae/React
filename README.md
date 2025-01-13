@@ -27,10 +27,13 @@ React의 개념, State 라이브러리, React-Testing 등 전반을 마스터하
 ![Badge](https://img.shields.io/badge/Tawilwind-06B6D4.svg?&logo=Tailwind%20CSS&logoColor=fff) 
 ![Badge](https://img.shields.io/badge/styled-components-DB7093.svg?&logo=styled-components&logoColor=fff)
 
-- **Stack**
+- **React Library**
 
 &nbsp;&nbsp;&nbsp;![Badge](https://img.shields.io/badge/React%20Router-CA4245.svg?&logo=React%20Router&logoColor=fff)
 ![Badge](https://img.shields.io/badge/React%20Query-FF4154.svg?&logo=React%20Query&logoColor=fff)
+![Badge](https://img.shields.io/badge/Axios-5A29E4.svg?&logo=Axios&logoColor=fff)
+![Badge](https://img.shields.io/badge/Axios-5A29E4.svg?&logo=Axios&logoColor=fff)
+![Badge](https://img.shields.io/badge/Framer-0055FF.svg?&logo=Framer&logoColor=fff)
 
 
 
