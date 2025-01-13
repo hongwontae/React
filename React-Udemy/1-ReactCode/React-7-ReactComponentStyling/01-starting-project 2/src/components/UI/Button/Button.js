@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 // const Button = styled.button`
 //   width : 100%
 //   font: inherit;
-//   padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
 //   border: 1px solid #8b005d;
 //   color: white;
 //   background: #8b005d;
