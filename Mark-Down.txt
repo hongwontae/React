@@ -9,4 +9,10 @@
 *** (세 개 이상의 별표)
 ___ (세 개 이상의 밑줄)
 
-4. 
+4. &nbsp;&nbsp;&nbsp;
+=> tab
+
+5. 배지
+![Badge](https://img.shields.io/badge/styled-components-DB7093.svg?&logo=styled-components&logoColor=fff)
+=> shields의 icon을 사용할 수 있는 구문입니다.
+=> badge/뱃지이름-헥스코드색ㄲㄹ.svg?logo=icon 이름&logoColor=헥스코드
