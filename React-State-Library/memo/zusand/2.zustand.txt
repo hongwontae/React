@@ -9,6 +9,11 @@
     increment : ()=>set((prev)=>({count : prev.count+1})),
     decrement : ()=>set((prev)=>({count : prev.count-1}))
 }))
+=> create 함수를 콜백을 받습니다.
+=> 그리고 객체를 반환합니다. 그 객체에서 상태와 상태 변경 함수를 반환합니다.
+=> 상태 변경 함수는 메서드 처럼 정의하고 set을 호출하여 새로운 객체를 호출하면 됩니다.
+=> change : ()=> set((prev)=>({count : prev.count+1}))
+
 
 1-3. 컴포넌트에서 create의 반환값을 가져와서 상태와 상태 변경 함수를 사용합니다.
 => const {count, increment, decrement} = CountState();

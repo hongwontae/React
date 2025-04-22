@@ -1,0 +1,28 @@
+1. Redux-Saga는
+=> React 애플리케이션에서 비동기 작업을 다루기 위한 미들웨어입니다.
+=> ES6 제네레이터 함수를 활용하여 비동기 흐름을 선언적으로 작성합니다.
+
+2. redux-saga 설치 명령어
+=> npm install @reduxjs/toolkit react-redux redux-saga 
+=> saga를 사용하려면 react-redux, 일반 redux library가 필요합니다.
+
+
+3. iterator
+=> 이터레이터는 next()를 호출할 떄마다 값을 하나씩 반환하는 객체입니다.
+
+3-1. 선언
+=> function * functionName(){}을 통해 이터레이터 함수를 선언합니다.
+
+3-2. yield
+=> 값을 하나씩 반환하는 키워드입니다. next()를 호출하기 전에 여기서 멈춥니다.
+
+3-3. next()
+=> 다시 실행하여 다음 yield로 이동합니다.
+
+3-4. redux-saga가 이터레이터를 사용하는 이유
+=> 비동기 흐름을 동기처럼 다루게 해주고 싶어서 해당 방식을 사용합니다.
+=> call, put, takeLatest는 yield로 연결, saga 미들웨어가 
+ 그걸 하나씩 실행하여 API 요청, 액션 디스패치 등을 해줍니다.
+
+
+
