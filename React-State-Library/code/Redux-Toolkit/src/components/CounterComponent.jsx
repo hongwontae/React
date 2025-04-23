@@ -14,7 +14,7 @@ function CounterComponent(){
             <div>{value}</div>
             <input type='number' ref={numRef}></input>
             <div>
-                <button onClick={()=>dispatch(increment())}>Up</button>
+                <button onClick={()=>dispatch(increme#nt())}>Up</button>
                 <button onClick={()=>dispatch(decrement())}>Down</button>
                 <button onClick={()=>dispatch(indement(Number(numRef?.current?.value)))}>Amount</button>
                 <button onClick={()=>dispatch(reset())}>Reset</button>

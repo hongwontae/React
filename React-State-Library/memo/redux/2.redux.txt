@@ -1,12 +1,10 @@
 1. redux 사용법
-1-1. action을 정의합니다.
+1-1. action을 정의합니다. 객체를 반환하는 함수입니다.
 (action은 reducers가 어떤 상태 변경 함수를 사용할지 도와주는 객체입니다.)
 => type과 payload를 정의할 수 있습니다. type은 상태 변경 함수 구분/ payload는 상태 변경하는데 필요한 메타 데이터
 1-2. function upAndDown(num){
-    type : 'UP-DOWN',
-    payload : num
+    return {type : 'INCREMENT', payload : num}
 }
-
 
 1-3. reducers를 정의합니다.
 => 함수 형태로 정의하고 첫 번쨰 인자로 state, 두 번쨰 인자로 action을 받습니다.
@@ -34,12 +32,16 @@
 => 상태가 변경되면 해당 상태를 가지고 있는 컴포넌트만 리렌더링됩니다.
 => useSelector의 (state)는 Redux 스토어에서 가져온 전체 상태 객체입니다.
 
-=> 만약 reducerFunction이 두 개라면 combineReducers({
-    counternn : counterReducer,
+
+2. store.getState();
+=> 리덕스 store의 현재 상태를 직접 가져오는 함수입니다.
+
+
+3. const rootReducer = combineReducers({})
+=> combineReducers에서 여러 리듀서를 합치고 반환값을 createStore() 인자에 넣습니다.
+=> comnineReducers({
+    counter : CounterReducer,
     user : userReducer
-}) 결합하고 이가 state가 됩니다.
-=> useSelector(state=>state.counternn.count);
-=> 즉, combineReducers에 의해서 {
-    counternn : {count : 1},
-    user : {name : '', age : ''}
-} 이런 형태가 됩니다.
+})
+=> state.counter.count -> 이렇게 접근할 수 있습니다.
+=> CounterReducer의 state는 {count : 0}

@@ -40,5 +40,5 @@ const store = configureStore({
         user : userSlice.reducer
     }
 })
-=> 이 떄 useSelector는 useSelector(state=>stte.counter.value)로 값에 접근합니다.
+=> 이 떄 useSelector는 useSelector(state=>state.counter.value)로 값에 접근합니다.
 

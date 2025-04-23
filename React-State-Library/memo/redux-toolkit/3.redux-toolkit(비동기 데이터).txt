@@ -13,10 +13,15 @@
 => extra: configureStore에서 정의한 추가 인자를 전달받음.
 
 1-7. 기본동작
-=> createAsyncThunk가 호출되면 자동으로 loading 상태인 pending 상태를 dispatch 합니다.
+=> createAsyncThunk가 컴포넌트에서 dispatch(fetchUser()) 호출되면 자동으로 
+ loading 상태인 pending 상태를 dispatch 합니다.
 => 비동기 로직으로 데이터를 받아오면 자동으로 fulfilled 상태를 dispatch 합니다.
 => 만약 에러가 발생했다면 자동으로 rejected 상태를 dispatch 합니다.
 (rejectWithValue는 rejected reducer에 error message를 전달하기 위한 옵션입니다.)
+
+
+** 비동기 액션 크리에이터 **
+=> 여러 액션을 자동으로 발생시키는 비동기 함수입니다.
 
 
 2. extraReducers
@@ -27,7 +32,7 @@
 2-1. reducers는 slice의 동기 액션만 처리합니다.
 2-2. 비동기 액션은 Slice 바깥에서 생성 => extraReducer에 반응하게 합니다.
 
-2-3. extraReducers : (buildre)=>{
+2-3. extraReducers : (builder)=>{
     => builder란 redux-toolkit이 제공한 Fluent API
     => 여러 액션에 대한 상태 업데이트 로직을 체계적으로 작성할 수 있도록 도와줍니다.
     => 주요 메서드
@@ -35,6 +40,8 @@
     2. addMatcher(matcher, reducer): 여러 액션 타입을 조건에 따라 처리.
     3. addDefaultCase(reducer): 정의되지 않은 액션 타입에 대한 기본 처리.
 }
+=> 여기서 type은 createAsyncThunk의 반환값.action입니다.
+=> 즉, fetchUser.pending, fetchUser.fulfilled, fetchUser.rejected 입니다.
 
 
 

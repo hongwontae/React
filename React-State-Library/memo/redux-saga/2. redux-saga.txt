@@ -1,23 +1,28 @@
-1. redux-saga 파일의 역할, 순서
+1. 전체 흐름
+1-1. saga를 생성 (Generator 함수로 만든 function* 기반의 Saga 함수 정의)
+1-2. watcher 생성 (특정 액션이 발생했을 때 어떤 Saga를 실행할지 정의)
+1-3. 미들웨어로 등록 (createStore()에 sagaMiddleware 연결 후 실행)
 
-** saga pattern **
-=> 마이크로서비스 환경에서 여러 비동기 작업을 순서대로 처리하고, 실패하면 롤백하는 흐름을 다루는 패턴을 의미
-=> redux-saga에서 saga는 액션->비동기 API 요청-> 성공/실패 -> 다른 액션 디스패치 이 하나의 흐름을 의미
 
-1-1. store.js
-=> reducer를 등록
-=> saga 미들웨어 설정
-=> root saga 실행
-=> 앱 시작 시 가장 먼저 실행됩니다.
+2. redux - middleware
+=> middleware가 존재하면 dispatch(action)시에 reducer에 가기 전에 middleware를 거칩니다.
 
-1-2. Slice.js
-=> Redux Toolkit의 Slice 정의 파일입니다.
-=> createReducer를 통해 reducer와 action을 정의합니다.
+3. store
+=> createStore()를 통해서 store를 생성합니다.
+=> 첫 번쨰 인자로는 상태, 두 번쨰 인자는 미들웨어를 추가합니다.
+=> const sagaMiddleware = createSagaMiddleware()
+=> applyMiddleware(sagaMiddleware)
+=> 파일에서 코드 default 바로 위에 sagaMiddleware.run(rootSaga) -> run이 next()을 알아서 호출해주는 구조를 만듬
 
-1-3. saga.js
-=> 실제 API 요청을 처리하는 saga입니다.
-=> 액션이 발생하면 yield call()로 API를 요청하고 yield put()으로 결과를 전달합니다.
+4. watcher saga - worker saga - root saga
+4-1. watcher saga는 컴포넌트에서 dispatch({type : 'user/action'})이 호출되었을 떄 이 액션을 감지하여
+ worker saga를 호출하는 saga 입니다. (takelatest -> 가장 최신 요청만 처리합니다.)
+4-2. worker saga는 실제 비동기를 처리하는 로직을 담은 saga입니다.
+(call(fn, ...args) -> 함수 호출 제어권을 saga에게 맡기면서 비동기를 호출합니다.)
+(put(action) -> )
+4-3. root saga는 모든 saga를 all([saga1, saga2...])를 병렬로 실행하여 action을 감지할 준비를 합니다.
 
-1-4. rootSaga.js
-=> 나중에 여러 saga가 생기면 all([...])으로 한 번에 실행할 수 있습니다.
-=> saga의 메인 포인트입니다.
+
+
+4. dispatch({...action})
+=> 컴포넌트에서 비동기 작업을 위해서 호출합니다.

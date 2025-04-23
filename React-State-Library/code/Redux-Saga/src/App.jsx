@@ -1,21 +1,22 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserRequest } from './user/userSlice';
-
+import React, { useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchUser} from './user/userSlice';
 
 function App() {
+
   const dispatch = useDispatch();
-  const { loading, user, error } = useSelector((state) => state.user);
+  const { data, loading, error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser(3));
+  }, [dispatch]);
+
+  if (loading) return <p>로딩 중...</p>;
+  if (error) return <p>에러: {error}</p>;
 
   return (
     <div style={{ padding: '2rem' }}>
-      <button onClick={() => dispatch(fetchUserRequest())}>
-        사용자 정보 불러오기
-      </button>
-
-      {loading && <p>로딩 중...</p>}
-      {user && <pre>{JSON.stringify(user, null, 2)}</pre>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {<div>이름 : {data?.name}</div>}
     </div>
   );
 }

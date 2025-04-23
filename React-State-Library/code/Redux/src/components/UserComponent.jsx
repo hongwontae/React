@@ -18,6 +18,7 @@ function UserComponent() {
         <label>Age</label>
         <input type="number" value={data.age} onChange={e=>dispatch(ageHandler(e))}></input>
       </div>
+      <div>{data.name} - {data.age}</div>
     </>
   );
 }
