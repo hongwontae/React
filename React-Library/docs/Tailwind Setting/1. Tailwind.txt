@@ -1,0 +1,5 @@
+1. npm install tailwindcss @tailwindcss/vite
+2. vite.config.js(ts)에서 plugins 배열에 tailwindcss()를 추가
+3. index.css에서 @import "tailwindcss";
+4. 사용
+=> 이렇게 하면 자동완성이 없음
