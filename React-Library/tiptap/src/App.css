@@ -10,3 +10,8 @@ body {
     height: 100%;
     background-color: darkgrey;
 }
+
+.tiptap-editor {
+    border: none !important;
+    outline: none !important;
+  }
