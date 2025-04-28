@@ -1,103 +1,63 @@
-import { EditorContent, useEditor } from "@tiptap/react";
-import "./App.css";
-import StarterKit from "@tiptap/starter-kit";
-import {  useState } from "react";
-import Image from '@tiptap/extension-image';
-
-const CustomImage = Image.extend({
-  addAttributes(){
-    return {
-      ...this.parent?.(),
-      width : {
-        default : '100px',
-        parseHTML : element => element.getAttribute('width'),
-        renderHTML : attribute => {
-          return {
-            width : attribute.width
-          }
-        }
-      },
-      height : {
-        default : 'auto',
-        parseHTML : element => element.getAttribute('height'),
-        renderHTML : attributes =>{
-          return {
-            height : attributes.height
-          }
-        }
-      },
-      style : {
-        default : 'margin-left : auto; margin-right : auto;',
-        parseHTML : element => element.getAttribute('style'),
-        renderHTML : att =>{
-          return {
-            style : att.style
-          }
-        }
-      }
-    }
-  },
-  
-})
-
+import Image from "@tiptap/extension-image";
+import { useEditor, EditorContent } from "@tiptap/react";
+import { StarterKit } from "@tiptap/starter-kit";
+import { useState } from "react";
 
 function App() {
-
-  const [editorContent, setEditorContent] = useState('');
-  const [image, setImage] = useState<File[]>([]);
+  const [editorContent, setEditorContent] = useState("");
+  const [editorFileState, setEditorFileState] = useState([])
 
   const editor = useEditor({
-    extensions: [StarterKit, CustomImage],
-    content: `<p>환영합니다!</p>`,
-    onUpdate : ({editor})=>{
-      setEditorContent(editor.getHTML())
-    },
-    editorProps : {
-      attributes : {
-        class : 'tiptap-editor'
-      }
+    extensions: [StarterKit, Image],
+    onUpdate: ({ editor }) => {
+      const editorImgTags = Array.from(editor.view.dom.querySelectorAll('img'));
+      const editorImgTagsUniqueId = editorImgTags.map(ele => ele.getAttribute('alt'));
+      console.log(editorImgTagsUniqueId)
+      setEditorContent(editor.getHTML());
     }
   });
 
-  function insertImage(){
-   const input = document.createElement('input');
-   input.type = 'file';
-   input.accept = 'image/*';
+  async function sendEditorContentHandler() {
+    if (editorContent.length <= 10) {
+      return;
+    }
 
-   input.onchange = (e : Event)=>{
-      const target = e.target as HTMLInputElement;
-      const file = target.files?.[0]
-      if(!file){
-        return
-      }
-      setImage((prev)=>[...prev, file])
-      const previewURL = URL.createObjectURL(file);
-      editor?.chain().focus().setImage({src : previewURL}).insertContent('<p></p>').run();
-   } 
+    const response = await fetch("http://localhost:8000/user/editor", {
+      method: "POST",
+      body: JSON.stringify({ editorContent }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-   input.click();
+    const resData = await response.json();
+    return resData;
   }
 
-
-  console.log(editorContent)
+  function imageHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    const randomId = Math.random().toString()
+    setEditorFileState((prev)=>[...prev, {file, uniqueId :randomId}])
+    const url = URL.createObjectURL(file!);
+    editor?.chain().focus().setImage({ src: url, alt : randomId }).run();
+    event.target.value = '';
+  }
 
   return (
     <>
-      <div className="w-1/2 m-auto p-3 tiptap-editor">
-        <EditorContent
-          className="text-center mt-10 break-all rounded-lg border-[1px] p-3"
-          editor={editor}
-        ></EditorContent>
-        <button
-          onClick={() => editor?.chain().focus().toggleBold().run()}
-          className={
-            `${editor?.isActive("bold") ? "text-red-300" : ""}` +
-            " border-[1px] rounded-lg p-2 mt-2"
-          }
-        >
-          Bold
-        </button>
-        <button className="" onClick={insertImage}>Insert Image</button>
+      <div className="bg-gray-500 h-screen">
+        <div className=" p-10">
+          <EditorContent
+            editor={editor}
+            className="w-1/2 m-auto border-[1px] rounded-lg text-center"
+          ></EditorContent>
+          <button type="button" onClick={sendEditorContentHandler}>
+            Submit
+          </button>
+          <div>
+            <input type="file" accept="image/*" onChange={imageHandler}></input>
+          </div>
+        </div>
       </div>
     </>
   );
