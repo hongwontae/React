@@ -1,63 +1,109 @@
-import Image from "@tiptap/extension-image";
-import { useEditor, EditorContent } from "@tiptap/react";
-import { StarterKit } from "@tiptap/starter-kit";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import "./App.css";
 import { useState } from "react";
+import { Image } from "@tiptap/extension-image";
+
+const customIage = Image.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      width: {
+        default: "50%",
+        parseHTML: (element) => element.getAttribute("width"),
+        renderHTML: (att) => {
+          return {
+            width: att.width,
+          };
+        },
+      },
+      style: {
+        default: "",
+        parseHTML: (element) => element.getAttribute("style"),
+        renderHTML: (attributes) => {
+          return attributes.style ? { style: attributes.style } : {};
+        },
+      },
+    };
+  },
+});
+
+// 이제 백엔드에서 파일 여러 개, 메인 content를 제대로 날릴 수 있다. => 제대로 받는거 확인
+// 그럼 이제 content의 img와 file 객체을 비교하여 같은 걸 찾을 수 있어야 한다.
+// 따로 저장되기 때문
 
 function App() {
-  const [editorContent, setEditorContent] = useState("");
-  const [editorFileState, setEditorFileState] = useState([])
+  const [images, setImages] = useState<{ file: File; url: string }[]>([]);
+  const [editorHTML, setEditorHTML] = useState("");
+  console.log(editorHTML);
 
   const editor = useEditor({
-    extensions: [StarterKit, Image],
+    extensions: [StarterKit, customIage],
     onUpdate: ({ editor }) => {
-      const editorImgTags = Array.from(editor.view.dom.querySelectorAll('img'));
-      const editorImgTagsUniqueId = editorImgTags.map(ele => ele.getAttribute('alt'));
-      console.log(editorImgTagsUniqueId)
-      setEditorContent(editor.getHTML());
-    }
+      setEditorHTML(editor.getHTML());
+    },
   });
-
-  async function sendEditorContentHandler() {
-    if (editorContent.length <= 10) {
-      return;
-    }
-
-    const response = await fetch("http://localhost:8000/user/editor", {
-      method: "POST",
-      body: JSON.stringify({ editorContent }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const resData = await response.json();
-    return resData;
-  }
 
   function imageHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-    const randomId = Math.random().toString()
-    setEditorFileState((prev)=>[...prev, {file, uniqueId :randomId}])
-    const url = URL.createObjectURL(file!);
-    editor?.chain().focus().setImage({ src: url, alt : randomId }).run();
-    event.target.value = '';
+    if (!file) {
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    setImages((prev) => [...prev, { file, url }]);
+    editor
+      ?.chain()
+      .focus()
+      .setImage({
+        src: url,
+        style: "margin: auto; border-radius: 8px;",
+        height: "100px",
+      })
+      .run();
+    event.target.value = "";
+  }
+
+  async function submitHnadler() {
+    const currentEditorData = editor?.getHTML();
+    const copyImage = [...images];
+    const usedImages = copyImage.filter((img) =>
+      currentEditorData?.includes(img.url)
+    );
+    const sendFiles = usedImages.map((ele)=>{
+      return ele.file
+    })
+
+    const formData = new FormData();
+    sendFiles.forEach((ele)=>{
+      formData.append("files", ele)
+    })
+    formData.append('content', editorHTML);
+    // 보내는 것은 이미지 여러 개
+    // html 형식의 컨텐츠 => 이 떄 img css는 불러와서 적용하면 되니까
+    // 다만 위치 문제는 존재 editorHTML이 img 위치는 가지고 있다.
+    // 이를 활용해야 할듯?
+
+    const response = await fetch('http://localhost:8000/editor/save', {
+      method : 'POST',
+      body : formData
+    });
+
+    if(!response.ok){return}
+
+    const resData = await response.json();
+
+    console.log(resData);
+
   }
 
   return (
     <>
-      <div className="bg-gray-500 h-screen">
-        <div className=" p-10">
-          <EditorContent
-            editor={editor}
-            className="w-1/2 m-auto border-[1px] rounded-lg text-center"
-          ></EditorContent>
-          <button type="button" onClick={sendEditorContentHandler}>
-            Submit
-          </button>
-          <div>
-            <input type="file" accept="image/*" onChange={imageHandler}></input>
-          </div>
-        </div>
+      <div>
+        <EditorContent className="text-center" editor={editor}></EditorContent>
+        <input type="file" accept="image/*" onChange={imageHandler}></input>
+        <button onClick={submitHnadler} type="button">
+          Submit
+        </button>
       </div>
     </>
   );

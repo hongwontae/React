@@ -1,0 +1,2 @@
+1. input type이 file일 떄 event 타입
+=> e : React.ChangeEvent<HTMLInputElement>
