@@ -24,6 +24,16 @@ const customIage = Image.extend({
           return attributes.style ? { style: attributes.style } : {};
         },
       },
+      dataId : {
+        default : null,
+        parseHTML : (element)=> element.getAttribute('data-id'),
+        renderHTML : (attr)=>{
+          if(!attr.dataId){return}
+          return {
+            'data-id' : attr.dataId
+          }
+        }
+      },
     };
   },
 });
